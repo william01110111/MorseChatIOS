@@ -12,6 +12,7 @@
 		3D92638A1D340F89001F839B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D9263881D340F89001F839B /* Main.storyboard */; };
 		3D92638C1D340F89001F839B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D92638B1D340F89001F839B /* Assets.xcassets */; };
 		3D92638F1D340F89001F839B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D92638D1D340F89001F839B /* LaunchScreen.storyboard */; };
+		3D9263971D341732001F839B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D9263961D341732001F839B /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		3D92638B1D340F89001F839B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3D92638E1D340F89001F839B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3D9263901D340F89001F839B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D9263961D341732001F839B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +40,7 @@
 		3D9263781D340F89001F839B = {
 			isa = PBXGroup;
 			children = (
+				3D9263961D341732001F839B /* GoogleService-Info.plist */,
 				3D9263831D340F89001F839B /* MorseChat */,
 				3D9263821D340F89001F839B /* Products */,
 			);
@@ -123,6 +126,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D92638F1D340F89001F839B /* LaunchScreen.storyboard in Resources */,
+				3D9263971D341732001F839B /* GoogleService-Info.plist in Resources */,
 				3D92638C1D340F89001F839B /* Assets.xcassets in Resources */,
 				3D92638A1D340F89001F839B /* Main.storyboard in Resources */,
 			);
