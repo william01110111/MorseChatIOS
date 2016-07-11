@@ -37,8 +37,11 @@ class FirebaseHelper {
 	}
 	
 	func signInWithDefaultUser() {
-		
-		auth.signInWithEmail("widap@mailinator.com", password: "password",
+		signInWithEmail("widap@mailinator.com", password: "password")
+	}
+	
+	func signInWithEmail(email: String, password: String) {
+		auth.signInWithEmail(email, password: password,
 			completion: { FIRAuthResultCallback in
 				//sign in worked
 				
@@ -46,14 +49,14 @@ class FirebaseHelper {
 					
 					withBlock: { (data: FIRDataSnapshot) in
 						
-						me = User(nameIn: data.value?["name"] as? String ?? "[no name]", keyIn: self.user?.uid ?? "")
+						me = User(nameIn: data.value?["name"] as? String ?? "[no name]", keyIn: self.user?.uid ?? "[no user key]")
 						
-						//print("logged in as \(me?.fullName ?? "login failed")")
+						print("logged in as \(me?.fullName ?? "[login failed]")")
 					},
 					
 					withCancelBlock: { (error) in
 						
-						print(error.localizedDescription)
+						print("Error in FirebaseHelper: \(error.localizedDescription)")
 					}
 				);
 			}
