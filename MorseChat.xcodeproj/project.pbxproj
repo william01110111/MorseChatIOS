@@ -13,6 +13,7 @@
 		3D92638C1D340F89001F839B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D92638B1D340F89001F839B /* Assets.xcassets */; };
 		3D92638F1D340F89001F839B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D92638D1D340F89001F839B /* LaunchScreen.storyboard */; };
 		3D9263971D341732001F839B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D9263961D341732001F839B /* GoogleService-Info.plist */; };
+		6C77FFAE2704A01E18288850 /* Pods_MorseChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC0992C3D92244C777159E7B /* Pods_MorseChat.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,9 @@
 		3D92638E1D340F89001F839B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3D9263901D340F89001F839B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D9263961D341732001F839B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5151FC150A43BF925D369FB6 /* Pods-MorseChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MorseChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MorseChat/Pods-MorseChat.debug.xcconfig"; sourceTree = "<group>"; };
+		52508CDF82C8FFAB8C3C717E /* Pods-MorseChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MorseChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-MorseChat/Pods-MorseChat.release.xcconfig"; sourceTree = "<group>"; };
+		CC0992C3D92244C777159E7B /* Pods_MorseChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MorseChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,18 +35,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C77FFAE2704A01E18288850 /* Pods_MorseChat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		20A192A421F74554A2580268 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CC0992C3D92244C777159E7B /* Pods_MorseChat.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2394C16F626BA78773FDFD8A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5151FC150A43BF925D369FB6 /* Pods-MorseChat.debug.xcconfig */,
+				52508CDF82C8FFAB8C3C717E /* Pods-MorseChat.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		3D9263781D340F89001F839B = {
 			isa = PBXGroup;
 			children = (
 				3D9263961D341732001F839B /* GoogleService-Info.plist */,
 				3D9263831D340F89001F839B /* MorseChat */,
 				3D9263821D340F89001F839B /* Products */,
+				2394C16F626BA78773FDFD8A /* Pods */,
+				20A192A421F74554A2580268 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -74,9 +98,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3D9263931D340F89001F839B /* Build configuration list for PBXNativeTarget "MorseChat" */;
 			buildPhases = (
+				0F0E4ECF60CF110A9B390CA6 /* [CP] Check Pods Manifest.lock */,
 				3D92637D1D340F89001F839B /* Sources */,
 				3D92637E1D340F89001F839B /* Frameworks */,
 				3D92637F1D340F89001F839B /* Resources */,
+				DFCEEC83410DAA51D2F41F58 /* [CP] Embed Pods Frameworks */,
+				C471DADF0DCC83439AC2635A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -133,6 +160,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0F0E4ECF60CF110A9B390CA6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C471DADF0DCC83439AC2635A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MorseChat/Pods-MorseChat-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DFCEEC83410DAA51D2F41F58 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MorseChat/Pods-MorseChat-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3D92637D1D340F89001F839B /* Sources */ = {
@@ -253,6 +328,7 @@
 		};
 		3D9263941D340F89001F839B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5151FC150A43BF925D369FB6 /* Pods-MorseChat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -265,6 +341,7 @@
 		};
 		3D9263951D340F89001F839B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 52508CDF82C8FFAB8C3C717E /* Pods-MorseChat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -294,6 +371,7 @@
 				3D9263951D340F89001F839B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
