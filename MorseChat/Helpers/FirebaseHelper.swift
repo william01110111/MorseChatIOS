@@ -9,20 +9,54 @@
 import Foundation
 import Firebase
 import FirebaseAuth
+import FirebaseDatabase
 
 let firebaseHelper = FirebaseHelper()
 
 class FirebaseHelper {
 	
 	var user: FIRUser?
+	let auth: FIRAuth
+	let root: FIRDatabaseReference
 	
 	init() {
 		
 		//callback is used so user is not requested while internal state is changing or some BS like that
 		
-		FIRAuth.auth()?.addAuthStateDidChangeListener { auth, user in
-			
-			self.user = user
-		}
+		FIRApp.configure()
+		
+		auth = FIRAuth.auth()!
+		
+		root = FIRDatabase.database().reference()
+		
+		FIRAuth.auth()?.addAuthStateDidChangeListener(
+			{ auth, user in
+				self.user = user
+			}
+		);
+	}
+	
+	func signInWithDefaultUser() {
+		
+		auth.signInWithEmail("widap@mailinator.com", password: "password",
+			completion: { FIRAuthResultCallback in
+				//sign in worked
+				
+				self.root.child("users/\(self.user?.uid ?? "")").observeSingleEventOfType(.Value,
+					
+					withBlock: { (data: FIRDataSnapshot) in
+						
+						me = User(nameIn: data.value?["name"] as? String ?? "[no name]", keyIn: self.user?.uid ?? "")
+						
+						//print("logged in as \(me?.fullName ?? "login failed")")
+					},
+					
+					withCancelBlock: { (error) in
+						
+						print(error.localizedDescription)
+					}
+				);
+			}
+		)
 	}
 }
