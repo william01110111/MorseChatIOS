@@ -36,26 +36,8 @@ extension FriendsListViewController: UITableViewDataSource {
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
 		
-		/*//maybe It works as lazy load
-		if indexPath.row >= postList.count {
-			//self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: self.comments.count-1, inSection: 1)], withRowAnimation: UITableViewRowAnimation.Automatic)
-		}
-		
-		//maybe It works as lazy load
-		let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! MainTableViewCell
-		
-		let post = postList[postList.count-indexPath.row-1]
-		if post.picture == nil{
-			FirebaseHelper.downloadImage(post) { (productImage) in
-				//            print(productImage)
-				//            cell.imageViewProduct.image = productImage
-				post.picture = productImage
-				tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-			}
-		}
-		cell.populate(post)
-		*/
-		let cell = tableView.dequeueReusableCellWithIdentifier("friendCell")!
+		let cell = tableView.dequeueReusableCellWithIdentifier("friendCell") as! FriendCell
+		cell.setFriend(User(nameIn: "name here", keyIn: "[key]"))
 		return cell
 	}
 }
