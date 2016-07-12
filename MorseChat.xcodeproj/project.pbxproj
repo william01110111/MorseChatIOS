@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3D9263851D340F89001F839B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9263841D340F89001F839B /* AppDelegate.swift */; };
-		3D9263871D340F89001F839B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9263861D340F89001F839B /* ViewController.swift */; };
+		3D9263871D340F89001F839B /* FriendsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9263861D340F89001F839B /* FriendsListViewController.swift */; };
 		3D92638A1D340F89001F839B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D9263881D340F89001F839B /* Main.storyboard */; };
 		3D92638C1D340F89001F839B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D92638B1D340F89001F839B /* Assets.xcassets */; };
 		3D92638F1D340F89001F839B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D92638D1D340F89001F839B /* LaunchScreen.storyboard */; };
@@ -21,7 +21,7 @@
 /* Begin PBXFileReference section */
 		3D9263811D340F89001F839B /* MorseChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MorseChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D9263841D340F89001F839B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3D9263861D340F89001F839B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3D9263861D340F89001F839B /* FriendsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListViewController.swift; sourceTree = "<group>"; };
 		3D9263891D340F89001F839B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3D92638B1D340F89001F839B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3D92638E1D340F89001F839B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -88,7 +88,7 @@
 				3DBF345C1D343AFB00A802FE /* Data */,
 				3DBF34591D34250800A802FE /* Helpers */,
 				3D9263841D340F89001F839B /* AppDelegate.swift */,
-				3D9263861D340F89001F839B /* ViewController.swift */,
+				3D9263861D340F89001F839B /* FriendsListViewController.swift */,
 				3D9263881D340F89001F839B /* Main.storyboard */,
 				3D92638B1D340F89001F839B /* Assets.xcassets */,
 				3D92638D1D340F89001F839B /* LaunchScreen.storyboard */,
@@ -237,7 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DBF345E1D343B0C00A802FE /* User.swift in Sources */,
-				3D9263871D340F89001F839B /* ViewController.swift in Sources */,
+				3D9263871D340F89001F839B /* FriendsListViewController.swift in Sources */,
 				3DBF345B1D34251D00A802FE /* FirebaseHelper.swift in Sources */,
 				3D9263851D340F89001F839B /* AppDelegate.swift in Sources */,
 			);
