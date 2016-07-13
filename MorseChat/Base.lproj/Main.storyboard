@@ -22,12 +22,16 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4zQ-qc-CGo">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4zQ-qc-CGo">
                                             <rect key="frame" x="480" y="0.0" width="120" height="43.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="120" id="ejw-8X-PDu"/>
                                             </constraints>
                                             <state key="normal" title="Button"/>
+                                            <connections>
+                                                <action selector="buttonPressed:" destination="dJH-it-wfA" eventType="touchDown" id="oRB-Zg-eSc"/>
+                                                <action selector="buttonReleased:" destination="dJH-it-wfA" eventType="touchUpInside" id="rwQ-yY-OQA"/>
+                                            </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IFZ-sH-Jnq">
                                             <rect key="frame" x="8" y="8" width="42" height="21"/>

@@ -51,7 +51,7 @@ class FirebaseHelper {
 						
 						me = User(nameIn: data.value?["name"] as? String ?? "[no name]", keyIn: self.user?.uid ?? "[no user key]")
 						
-						print("logged in as \(me?.fullName ?? "[login failed]")")
+						print("logged in as \(me.fullName)")
 					},
 					
 					withCancelBlock: { (error) in
@@ -61,5 +61,12 @@ class FirebaseHelper {
 				);
 			}
 		)
+	}
+	
+	func setLineToUserStatus(otherUserKey: String, lineOn: Bool) {
+		
+		root.child("lines/ldvmelmee").updateChildValues([otherUserKey : lineOn])
+			///\(otherUserKey)")
+		
 	}
 }

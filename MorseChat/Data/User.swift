@@ -8,7 +8,7 @@
 
 import Foundation
 
-var me: User?
+var me = User()
 
 class User {
 	
@@ -16,6 +16,12 @@ class User {
 	//var name: (first: String, last: String)
 	
 	var key: String
+	
+	init() {
+		
+		fullName = "noName"
+		key = "noKey"
+	}
 	
 	init(nameIn: String, keyIn: String) {
 		

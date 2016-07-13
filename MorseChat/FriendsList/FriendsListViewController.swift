@@ -9,7 +9,7 @@
 import UIKit
 
 class FriendsListViewController: UIViewController {
-
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
@@ -37,7 +37,7 @@ extension FriendsListViewController: UITableViewDataSource {
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
 		
 		let cell = tableView.dequeueReusableCellWithIdentifier("friendCell") as! FriendCell
-		cell.setFriend(User(nameIn: "name here", keyIn: "[key]"))
+		cell.setFriend(User(nameIn: "name here", keyIn: "key_here"))
 		return cell
 	}
 }

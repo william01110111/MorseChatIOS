@@ -12,6 +12,8 @@ class FriendCell : UITableViewCell {
 	
 	var friend: User?
 	
+	var buttonState = false
+	
 	@IBOutlet weak var sendButton: UIButton!
 	@IBOutlet weak var nameLabel: UILabel!
 	
@@ -19,6 +21,36 @@ class FriendCell : UITableViewCell {
 		
 		friend = friendIn
 		nameLabel.text = friend?.fullName
+	}
+	
+	
+	@IBAction func buttonPressed(sender: AnyObject) {
+		
+		setButton(true)
+	}
+	
+	@IBAction func buttonReleased(sender: AnyObject) {
+		
+		setButton(false)
+	}
+	
+	func setButton(newState: Bool) {
+		
+		buttonState = newState
+		
+		if buttonState {
+			backgroundColor = UIColor(red: 0.0, green: 1.0, blue: 1.0, alpha: 0.5)
+		}
+		else {
+			backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+		}
+		
+		print(buttonState)
+		
+		if friend != nil {
+			print("calling firebaseHelper.setLineToUserStatus() with key \(friend!.key)")
+			firebaseHelper.setLineToUserStatus(friend!.key, lineOn: buttonState)
+		}
 	}
 }
 
