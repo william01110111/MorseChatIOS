@@ -10,9 +10,14 @@ import UIKit
 
 class SimpSignInVC : UIViewController {
 	
+	@IBOutlet weak var loadingSpinner: UIActivityIndicatorView!
+	@IBOutlet weak var blurView: UIVisualEffectView!
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
+		
+		blurView.hidden=true;
 	}
 	
 	override func viewDidAppear(animated: Bool) {
@@ -23,7 +28,23 @@ class SimpSignInVC : UIViewController {
 	
 	@IBAction func signInBtn0(sender: AnyObject) {
 		
+		blurView.hidden=false;
+		
 		firebaseHelper.signInWithEmail("widap@mailinator.com", password: "password",
+			successCallback: {
+				self.performSegueWithIdentifier("logInSegue", sender: self)
+			},
+			failCallback: {
+				print("login failed")
+			}
+		)
+	}
+	
+	@IBAction func SignInBtn1(sender: AnyObject) {
+		
+		blurView.hidden=false;
+		
+		firebaseHelper.signInWithEmail("widap0@mailinator.com", password: "password",
 			successCallback: {
 				self.performSegueWithIdentifier("logInSegue", sender: self)
 			},
