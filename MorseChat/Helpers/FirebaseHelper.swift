@@ -15,7 +15,7 @@ let firebaseHelper = FirebaseHelper()
 
 class FirebaseHelper {
 	
-	var user: FIRUser?
+	var firebaseUser: FIRUser?
 	let auth: FIRAuth
 	let root: FIRDatabaseReference
 	
@@ -31,32 +31,35 @@ class FirebaseHelper {
 		
 		FIRAuth.auth()?.addAuthStateDidChangeListener(
 			{ auth, user in
-				self.user = user
+				self.firebaseUser = user
 			}
 		);
 	}
 	
 	func signInWithDefaultUser() {
-		signInWithEmail("widap@mailinator.com", password: "password")
+		signInWithEmail("widap@mailinator.com", password: "password", successCallback: {}, failCallback: {})
 	}
 	
-	func signInWithEmail(email: String, password: String) {
+	func signInWithEmail(email: String, password: String, successCallback: ()->Void, failCallback: ()->Void) {
 		auth.signInWithEmail(email, password: password,
 			completion: { FIRAuthResultCallback in
 				//sign in worked
 				
-				self.root.child("users/\(self.user?.uid ?? "")").observeSingleEventOfType(.Value,
+				self.root.child("users/\(self.firebaseUser?.uid ?? "noUser")").observeSingleEventOfType(.Value,
 					
 					withBlock: { (data: FIRDataSnapshot) in
 						
-						me = User(nameIn: data.value?["name"] as? String ?? "[no name]", keyIn: self.user?.uid ?? "[no user key]")
+						me = User(nameIn: data.value?["name"] as? String ?? "[no name]", keyIn: self.firebaseUser?.uid ?? "[no user key]")
 						
 						print("logged in as \(me.fullName)")
+						
+						successCallback()
 					},
 					
 					withCancelBlock: { (error) in
 						
 						print("Error in FirebaseHelper: \(error.localizedDescription)")
+						failCallback()
 					}
 				);
 			}

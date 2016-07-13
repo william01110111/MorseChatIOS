@@ -14,6 +14,7 @@
 		3D9263971D341732001F839B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D9263961D341732001F839B /* GoogleService-Info.plist */; };
 		3DBF345B1D34251D00A802FE /* FirebaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBF345A1D34251D00A802FE /* FirebaseHelper.swift */; };
 		3DBF345E1D343B0C00A802FE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBF345D1D343B0C00A802FE /* User.swift */; };
+		3DD186C51D36CF3A00B90065 /* SimpSignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD186C41D36CF3A00B90065 /* SimpSignInVC.swift */; };
 		3DD7202E1D3594ED00984360 /* FriendsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD7202D1D3594ED00984360 /* FriendsListViewController.swift */; };
 		3DD720301D35951300984360 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD7202F1D35951300984360 /* FriendCell.swift */; };
 		6C77FFAE2704A01E18288850 /* Pods_MorseChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC0992C3D92244C777159E7B /* Pods_MorseChat.framework */; };
@@ -29,6 +30,7 @@
 		3D9263961D341732001F839B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3DBF345A1D34251D00A802FE /* FirebaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseHelper.swift; sourceTree = "<group>"; };
 		3DBF345D1D343B0C00A802FE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		3DD186C41D36CF3A00B90065 /* SimpSignInVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpSignInVC.swift; sourceTree = "<group>"; };
 		3DD7202D1D3594ED00984360 /* FriendsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsListViewController.swift; sourceTree = "<group>"; };
 		3DD7202F1D35951300984360 /* FriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		5151FC150A43BF925D369FB6 /* Pods-MorseChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MorseChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MorseChat/Pods-MorseChat.debug.xcconfig"; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				3D92638B1D340F89001F839B /* Assets.xcassets */,
 				3D92638D1D340F89001F839B /* LaunchScreen.storyboard */,
 				3D9263901D340F89001F839B /* Info.plist */,
+				3DD186C41D36CF3A00B90065 /* SimpSignInVC.swift */,
 			);
 			path = MorseChat;
 			sourceTree = "<group>";
@@ -248,6 +251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DD7202E1D3594ED00984360 /* FriendsListViewController.swift in Sources */,
+				3DD186C51D36CF3A00B90065 /* SimpSignInVC.swift in Sources */,
 				3DBF345E1D343B0C00A802FE /* User.swift in Sources */,
 				3DBF345B1D34251D00A802FE /* FirebaseHelper.swift in Sources */,
 				3D9263851D340F89001F839B /* AppDelegate.swift in Sources */,
