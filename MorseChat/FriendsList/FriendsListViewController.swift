@@ -19,9 +19,9 @@ class FriendsListViewController: UIViewController {
 		
 		if !friendsDownloaded {
 			
-			firebaseHelper.getFrienArray(
-				{ (usrAry) in
-					friends = usrAry
+			firebaseHelper.getFriendArray(
+				{ (newFriendAry: [Friend]) in
+					friends = newFriendAry
 					friendsDownloaded = true
 					self.tableView.reloadData()
 				}

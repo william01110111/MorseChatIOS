@@ -10,46 +10,41 @@ import UIKit
 
 class FriendCell : UITableViewCell {
 	
-	var friend: User?
+	var friend: Friend?
 	
 	var buttonState = false
 	
 	@IBOutlet weak var sendButton: UIButton!
 	@IBOutlet weak var nameLabel: UILabel!
 	
-	func setFriend(friendIn: User) {
+	func setFriend(friendIn: Friend) {
 		
 		friend = friendIn
 		nameLabel.text = friend?.fullName
+		friend?.UILineInCallback=lineInChenaged
 	}
 	
 	
 	@IBAction func buttonPressed(sender: AnyObject) {
 		
-		setButton(true)
+		friend?.setOutLine(true)
+		//backgroundColor = UIColor(red: 0.0, green: 1.0, blue: 1.0, alpha: 0.5)
 	}
 	
 	@IBAction func buttonReleased(sender: AnyObject) {
 		
-		setButton(false)
+		friend?.setOutLine(false)
 	}
 	
-	func setButton(newState: Bool) {
+	func lineInChenaged(state: Bool) {
 		
-		buttonState = newState
-		
-		if buttonState {
+		if state {
+			
 			backgroundColor = UIColor(red: 0.0, green: 1.0, blue: 1.0, alpha: 0.5)
 		}
 		else {
+			
 			backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
-		}
-		
-		print(buttonState)
-		
-		if friend != nil {
-			print("calling firebaseHelper.setLineToUserStatus() with key \(friend!.key)")
-			firebaseHelper.setLineToUserStatus(friend!.key, lineOn: buttonState)
 		}
 	}
 }

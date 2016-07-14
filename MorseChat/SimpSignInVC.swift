@@ -28,9 +28,9 @@ class SimpSignInVC : UIViewController {
 	
 	func loginSuccess() {
 		
-		firebaseHelper.getFrienArray(
-			{ (usrAry) in
-				friends = usrAry
+		firebaseHelper.getFriendArray(
+			{ (friendsIn: [Friend]) in
+				friends = friendsIn
 				friendsDownloaded = true
 				self.performSegueWithIdentifier("logInSegue", sender: self)
 			}

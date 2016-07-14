@@ -10,7 +10,7 @@ import Foundation
 
 var me = User()
 var friendsDownloaded = false
-var friends: [User] = []
+var friends: [Friend] = []
 
 class User {
 	
@@ -29,5 +29,40 @@ class User {
 		
 		fullName = nameIn
 		key = keyIn
+	}
+	
+	func toFriend() -> Friend {
+		
+		return Friend(nameIn: fullName, keyIn: key)
+	}
+}
+
+class Friend : User {
+	
+	var inLineState = false;
+	var outLineState = false;
+	
+	var UILineInCallback: ((state: Bool) -> Void)?
+	
+	func setOutLine(newState: Bool) {
+		
+		outLineState = newState
+		
+		print("line to \(fullName) is \(outLineState)")
+		
+		//print("calling firebaseHelper.setLineToUserStatus() with key \(key)")
+		
+		firebaseHelper.setLineToUserStatus(key, lineOn: outLineState)
+		
+		setInLine(outLineState)
+	}
+	
+	func setInLine(newState: Bool) {
+		
+		inLineState = newState
+		
+		print("line from \(fullName) is \(inLineState)")
+		
+		UILineInCallback?(state: newState)
 	}
 }
