@@ -26,32 +26,29 @@ class SimpSignInVC : UIViewController {
 		
 	}
 	
+	func loginSuccess() {
+		
+		firebaseHelper.getFrienArray(
+			{ (usrAry) in
+				friends = usrAry
+				friendsDownloaded = true
+				self.performSegueWithIdentifier("logInSegue", sender: self)
+			}
+		)
+	}
+	
 	@IBAction func signInBtn0(sender: AnyObject) {
 		
 		blurView.hidden=false;
 		
-		firebaseHelper.signInWithEmail("widap@mailinator.com", password: "password",
-			successCallback: {
-				self.performSegueWithIdentifier("logInSegue", sender: self)
-			},
-			failCallback: {
-				print("login failed")
-			}
-		)
+		firebaseHelper.signInWithEmail("widap@mailinator.com", password: "password", successCallback: loginSuccess, failCallback: {})
 	}
 	
 	@IBAction func SignInBtn1(sender: AnyObject) {
 		
 		blurView.hidden=false;
 		
-		firebaseHelper.signInWithEmail("widap0@mailinator.com", password: "password",
-			successCallback: {
-				self.performSegueWithIdentifier("logInSegue", sender: self)
-			},
-			failCallback: {
-				print("login failed")
-			}
-		)
+		firebaseHelper.signInWithEmail("widap0@mailinator.com", password: "password", successCallback: loginSuccess, failCallback: {})
 	}
 	
 }

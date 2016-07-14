@@ -36,7 +36,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fJY-VT-VhW">
-                                        <rect key="frame" x="189" y="90" width="221" height="30"/>
+                                        <rect key="frame" x="189.5" y="90" width="221" height="30"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <state key="normal" title="sign in with second test account"/>
                                         <connections>
@@ -55,11 +55,11 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <activityIndicatorView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="s9G-tN-eBJ">
-                                            <rect key="frame" x="290" y="290" width="20" height="20"/>
+                                            <rect key="frame" x="290" y="210" width="20" height="20"/>
                                         </activityIndicatorView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="s9G-tN-eBJ" firstAttribute="centerY" secondItem="NU8-1b-Mcn" secondAttribute="centerY" id="J55-tb-wh2"/>
+                                        <constraint firstItem="s9G-tN-eBJ" firstAttribute="centerY" secondItem="NU8-1b-Mcn" secondAttribute="centerY" constant="-80" id="J55-tb-wh2"/>
                                         <constraint firstItem="s9G-tN-eBJ" firstAttribute="centerX" secondItem="NU8-1b-Mcn" secondAttribute="centerX" id="c6M-BG-ryL"/>
                                     </constraints>
                                 </view>
@@ -117,8 +117,8 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4zQ-qc-CGo">
-                                            <rect key="frame" x="480" y="-1" width="120" height="43.5"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4zQ-qc-CGo">
+                                            <rect key="frame" x="480" y="0.0" width="120" height="43.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="120" id="ejw-8X-PDu"/>
                                             </constraints>
@@ -148,12 +148,40 @@
                                     <outlet property="sendButton" destination="4zQ-qc-CGo" id="lUz-Fa-obi"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="loadingCell" id="oMT-n5-dE1">
+                                <rect key="frame" x="0.0" y="72" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oMT-n5-dE1" id="5vB-dg-cSn">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YZc-c2-cKd">
+                                            <rect key="frame" x="8" y="8" width="75" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="PKr-Iy-qS2">
+                                            <rect key="frame" x="532" y="12" width="20" height="20"/>
+                                        </activityIndicatorView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="PKr-Iy-qS2" secondAttribute="trailing" constant="40" id="5Zq-ji-fxK"/>
+                                        <constraint firstItem="YZc-c2-cKd" firstAttribute="top" secondItem="5vB-dg-cSn" secondAttribute="topMargin" id="UvR-kU-QXD"/>
+                                        <constraint firstItem="YZc-c2-cKd" firstAttribute="leading" secondItem="5vB-dg-cSn" secondAttribute="leadingMargin" id="d3d-OY-Shd"/>
+                                        <constraint firstItem="PKr-Iy-qS2" firstAttribute="centerY" secondItem="5vB-dg-cSn" secondAttribute="centerY" id="fXo-sZ-V8K"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="ysd-jX-ZIm" id="TIQ-Ad-bOq"/>
                             <outlet property="delegate" destination="ysd-jX-ZIm" id="THP-jj-vf4"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="tableView" destination="839-3Y-YKw" id="pcO-u8-vXM"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="64A-mW-ZuE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

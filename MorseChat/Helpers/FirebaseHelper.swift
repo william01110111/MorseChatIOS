@@ -40,6 +40,44 @@ class FirebaseHelper {
 		signInWithEmail("widap@mailinator.com", password: "password", successCallback: {}, failCallback: {})
 	}
 	
+	func getFrienArray(callback: (usrAry: [User])->Void) {
+		
+		root.child("friendsByUser/\(me.key)").observeEventType(.Value,
+			withBlock: { (data: FIRDataSnapshot) in
+				
+				var ary: [User]=[]
+				var elemLeft = data.childrenCount
+				
+				for i in data.children {
+					self.getUserfromKey(i.key,
+						callback: { (usr: User) -> Void in
+							ary.append(usr)
+							elemLeft -= 1
+							if elemLeft == 0 {
+								callback(usrAry: ary)
+							}
+						}
+					)
+				}
+			}
+		)
+	}
+	
+	func getUserfromKey(key: String, callback: (usr: User) -> Void) {
+		
+		root.child("users/\(key)").observeEventType(.Value,
+			withBlock: { (data: FIRDataSnapshot) in
+				
+				let usr = User()
+				
+				usr.fullName = data.value!["name"] as! String
+				usr.key = key
+				
+				callback(usr: usr)
+			}
+		)
+	}
+	
 	func signInWithEmail(email: String, password: String, successCallback: ()->Void, failCallback: ()->Void) {
 		auth.signInWithEmail(email, password: password,
 			completion: { FIRAuthResultCallback in

@@ -10,9 +10,23 @@ import UIKit
 
 class FriendsListViewController: UIViewController {
 	
+	
+	@IBOutlet var tableView: UITableView!
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
+		
+		if !friendsDownloaded {
+			
+			firebaseHelper.getFrienArray(
+				{ (usrAry) in
+					friends = usrAry
+					friendsDownloaded = true
+					self.tableView.reloadData()
+				}
+			)
+		}
 	}
 	
 	override func didReceiveMemoryWarning() {
@@ -23,7 +37,6 @@ class FriendsListViewController: UIViewController {
 	override func viewDidAppear(animated: Bool) {
 		super.viewDidAppear(animated)
 		
-		
 	}
 }
 
@@ -31,13 +44,17 @@ extension FriendsListViewController: UITableViewDataSource {
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		
-		return 2
+		return friends.count
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
 		
-		let cell = tableView.dequeueReusableCellWithIdentifier("friendCell") as! FriendCell
-		cell.setFriend(User(nameIn: "name here", keyIn: "key_here"))
+		var cell: UITableViewCell
+		
+		cell = tableView.dequeueReusableCellWithIdentifier("friendCell")!
+		
+		(cell as! FriendCell).setFriend(friends[indexPath.row])
+		
 		return cell
 	}
 }
