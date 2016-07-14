@@ -55,25 +55,87 @@ class FirebaseHelper : NSObject {
 		);
 	}
 	
-	func signInWithDefaultUser() {
-		signInWithEmail("widap@mailinator.com", password: "password", successCallback: {}, failCallback: {})
-	}
-	
-	func getFriendArray(callback: (usrAry: [Friend])->Void) {
+	//downloads various data including friend array and me User
+	func downloadUserData(success: () -> Void, fail: () -> Void) {
 		
-		root!.child("friendsByUser/\(me.key)").observeEventType(.Value,
+		var error = false
+		var meDownloadedDone = false
+		var friendDownloadedDone = false
+		
+		userDataDownloaded = false
+		
+		if (firebaseUser == nil) {
+			
+			fail()
+		}
+		
+		let user = firebaseUser!
+		
+		self.getUserfromKey(user.uid,
+			callback: { (usr) in
+				if let usr = usr {
+					me = usr
+					meDownloadedDone = true
+					if friendDownloadedDone {
+						userDataDownloaded = true
+						if !error {
+							success()
+						}
+						else {
+							fail()
+						}
+					}
+				}
+				else {
+					meDownloadedDone = true
+					error = true
+					if (friendDownloadedDone) {
+						fail()
+					}
+				}
+			}
+		)
+		
+		root!.child("friendsByUser/\(user.uid)").observeEventType(.Value,
 			withBlock: { (data: FIRDataSnapshot) in
 				
-				var ary: [Friend]=[]
 				var elemLeft = data.childrenCount
+				
+				//if there are no friends it has to be handeled differently
+				if elemLeft == 0 {
+					
+					friendDownloadedDone = true
+					if meDownloadedDone {
+						if !error {
+							success()
+						}
+						else {
+							fail()
+						}
+					}
+				}
 				
 				for i in data.children {
 					self.getUserfromKey(i.key,
-						callback: { (userIn: User) -> Void in
-							ary.append(userIn.toFriend())
+						callback: { (userIn: User?) -> Void in
+							
+							if let userIn = userIn {
+								friends.append(userIn.toFriend())
+							}
+							else {
+								print("friend failed to load")
+							}
 							elemLeft -= 1
 							if elemLeft == 0 {
-								callback(usrAry: ary)
+								friendDownloadedDone = true
+								if meDownloadedDone {
+									if !error {
+										success()
+									}
+									else {
+										fail()
+									}
+								}
 							}
 						}
 					)
@@ -82,17 +144,23 @@ class FirebaseHelper : NSObject {
 		)
 	}
 	
-	func getUserfromKey(key: String, callback: (usr: User) -> Void) {
+	func getUserfromKey(key: String, callback: (usr: User?) -> Void) {
 		
 		root!.child("users/\(key)").observeEventType(.Value,
 			withBlock: { (data: FIRDataSnapshot) in
 				
-				let usr = User()
-				
-				usr.fullName = data.value!["name"] as! String
-				usr.key = key
-				
-				callback(usr: usr)
+				if (data.exists()) {
+					
+					let usr = User()
+					
+					usr.fullName = data.value!["name"] as! String
+					usr.key = key
+					
+					callback(usr: usr)
+				}
+				else {
+					callback(usr: nil)
+				}
 			}
 		)
 	}
@@ -102,23 +170,7 @@ class FirebaseHelper : NSObject {
 			completion: { FIRAuthResultCallback in
 				//sign in worked
 				
-				self.root!.child("users/\(self.firebaseUser?.uid ?? "noUser")").observeSingleEventOfType(.Value,
-					
-					withBlock: { (data: FIRDataSnapshot) in
-						
-						me = User(nameIn: data.value?["name"] as? String ?? "[no name]", keyIn: self.firebaseUser?.uid ?? "noUserKey")
-						
-						print("logged in as \(me.fullName)")
-						
-						successCallback()
-					},
-					
-					withCancelBlock: { (error) in
-						
-						print("Error in FirebaseHelper: \(error.localizedDescription)")
-						failCallback()
-					}
-				);
+				
 			}
 		)
 	}
@@ -147,7 +199,24 @@ extension FirebaseHelper : FIRAuthUIDelegate {
 	
 	@objc func authUI(authUI: FIRAuthUI, didSignInWithUser user: FIRUser?, error: NSError?) {
 		
-		firebaseUser = user
+		//this shpuld be done by the listener I set in the init method
+		//firebaseUser = user
+		
+		//create a new user if it doesn't already exist
+		if let user = user {
+			getUserfromKey(user.uid,
+				callback: { (userIn: User?) -> Void in
+					if let userIn = userIn {
+						me = userIn
+					}
+					else
+					{
+						//create a new user here
+						self.root?.child("users/\(user.uid)").updateChildValues(["name": user.displayName ?? "noName"])
+					}
+				}
+			)
+		}
 		
 		if let error = error {
 			

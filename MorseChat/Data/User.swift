@@ -9,7 +9,7 @@
 import Foundation
 
 var me = User()
-var friendsDownloaded = false
+var userDataDownloaded = false
 var friends: [Friend] = []
 
 class User {

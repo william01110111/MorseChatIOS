@@ -17,16 +17,6 @@ class FriendsListViewController: UIViewController {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
 		
-		if !friendsDownloaded {
-			
-			firebaseHelper.getFriendArray(
-				{ (newFriendAry: [Friend]) in
-					friends = newFriendAry
-					friendsDownloaded = true
-					self.tableView.reloadData()
-				}
-			)
-		}
 	}
 	
 	override func didReceiveMemoryWarning() {
