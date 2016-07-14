@@ -1,11 +1,62 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="d4Y-l9-QOs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rxV-fg-kG3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--WelcomeVC-->
+        <scene sceneID="RiA-Db-S0h">
+            <objects>
+                <viewController id="rxV-fg-kG3" customClass="WelcomeVC" customModule="MorseChat" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eUx-N1-tCa"/>
+                        <viewControllerLayoutGuide type="bottom" id="N0F-2O-Fqm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xTE-pO-Pwg">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DZD-Bq-rDY">
+                                <rect key="frame" x="222" y="490" width="155" height="30"/>
+                                <state key="normal" title="Use A Default Account"/>
+                                <connections>
+                                    <action selector="defaultAccountBtn:" destination="rxV-fg-kG3" eventType="touchUpInside" id="okW-he-60s"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Morse Chat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ze8-do-fav">
+                                <rect key="frame" x="173" y="150" width="254.5" height="60"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Wq-fF-FKP">
+                                <rect key="frame" x="276.5" y="410" width="47" height="30"/>
+                                <state key="normal" title="Sign In"/>
+                                <connections>
+                                    <action selector="signInBtn:" destination="rxV-fg-kG3" eventType="touchUpInside" id="x16-Zs-mP0"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ze8-do-fav" firstAttribute="centerX" secondItem="xTE-pO-Pwg" secondAttribute="centerX" id="2oo-zS-MRY"/>
+                            <constraint firstItem="N0F-2O-Fqm" firstAttribute="top" secondItem="DZD-Bq-rDY" secondAttribute="bottom" constant="80" id="541-mT-9sf"/>
+                            <constraint firstItem="ze8-do-fav" firstAttribute="centerY" secondItem="xTE-pO-Pwg" secondAttribute="centerY" constant="-120" id="GOp-HB-WPC"/>
+                            <constraint firstItem="DZD-Bq-rDY" firstAttribute="top" secondItem="6Wq-fF-FKP" secondAttribute="bottom" constant="50" id="WRY-z1-X2f"/>
+                            <constraint firstItem="DZD-Bq-rDY" firstAttribute="centerX" secondItem="xTE-pO-Pwg" secondAttribute="centerX" id="dw0-h6-jcK"/>
+                            <constraint firstItem="6Wq-fF-FKP" firstAttribute="centerX" secondItem="xTE-pO-Pwg" secondAttribute="centerX" id="gfX-Xa-nOF"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <segue destination="d4Y-l9-QOs" kind="show" identifier="useDefaultAccountSegue" id="jea-JU-U2R"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V4T-xE-cZY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-378" y="-583"/>
+        </scene>
         <!--Simp Sign InVC-->
         <scene sceneID="dQA-Vp-tLE">
             <objects>
@@ -21,7 +72,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign In" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VvX-JP-AY5">
                                 <rect key="frame" x="240" y="120" width="120" height="48"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="1dd-bX-VaJ">
@@ -29,7 +80,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c1f-Yo-eig">
                                         <rect key="frame" x="200" y="0.0" width="200" height="30"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Sign in with first test account"/>
                                         <connections>
                                             <action selector="signInBtn0:" destination="d4Y-l9-QOs" eventType="primaryActionTriggered" id="XC5-zE-Ztc"/>
@@ -37,7 +88,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fJY-VT-VhW">
                                         <rect key="frame" x="189.5" y="90" width="221" height="30"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="sign in with second test account"/>
                                         <connections>
                                             <action selector="SignInBtn1:" destination="d4Y-l9-QOs" eventType="primaryActionTriggered" id="reo-oy-mIM"/>
@@ -147,31 +198,6 @@
                                     <outlet property="nameLabel" destination="IFZ-sH-Jnq" id="mqV-u9-aZs"/>
                                     <outlet property="sendButton" destination="4zQ-qc-CGo" id="lUz-Fa-obi"/>
                                 </connections>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="loadingCell" id="oMT-n5-dE1">
-                                <rect key="frame" x="0.0" y="72" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oMT-n5-dE1" id="5vB-dg-cSn">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YZc-c2-cKd">
-                                            <rect key="frame" x="8" y="8" width="75" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="PKr-Iy-qS2">
-                                            <rect key="frame" x="532" y="12" width="20" height="20"/>
-                                        </activityIndicatorView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="trailingMargin" secondItem="PKr-Iy-qS2" secondAttribute="trailing" constant="40" id="5Zq-ji-fxK"/>
-                                        <constraint firstItem="YZc-c2-cKd" firstAttribute="top" secondItem="5vB-dg-cSn" secondAttribute="topMargin" id="UvR-kU-QXD"/>
-                                        <constraint firstItem="YZc-c2-cKd" firstAttribute="leading" secondItem="5vB-dg-cSn" secondAttribute="leadingMargin" id="d3d-OY-Shd"/>
-                                        <constraint firstItem="PKr-Iy-qS2" firstAttribute="centerY" secondItem="5vB-dg-cSn" secondAttribute="centerY" id="fXo-sZ-V8K"/>
-                                    </constraints>
-                                </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
                         <connections>

@@ -16,7 +16,33 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Morse Chat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BOC-Wk-EPj">
+                                <rect key="frame" x="173" y="150" width="254.5" height="60"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Widap" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vDk-oa-RHo">
+                                <rect key="frame" x="257" y="444" width="86" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="vDk-oa-RHo" secondAttribute="bottom" constant="120" id="AHX-7c-gAR"/>
+                            <constraint firstItem="vDk-oa-RHo" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="50" id="Jde-bQ-VnS"/>
+                            <constraint firstItem="BOC-Wk-EPj" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="LOE-nB-AEe"/>
+                            <constraint firstItem="vDk-oa-RHo" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="SD6-Rn-vut"/>
+                            <constraint firstItem="BOC-Wk-EPj" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-120" id="u7O-Eq-N8Z"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Jde-bQ-VnS"/>
+                            </mask>
+                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
