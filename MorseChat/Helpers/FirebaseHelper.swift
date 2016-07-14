@@ -104,9 +104,21 @@ class FirebaseHelper {
 		)
 	}
 	
+	func setLineInListner(friend: Friend, callback: (lineOn: Bool) -> Void) {
+		
+		root.child("friendsByUser/\(me.key)/\(friend.key)").observeEventType(.Value,
+			withBlock: { (data: FIRDataSnapshot) -> Void in
+				
+				let state = data.value as! Bool
+				
+				callback(lineOn: state)
+			}
+		)
+	}
+	
 	func setLineToUserStatus(otherUserKey: String, lineOn: Bool) {
 		
-		root.child("lines/ldvmelmee").updateChildValues([otherUserKey : lineOn])
+		root.child("friendsByUser/\(otherUserKey)").updateChildValues([me.key : lineOn])
 			///\(otherUserKey)")
 		
 	}

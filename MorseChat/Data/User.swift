@@ -53,8 +53,6 @@ class Friend : User {
 		//print("calling firebaseHelper.setLineToUserStatus() with key \(key)")
 		
 		firebaseHelper.setLineToUserStatus(key, lineOn: outLineState)
-		
-		setInLine(outLineState)
 	}
 	
 	func setInLine(newState: Bool) {
