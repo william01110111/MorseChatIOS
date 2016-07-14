@@ -14,7 +14,6 @@
 		3D9263971D341732001F839B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D9263961D341732001F839B /* GoogleService-Info.plist */; };
 		3D9DAD4B1D381B6D0013142E /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DAD4A1D381B6D0013142E /* WelcomeVC.swift */; };
 		3DBF345B1D34251D00A802FE /* FirebaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBF345A1D34251D00A802FE /* FirebaseHelper.swift */; };
-		3DD186C51D36CF3A00B90065 /* SimpSignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD186C41D36CF3A00B90065 /* SimpSignInVC.swift */; };
 		3DD186C91D36F93100B90065 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD186C81D36F93100B90065 /* User.swift */; };
 		3DD7202E1D3594ED00984360 /* FriendsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD7202D1D3594ED00984360 /* FriendsListViewController.swift */; };
 		3DD720301D35951300984360 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD7202F1D35951300984360 /* FriendCell.swift */; };
@@ -31,7 +30,6 @@
 		3D9263961D341732001F839B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3D9DAD4A1D381B6D0013142E /* WelcomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeVC.swift; sourceTree = "<group>"; };
 		3DBF345A1D34251D00A802FE /* FirebaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseHelper.swift; sourceTree = "<group>"; };
-		3DD186C41D36CF3A00B90065 /* SimpSignInVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimpSignInVC.swift; path = ../SimpSignInVC.swift; sourceTree = "<group>"; };
 		3DD186C81D36F93100B90065 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3DD7202D1D3594ED00984360 /* FriendsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsListViewController.swift; sourceTree = "<group>"; };
 		3DD7202F1D35951300984360 /* FriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
@@ -107,7 +105,6 @@
 		3D9DAD491D381B1E0013142E /* AppStart */ = {
 			isa = PBXGroup;
 			children = (
-				3DD186C41D36CF3A00B90065 /* SimpSignInVC.swift */,
 				3D9DAD4A1D381B6D0013142E /* WelcomeVC.swift */,
 			);
 			path = AppStart;
@@ -263,7 +260,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DD7202E1D3594ED00984360 /* FriendsListViewController.swift in Sources */,
-				3DD186C51D36CF3A00B90065 /* SimpSignInVC.swift in Sources */,
 				3DD186C91D36F93100B90065 /* User.swift in Sources */,
 				3DBF345B1D34251D00A802FE /* FirebaseHelper.swift in Sources */,
 				3D9263851D340F89001F839B /* AppDelegate.swift in Sources */,

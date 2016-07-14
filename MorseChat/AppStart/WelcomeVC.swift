@@ -22,40 +22,50 @@ class WelcomeVC : UIViewController {
 		spinnerView.hidden = true
 	}
 	
+	override func viewWillAppear(animated: Bool) {
+		
+		super.viewWillAppear(animated)
+		
+		
+	}
+	
 	override func viewDidAppear(animated: Bool) {
 		
 		super.viewDidAppear(animated)
 		
-		if (firebaseHelper.firebaseUser != nil) {
+		if (!userDataDownloaded) {
+			loginStateChanged()
+		}
+		if (userDataDownloaded) {
 			
-			if (userDataDownloaded) {
-				self.performSegueWithIdentifier("logInFromWelcomeSegue", sender: self)
-			}
-			else {
-				
-				spinnerView.hidden = false
-				
-				firebaseHelper.downloadUserData(
-					{ () -> Void in
-						self.performSegueWithIdentifier("logInFromWelcomeSegue", sender: self)
-					},
-					fail: { () -> Void in
-						self.spinnerView.hidden = true
-						self.errorMsgLabel.hidden = false
-					}
-				)
-			}
+			self.performSegueWithIdentifier("logInFromWelcomeSegue", sender: self)
+			
 		}
 	}
 	
-	@IBAction func defaultAccountBtn(sender: AnyObject) {
-		
-		performSegueWithIdentifier("useDefaultAccountSegue", sender: self)
+	func loginStateChanged() {
+		if (firebaseHelper.firebaseUser != nil) {
+			
+			spinnerView.hidden = false
+			
+			firebaseHelper.downloadUserData(
+				{ () -> Void in
+					self.performSegueWithIdentifier("logInFromWelcomeSegue", sender: self)
+				},
+				fail: { () -> Void in
+					self.spinnerView.hidden = true
+					self.errorMsgLabel.hidden = false
+				}
+			)
+		}
+		else {
+			errorMsgLabel.hidden = true
+			spinnerView.hidden = true
+		}
 	}
 	
 	@IBAction func signInBtn(sender: AnyObject) {
-		presentViewController(firebaseHelper.authViewController!, animated: true, completion: nil)
+		firebaseHelper.loginUI(self)
 	}
-	
 }
 

@@ -18,8 +18,6 @@ class FirebaseHelper : NSObject {
 	
 	var firebaseUser: FIRUser?
 	var auth: FIRAuth?
-	var authUI: FIRAuthUI?
-	var authViewController: UIViewController?
 	var root: FIRDatabaseReference?
 	
 	override init() {
@@ -31,12 +29,6 @@ class FirebaseHelper : NSObject {
 		FIRApp.configure()
 		
 		auth = FIRAuth.auth()!
-		
-		authUI = FIRAuthUI.authUI()!
-		
-		authUI!.delegate = self
-		
-		authViewController = authUI!.authViewController()
 		
 		//authUI(authUI, didSignInWithUser: firebaseUser, )
 		
@@ -50,9 +42,18 @@ class FirebaseHelper : NSObject {
 		
 		FIRAuth.auth()?.addAuthStateDidChangeListener(
 			{ auth, user in
+				print("\n\n\nlogin state changed, user: \(user?.displayName)\n\n\n")
 				self.firebaseUser = user
 			}
 		);
+	}
+	
+	func loginUI(vc: UIViewController) {
+		
+		let authUI = FIRAuthUI.authUI()!
+		authUI.delegate = self
+		let authViewController = authUI.authViewController()
+		vc.presentViewController(authViewController, animated: true, completion: nil)
 	}
 	
 	//downloads various data including friend array and me User
