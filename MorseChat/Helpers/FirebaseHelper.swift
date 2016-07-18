@@ -30,14 +30,6 @@ class FirebaseHelper : NSObject {
 		
 		auth = FIRAuth.auth()!
 		
-		//authUI(authUI, didSignInWithUser: firebaseUser, )
-		
-		/*- (void)authUI:(FIRAuthUI *)authUI
-			didSignInWithUser:(nullable FIRUser *)user
-				error:(nullable NSError *)error {
-			// Implement this method to handle signed in user or error if any.
-		}*/
-		
 		root = FIRDatabase.database().reference()
 		
 		FIRAuth.auth()?.addAuthStateDidChangeListener(
@@ -60,42 +52,45 @@ class FirebaseHelper : NSObject {
 	func downloadUserData(success: () -> Void, fail: () -> Void) {
 		
 		var error = false
-		var meDownloadedDone = false
-		var friendDownloadedDone = false
+		var downloadsLeft = 2;
 		
 		userDataDownloaded = false
 		
-		if (firebaseUser == nil) {
-			
-			fail()
-		}
-		
+		if (firebaseUser == nil) {fail()}
 		let user = firebaseUser!
+		
+		func downloadDone() {
+			
+			downloadsLeft -= 1;
+			
+			if downloadsLeft==0 {
+				if error {
+					fail()
+				}
+				else {
+					success()
+				}
+			}
+			else if downloadsLeft < 0 {
+				print("downloadsLeft dropped below 0")
+				fail()
+			}
+		}
 		
 		self.getUserfromKey(user.uid,
 			callback: { (usr) in
 				if let usr = usr {
 					me = usr
-					meDownloadedDone = true
-					if friendDownloadedDone {
-						userDataDownloaded = true
-						if !error {
-							success()
-						}
-						else {
-							fail()
-						}
-					}
+					downloadDone()
 				}
 				else {
-					meDownloadedDone = true
 					error = true
-					if (friendDownloadedDone) {
-						fail()
-					}
+					downloadDone()
 				}
 			}
 		)
+		
+		friends.removeAll();
 		
 		root!.child("friendsByUser/\(user.uid)").observeEventType(.Value,
 			withBlock: { (data: FIRDataSnapshot) in
@@ -104,16 +99,7 @@ class FirebaseHelper : NSObject {
 				
 				//if there are no friends it has to be handeled differently
 				if elemLeft == 0 {
-					
-					friendDownloadedDone = true
-					if meDownloadedDone {
-						if !error {
-							success()
-						}
-						else {
-							fail()
-						}
-					}
+					downloadDone()
 				}
 				
 				for i in data.children {
@@ -124,19 +110,13 @@ class FirebaseHelper : NSObject {
 								friends.append(userIn.toFriend())
 							}
 							else {
-								print("friend failed to load")
+								friends.append(Friend(nameIn: "error downloading friend", keyIn: "errorKey"))
 							}
+							
 							elemLeft -= 1
+							
 							if elemLeft == 0 {
-								friendDownloadedDone = true
-								if meDownloadedDone {
-									if !error {
-										success()
-									}
-									else {
-										fail()
-									}
-								}
+								downloadDone()
 							}
 						}
 					)
