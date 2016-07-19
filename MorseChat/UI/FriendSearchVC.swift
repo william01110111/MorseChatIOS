@@ -11,7 +11,7 @@ import UIKit
 
 class FriendSearchVC: UIViewController {
 	
-	let searchController = UISearchController(searchResultsController: nil)
+	var searchUI: UISearchController?
 	
 	//@IBOutlet weak var tableView: UITableView!
 	@IBOutlet var rootView: UIView!
@@ -21,11 +21,17 @@ class FriendSearchVC: UIViewController {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
 		
-		searchController.searchResultsUpdater = self
-		searchController.hidesNavigationBarDuringPresentation = true
-		searchController.dimsBackgroundDuringPresentation = true
-		definesPresentationContext = true
-		stackView.addSubview(searchController.searchBar)
+		let searchResultsVC = storyboard?.instantiateViewControllerWithIdentifier("friendSearchResultsVC")
+		//searchResultsVC?.get
+		searchUI = UISearchController(searchResultsController: searchResultsVC)
+		
+		if let searchUI = searchUI {
+			searchUI.searchResultsUpdater = searchResultsVC as? UISearchResultsUpdating
+			searchUI.hidesNavigationBarDuringPresentation = true
+			searchUI.dimsBackgroundDuringPresentation = true
+			definesPresentationContext = true
+			stackView.addSubview(searchUI.searchBar)
+		}
 	}
 	
 	override func didReceiveMemoryWarning() {
@@ -36,33 +42,6 @@ class FriendSearchVC: UIViewController {
 	override func viewDidAppear(animated: Bool) {
 		super.viewDidAppear(animated)
 		
-	}
-}
-
-extension FriendSearchVC: UITableViewDataSource {
-	
-	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		
-		return 3;//friends.count
-	}
-	
-	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-		
-		var cell: UITableViewCell
-		
-		cell = tableView.dequeueReusableCellWithIdentifier("searchCellID")!
-		
-		//(cell as! FriendCell).setFriend(friends[indexPath.row])
-		
-		return cell
-	}
-}
-
-extension FriendSearchVC : UISearchResultsUpdating {
-	
-	func updateSearchResultsForSearchController(searchController: UISearchController) {
-		
-		print("search results updated")
 	}
 }
 

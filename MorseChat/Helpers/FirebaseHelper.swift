@@ -146,6 +146,11 @@ class FirebaseHelper : NSObject {
 		)
 	}
 	
+	func searchUsers(queryStr: String, callback: (users: [User]) -> Void) {
+		
+		
+	}
+	
 	func signInWithEmail(email: String, password: String, successCallback: ()->Void, failCallback: ()->Void) {
 		auth!.signInWithEmail(email, password: password,
 			completion: { FIRAuthResultCallback in
