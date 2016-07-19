@@ -15,6 +15,7 @@ class FriendSearchVC: UIViewController {
 	
 	//@IBOutlet weak var tableView: UITableView!
 	@IBOutlet var rootView: UIView!
+	@IBOutlet weak var stackView: UIStackView!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -22,13 +23,18 @@ class FriendSearchVC: UIViewController {
 		
 		//tableView.dataSource=self
 		searchController.searchResultsUpdater = self
-		searchController.hidesNavigationBarDuringPresentation = false
+		searchController.hidesNavigationBarDuringPresentation = true
 		//searchController.
 		searchController.dimsBackgroundDuringPresentation = true
 		definesPresentationContext = true
-		rootView.addSubview(searchController.searchBar)
-		
+		//let tableView=UITableView(frame: CGRectMake(10, 10, 300, 400))
 		//tableView.tableHeaderView = searchController.searchBar
+		//stackView.addSubview(tableView)
+		stackView.addSubview(searchController.searchBar)
+		//tableView.topAnchor.constraintEqualToAnchor(rootView.topAnchor)
+		//tableView.bottomAnchor.constraintEqualToAnchor(rootView.bottomAnchor)
+		//tableView.leadingAnchor.constraintEqualToAnchor(rootView.leadingAnchor)
+		//tableView.trailingAnchor.constraintEqualToAnchor(rootView.trailingAnchor)
 	}
 	
 	override func didReceiveMemoryWarning() {

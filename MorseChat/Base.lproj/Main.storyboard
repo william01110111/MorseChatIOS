@@ -95,10 +95,22 @@
                     <view key="view" contentMode="scaleToFill" id="OX6-Dv-666">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="GzJ-s5-pyg">
+                                <rect key="frame" x="145" y="223" width="110" height="200"/>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="GzJ-s5-pyg" secondAttribute="trailing" id="4HZ-Wf-Xff"/>
+                            <constraint firstItem="GzJ-s5-pyg" firstAttribute="top" secondItem="kdM-8q-6Nl" secondAttribute="bottom" id="IR2-CR-X3w"/>
+                            <constraint firstItem="Nxr-KS-AuI" firstAttribute="top" secondItem="GzJ-s5-pyg" secondAttribute="bottom" id="aD5-fH-6No"/>
+                            <constraint firstItem="GzJ-s5-pyg" firstAttribute="leading" secondItem="OX6-Dv-666" secondAttribute="leading" id="aQT-Ng-gup"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="rootView" destination="OX6-Dv-666" id="owN-kF-MqM"/>
+                        <outlet property="stackView" destination="GzJ-s5-pyg" id="eVh-6g-FhB"/>
                         <outlet property="view" destination="OX6-Dv-666" id="5rg-hY-rw9"/>
                     </connections>
                 </viewController>
