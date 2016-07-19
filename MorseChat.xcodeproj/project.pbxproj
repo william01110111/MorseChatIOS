@@ -7,22 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D75E55F1D3E94660067822D /* FriendListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D75E55B1D3E94660067822D /* FriendListCell.swift */; };
+		3D75E5601D3E94660067822D /* FriendSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D75E55C1D3E94660067822D /* FriendSearchVC.swift */; };
+		3D75E5611D3E94660067822D /* FriendsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D75E55D1D3E94660067822D /* FriendsListVC.swift */; };
+		3D75E5621D3E94660067822D /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D75E55E1D3E94660067822D /* WelcomeVC.swift */; };
 		3D9263851D340F89001F839B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9263841D340F89001F839B /* AppDelegate.swift */; };
 		3D92638A1D340F89001F839B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D9263881D340F89001F839B /* Main.storyboard */; };
 		3D92638C1D340F89001F839B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D92638B1D340F89001F839B /* Assets.xcassets */; };
 		3D92638F1D340F89001F839B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D92638D1D340F89001F839B /* LaunchScreen.storyboard */; };
 		3D9263971D341732001F839B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D9263961D341732001F839B /* GoogleService-Info.plist */; };
-		3D9744FD1D3D700F00C1670C /* FriendSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9744FC1D3D700F00C1670C /* FriendSearchVC.swift */; };
-		3D9744FF1D3D900B00C1670C /* FriendSearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D9744FE1D3D900B00C1670C /* FriendSearchCell.xib */; };
-		3D9DAD4B1D381B6D0013142E /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9DAD4A1D381B6D0013142E /* WelcomeVC.swift */; };
 		3DBF345B1D34251D00A802FE /* FirebaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBF345A1D34251D00A802FE /* FirebaseHelper.swift */; };
 		3DD186C91D36F93100B90065 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD186C81D36F93100B90065 /* User.swift */; };
-		3DD7202E1D3594ED00984360 /* FriendsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD7202D1D3594ED00984360 /* FriendsListViewController.swift */; };
-		3DD720301D35951300984360 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD7202F1D35951300984360 /* FriendCell.swift */; };
 		6C77FFAE2704A01E18288850 /* Pods_MorseChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC0992C3D92244C777159E7B /* Pods_MorseChat.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D75E55B1D3E94660067822D /* FriendListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendListCell.swift; sourceTree = "<group>"; };
+		3D75E55C1D3E94660067822D /* FriendSearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendSearchVC.swift; sourceTree = "<group>"; };
+		3D75E55D1D3E94660067822D /* FriendsListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsListVC.swift; sourceTree = "<group>"; };
+		3D75E55E1D3E94660067822D /* WelcomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeVC.swift; sourceTree = "<group>"; };
 		3D9263811D340F89001F839B /* MorseChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MorseChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D9263841D340F89001F839B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3D9263891D340F89001F839B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -30,13 +33,8 @@
 		3D92638E1D340F89001F839B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3D9263901D340F89001F839B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D9263961D341732001F839B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		3D9744FC1D3D700F00C1670C /* FriendSearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendSearchVC.swift; sourceTree = "<group>"; };
-		3D9744FE1D3D900B00C1670C /* FriendSearchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendSearchCell.xib; sourceTree = "<group>"; };
-		3D9DAD4A1D381B6D0013142E /* WelcomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeVC.swift; sourceTree = "<group>"; };
 		3DBF345A1D34251D00A802FE /* FirebaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseHelper.swift; sourceTree = "<group>"; };
 		3DD186C81D36F93100B90065 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		3DD7202D1D3594ED00984360 /* FriendsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsListViewController.swift; sourceTree = "<group>"; };
-		3DD7202F1D35951300984360 /* FriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		5151FC150A43BF925D369FB6 /* Pods-MorseChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MorseChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MorseChat/Pods-MorseChat.debug.xcconfig"; sourceTree = "<group>"; };
 		52508CDF82C8FFAB8C3C717E /* Pods-MorseChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MorseChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-MorseChat/Pods-MorseChat.release.xcconfig"; sourceTree = "<group>"; };
 		CC0992C3D92244C777159E7B /* Pods_MorseChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MorseChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,6 +69,17 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		3D75E55A1D3E94660067822D /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				3D75E55B1D3E94660067822D /* FriendListCell.swift */,
+				3D75E55C1D3E94660067822D /* FriendSearchVC.swift */,
+				3D75E55D1D3E94660067822D /* FriendsListVC.swift */,
+				3D75E55E1D3E94660067822D /* WelcomeVC.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		3D9263781D340F89001F839B = {
 			isa = PBXGroup;
 			children = (
@@ -93,9 +102,7 @@
 		3D9263831D340F89001F839B /* MorseChat */ = {
 			isa = PBXGroup;
 			children = (
-				3D9744FB1D3D6FFD00C1670C /* MsclVCs */,
-				3D9DAD491D381B1E0013142E /* AppStart */,
-				3DD7202C1D35936400984360 /* FriendsList */,
+				3D75E55A1D3E94660067822D /* UI */,
 				3DBF345C1D343AFB00A802FE /* Data */,
 				3DBF34591D34250800A802FE /* Helpers */,
 				3D9263841D340F89001F839B /* AppDelegate.swift */,
@@ -103,25 +110,8 @@
 				3D92638B1D340F89001F839B /* Assets.xcassets */,
 				3D92638D1D340F89001F839B /* LaunchScreen.storyboard */,
 				3D9263901D340F89001F839B /* Info.plist */,
-				3D9744FE1D3D900B00C1670C /* FriendSearchCell.xib */,
 			);
 			path = MorseChat;
-			sourceTree = "<group>";
-		};
-		3D9744FB1D3D6FFD00C1670C /* MsclVCs */ = {
-			isa = PBXGroup;
-			children = (
-				3D9744FC1D3D700F00C1670C /* FriendSearchVC.swift */,
-			);
-			path = MsclVCs;
-			sourceTree = SOURCE_ROOT;
-		};
-		3D9DAD491D381B1E0013142E /* AppStart */ = {
-			isa = PBXGroup;
-			children = (
-				3D9DAD4A1D381B6D0013142E /* WelcomeVC.swift */,
-			);
-			path = AppStart;
 			sourceTree = "<group>";
 		};
 		3DBF34591D34250800A802FE /* Helpers */ = {
@@ -138,15 +128,6 @@
 				3DD186C81D36F93100B90065 /* User.swift */,
 			);
 			path = Data;
-			sourceTree = "<group>";
-		};
-		3DD7202C1D35936400984360 /* FriendsList */ = {
-			isa = PBXGroup;
-			children = (
-				3DD7202D1D3594ED00984360 /* FriendsListViewController.swift */,
-				3DD7202F1D35951300984360 /* FriendCell.swift */,
-			);
-			path = FriendsList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,7 +193,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D92638F1D340F89001F839B /* LaunchScreen.storyboard in Resources */,
-				3D9744FF1D3D900B00C1670C /* FriendSearchCell.xib in Resources */,
 				3D9263971D341732001F839B /* GoogleService-Info.plist in Resources */,
 				3D92638C1D340F89001F839B /* Assets.xcassets in Resources */,
 				3D92638A1D340F89001F839B /* Main.storyboard in Resources */,
@@ -274,13 +254,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3DD7202E1D3594ED00984360 /* FriendsListViewController.swift in Sources */,
+				3D75E5611D3E94660067822D /* FriendsListVC.swift in Sources */,
 				3DD186C91D36F93100B90065 /* User.swift in Sources */,
 				3DBF345B1D34251D00A802FE /* FirebaseHelper.swift in Sources */,
-				3D9744FD1D3D700F00C1670C /* FriendSearchVC.swift in Sources */,
 				3D9263851D340F89001F839B /* AppDelegate.swift in Sources */,
-				3D9DAD4B1D381B6D0013142E /* WelcomeVC.swift in Sources */,
-				3DD720301D35951300984360 /* FriendCell.swift in Sources */,
+				3D75E55F1D3E94660067822D /* FriendListCell.swift in Sources */,
+				3D75E5621D3E94660067822D /* WelcomeVC.swift in Sources */,
+				3D75E5601D3E94660067822D /* FriendSearchVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
