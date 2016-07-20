@@ -36,6 +36,17 @@ class User {
 		
 		return Friend(userNameIn: userName, displayNameIn: displayName, keyIn: key)
 	}
+	
+	//returns nil if there is no error, otherwise returns error message
+	static func checkUserName(name: String) -> String? {
+		
+		if name.rangeOfString("\\s+", options: .RegularExpressionSearch) != nil {
+			
+			return "user name can not have spaces in it"
+		}
+		
+		return nil
+	}
 }
 
 class Friend : User {

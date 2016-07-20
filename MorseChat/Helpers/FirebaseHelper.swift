@@ -149,18 +149,27 @@ class FirebaseHelper : NSObject {
 	
 	func searchUsers(queryStr: String, callback: (users: [User]) -> Void) {
 		
-		let query = root?.child("usersByUserName").queryOrderedByKey().queryStartingAtValue(queryStr).queryLimitedToFirst(1)
+		//let query = root?.child("usersByUserName").queryOrderedByKey().queryStartingAtValue(queryStr).queryLimitedToFirst(24)
+		
+		let query = root!.child("users").queryOrderedByChild("userName").queryStartingAtValue(queryStr)
 		
 		var ary = [User]()
 		
-		query?.observeSingleEventOfType(.Value,
+		query.observeSingleEventOfType(.Value,
 			withBlock: { (data: FIRDataSnapshot) in
 				
 				var elemLeft = data.childrenCount
 				
+				print("elemLeft: \(elemLeft)")
+				
+				if elemLeft <= 0 {
+					callback(users: ary)
+				}
+				
 				for i in data.children {
-					self.getUserfromKey(i.value,
+					self.getUserfromKey(i.key,
 						callback: { (usr: User?) in
+							
 							if let usr = usr {
 								ary.append(usr)
 							}
@@ -214,9 +223,29 @@ class FirebaseHelper : NSObject {
 	
 	func updateMe(newMe: User, success: () -> Void, fail: (errMsg: String) -> Void) {
 		
+		/*for c in newMe.userName.characters {
+			
+			if c==" " {
+				fail(errMsg: "User name can not contain spaces")
+				return
+			}
+			else if !((c>="a" && c<"z") || (c>="0" && c<="9")) {
+				
+			}
+		}*/
+		
+		let error=User.checkUserName(newMe.userName)
+		
+		if let error = error {
+			
+			fail(errMsg: error)
+			print("error: \(error)")
+			return
+		}
+		
 		root!.child("users").child(newMe.key).updateChildValues(["displayName": newMe.displayName])
 		root!.child("users").child(newMe.key).updateChildValues(["userName": newMe.userName])
-		root!.child("usersByUserName").updateChildValues([newMe.userName: newMe.key])
+		//root!.child("usersByUserName").updateChildValues([newMe.userName: newMe.key])
 	}
 }
 
@@ -236,7 +265,7 @@ extension FirebaseHelper : FIRAuthUIDelegate {
 					}
 					else
 					{
-						let newMe = User(userNameIn: "aaaa", displayNameIn: user.displayName ?? "No Display Name", keyIn: user.uid)
+						let newMe = User(userNameIn: "aa aa", displayNameIn: user.displayName ?? "No Display Name", keyIn: user.uid)
 						self.updateMe(newMe,
 							success: { () in
 							
