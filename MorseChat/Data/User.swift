@@ -14,26 +14,27 @@ var friends: [Friend] = []
 
 class User {
 	
-	var fullName: String
-	//var name: (first: String, last: String)
-	
+	var displayName: String
+	var userName: String
 	var key: String
 	
 	init() {
 		
-		fullName = "noName"
+		displayName = "nodisplayName"
+		userName = "noUserNameProvided"
 		key = "noKey"
 	}
 	
-	init(nameIn: String, keyIn: String) {
+	init(userNameIn: String, displayNameIn: String, keyIn: String) {
 		
-		fullName = nameIn
+		displayName = displayNameIn
+		userName = userNameIn
 		key = keyIn
 	}
 	
 	func toFriend() -> Friend {
 		
-		return Friend(nameIn: fullName, keyIn: key)
+		return Friend(userNameIn: userName, displayNameIn: displayName, keyIn: key)
 	}
 }
 
@@ -48,7 +49,7 @@ class Friend : User {
 		
 		outLineState = newState
 		
-		print("line to \(fullName) is \(outLineState)")
+		print("line to \(displayName) (\(userName)) is \(outLineState)")
 		
 		//print("calling firebaseHelper.setLineToUserStatus() with key \(key)")
 		
@@ -59,7 +60,7 @@ class Friend : User {
 		
 		inLineState = newState
 		
-		print("line from \(fullName) is \(inLineState)")
+		print("line from \(displayName) (\(userName)) is \(inLineState)")
 		
 		UILineInCallback?(state: newState)
 	}

@@ -12,6 +12,7 @@
 		3D75E5611D3E94660067822D /* FriendsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D75E55D1D3E94660067822D /* FriendsListVC.swift */; };
 		3D75E5621D3E94660067822D /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D75E55E1D3E94660067822D /* WelcomeVC.swift */; };
 		3D75E5661D3EC0AD0067822D /* FriendSearchResultsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D75E5651D3EC0AD0067822D /* FriendSearchResultsVC.swift */; };
+		3D75E5681D3F0B060067822D /* FriendSearchResultsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D75E5671D3F0B060067822D /* FriendSearchResultsCell.swift */; };
 		3D9263851D340F89001F839B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9263841D340F89001F839B /* AppDelegate.swift */; };
 		3D92638A1D340F89001F839B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D9263881D340F89001F839B /* Main.storyboard */; };
 		3D92638C1D340F89001F839B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D92638B1D340F89001F839B /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 		3D75E55D1D3E94660067822D /* FriendsListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsListVC.swift; sourceTree = "<group>"; };
 		3D75E55E1D3E94660067822D /* WelcomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeVC.swift; sourceTree = "<group>"; };
 		3D75E5651D3EC0AD0067822D /* FriendSearchResultsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendSearchResultsVC.swift; sourceTree = "<group>"; };
+		3D75E5671D3F0B060067822D /* FriendSearchResultsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendSearchResultsCell.swift; sourceTree = "<group>"; };
 		3D9263811D340F89001F839B /* MorseChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MorseChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D9263841D340F89001F839B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3D9263891D340F89001F839B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				3D75E55C1D3E94660067822D /* FriendSearchVC.swift */,
 				3D75E55D1D3E94660067822D /* FriendsListVC.swift */,
 				3D75E55E1D3E94660067822D /* WelcomeVC.swift */,
+				3D75E5671D3F0B060067822D /* FriendSearchResultsCell.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 				3DBF345B1D34251D00A802FE /* FirebaseHelper.swift in Sources */,
 				3D9263851D340F89001F839B /* AppDelegate.swift in Sources */,
 				3D75E55F1D3E94660067822D /* FriendListCell.swift in Sources */,
+				3D75E5681D3F0B060067822D /* FriendSearchResultsCell.swift in Sources */,
 				3D75E5621D3E94660067822D /* WelcomeVC.swift in Sources */,
 				3D75E5601D3E94660067822D /* FriendSearchVC.swift in Sources */,
 				3D75E5661D3EC0AD0067822D /* FriendSearchResultsVC.swift in Sources */,

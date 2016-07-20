@@ -20,7 +20,7 @@ class FriendCell : UITableViewCell {
 	func setFriend(friendIn: Friend) {
 		
 		friend = friendIn
-		nameLabel.text = friend!.fullName
+		nameLabel.text = friend!.displayName
 		friend!.UILineInCallback=lineInChenaged
 		firebaseHelper.setLineInListner(friend!, callback: lineInChenaged)
 	}

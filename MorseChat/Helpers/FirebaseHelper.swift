@@ -110,7 +110,7 @@ class FirebaseHelper : NSObject {
 								friends.append(userIn.toFriend())
 							}
 							else {
-								friends.append(Friend(nameIn: "error downloading friend", keyIn: "errorKey"))
+								friends.append(Friend(userNameIn: "error", displayNameIn: "error downloading friend", keyIn: "errorKey"))
 							}
 							
 							elemLeft -= 1
@@ -134,7 +134,8 @@ class FirebaseHelper : NSObject {
 					
 					let usr = User()
 					
-					usr.fullName = data.value!["name"] as! String
+					usr.displayName = data.value!["displayName"] as! String
+					usr.userName = data.value!["userName"] as! String
 					usr.key = key
 					
 					callback(usr: usr)
@@ -148,7 +149,32 @@ class FirebaseHelper : NSObject {
 	
 	func searchUsers(queryStr: String, callback: (users: [User]) -> Void) {
 		
+		let query = root?.child("usersByUserName").queryOrderedByKey().queryStartingAtValue(queryStr).queryLimitedToFirst(1)
 		
+		var ary = [User]()
+		
+		query?.observeSingleEventOfType(.Value,
+			withBlock: { (data: FIRDataSnapshot) in
+				
+				var elemLeft = data.childrenCount
+				
+				for i in data.children {
+					self.getUserfromKey(i.value,
+						callback: { (usr: User?) in
+							if let usr = usr {
+								ary.append(usr)
+							}
+							
+							elemLeft-=1;
+							
+							if elemLeft <= 0 {
+								callback(users: ary)
+							}
+						}
+					)
+				}
+			}
+		)
 	}
 	
 	func signInWithEmail(email: String, password: String, successCallback: ()->Void, failCallback: ()->Void) {
@@ -179,6 +205,19 @@ class FirebaseHelper : NSObject {
 			///\(otherUserKey)")
 		
 	}
+	
+	func requestFriend(key: String) {
+		
+		root!.child("friendsByUser").child(me.key).updateChildValues([key: false])
+		root!.child("friendsByUser").child(key).updateChildValues([me.key: false])
+	}
+	
+	func updateMe(newMe: User, success: () -> Void, fail: (errMsg: String) -> Void) {
+		
+		root!.child("users").child(newMe.key).updateChildValues(["displayName": newMe.displayName])
+		root!.child("users").child(newMe.key).updateChildValues(["userName": newMe.userName])
+		root!.child("usersByUserName").updateChildValues([newMe.userName: newMe.key])
+	}
 }
 
 extension FirebaseHelper : FIRAuthUIDelegate {
@@ -197,8 +236,15 @@ extension FirebaseHelper : FIRAuthUIDelegate {
 					}
 					else
 					{
-						//create a new user here
-						self.root?.child("users/\(user.uid)").updateChildValues(["name": user.displayName ?? "noName"])
+						let newMe = User(userNameIn: "aaaa", displayNameIn: user.displayName ?? "No Display Name", keyIn: user.uid)
+						self.updateMe(newMe,
+							success: { () in
+							
+							},
+							fail: { (errMsg: String) in
+								print(error)
+							}
+						)
 					}
 				}
 			)
