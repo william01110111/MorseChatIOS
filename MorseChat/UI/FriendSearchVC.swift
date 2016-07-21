@@ -27,7 +27,7 @@ class FriendSearchVC: UIViewController {
 		
 		if let searchUI = searchUI {
 			searchUI.searchResultsUpdater = searchResultsVC as? UISearchResultsUpdating
-			searchUI.hidesNavigationBarDuringPresentation = true
+			searchUI.hidesNavigationBarDuringPresentation = false
 			searchUI.dimsBackgroundDuringPresentation = true
 			definesPresentationContext = true
 			stackView.addSubview(searchUI.searchBar)

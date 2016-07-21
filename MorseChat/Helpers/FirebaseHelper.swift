@@ -16,9 +16,12 @@ let firebaseHelper = FirebaseHelper()
 
 class FirebaseHelper : NSObject {
 	
-	var firebaseUser: FIRUser?
-	var auth: FIRAuth?
-	var root: FIRDatabaseReference?
+	private var firebaseUser: FIRUser?
+	private var auth: FIRAuth?
+	private var root: FIRDatabaseReference?
+	var isLoggedIn = false
+	var initialLoginAttemptDone = false
+	var loginChangedCallback: (() -> Void)?
 	
 	override init() {
 		
@@ -26,16 +29,13 @@ class FirebaseHelper : NSObject {
 		
 		//callback is used so user is not requested while internal state is changing or some BS like that
 		
-		FIRApp.configure()
-		
 		auth = FIRAuth.auth()!
 		
 		root = FIRDatabase.database().reference()
 		
 		FIRAuth.auth()?.addAuthStateDidChangeListener(
 			{ auth, user in
-				print("\n\n\nlogin state changed, user: \(user?.displayName)\n\n\n")
-				self.firebaseUser = user
+				self.loginStateChanged(user)
 			}
 		);
 	}
@@ -46,6 +46,69 @@ class FirebaseHelper : NSObject {
 		authUI.delegate = self
 		let authViewController = authUI.authViewController()
 		vc.presentViewController(authViewController, animated: true, completion: nil)
+	}
+	
+	func updateMe(newMe: User, success: () -> Void, fail: (errMsg: String) -> Void) {
+		
+		let error=User.checkUserName(newMe.userName)
+		
+		if let error = error {
+			
+			fail(errMsg: error)
+			print("error: \(error)")
+			return
+		}
+		
+		root!.child("users").child(newMe.key).updateChildValues(["displayName": newMe.displayName, "userName": newMe.userName, "lowercase": newMe.userName.lowercaseString])
+	}
+	
+	func loginStateChanged(user: FIRUser?) {
+		
+		func loginDone(newMe: User?) {
+			
+			me = newMe ?? User()
+			isLoggedIn = (newMe != nil)
+			self.firebaseUser = user
+			if !isLoggedIn {
+				userDataDownloaded = false
+			}
+			
+			if let loginChangedCallback = loginChangedCallback {
+				loginChangedCallback()
+			}
+		}
+		
+		initialLoginAttemptDone = true
+		
+		if let user = user {
+			self.getUserfromKey(user.uid,
+				callback: { (userIn: User?) -> Void in
+					if let userIn = userIn {
+						loginDone(userIn)
+					}
+					else { //user is not in the auth database but not in the realtime database, so add it
+						User.getUniqueUserName(user.displayName ?? "no user name",
+							callback: { (userName) in
+								
+								let newMe = User(userNameIn: userName, displayNameIn: user.displayName ?? "No Display Name", keyIn: user.uid)
+								
+								self.updateMe(newMe,
+									success: { () in
+										loginDone(newMe)
+									},
+									fail: { (errMsg: String) in
+										print(errMsg)
+									}
+								)
+							}
+						)
+					}
+				}
+			)
+		}
+		else {
+			loginDone(nil)
+		}
 	}
 	
 	//downloads various data including friend array and me User
@@ -134,8 +197,11 @@ class FirebaseHelper : NSObject {
 					
 					let usr = User()
 					
-					usr.displayName = data.value!["displayName"] as! String
-					usr.userName = data.value!["userName"] as! String
+					if let val = data.value {
+						usr.displayName = (val["displayName"] as? String) ?? "Error In Download"
+						usr.userName = (val["userName"] as? String) ?? "error_in_download"
+					}
+					
 					usr.key = key
 					
 					callback(usr: usr)
@@ -147,11 +213,23 @@ class FirebaseHelper : NSObject {
 		)
 	}
 	
+	func checkIfUserNameAvailable(name: String, callback: (available: Bool) -> Void) {
+		
+		let query = root!.child("users").queryOrderedByChild("lowercase").queryEqualToValue(name.lowercaseString)
+		
+		query.observeSingleEventOfType(.Value,
+			withBlock: { (data: FIRDataSnapshot) in
+				
+				callback(available: data.childrenCount==0)
+			}
+		)
+	}
+	
 	func searchUsers(queryStr: String, callback: (users: [User]) -> Void) {
 		
 		//let query = root?.child("usersByUserName").queryOrderedByKey().queryStartingAtValue(queryStr).queryLimitedToFirst(24)
 		
-		let query = root!.child("users").queryOrderedByChild("userName").queryStartingAtValue(queryStr)
+		let query = root!.child("users").queryOrderedByChild("lowercase").queryStartingAtValue(queryStr.lowercaseString).queryLimitedToFirst(24)
 		
 		var ary = [User]()
 		
@@ -171,7 +249,9 @@ class FirebaseHelper : NSObject {
 						callback: { (usr: User?) in
 							
 							if let usr = usr {
-								ary.append(usr)
+								if usr.userName.lowercaseString.hasPrefix(queryStr.lowercaseString) {
+									ary.append(usr)
+								}
 							}
 							
 							elemLeft-=1;
@@ -184,6 +264,12 @@ class FirebaseHelper : NSObject {
 				}
 			}
 		)
+	}
+	
+	func requestFriend(key: String) {
+		
+		root!.child("friendsByUser").child(me.key).updateChildValues([key: false])
+		root!.child("friendsByUser").child(key).updateChildValues([me.key: false])
 	}
 	
 	func signInWithEmail(email: String, password: String, successCallback: ()->Void, failCallback: ()->Void) {
@@ -214,70 +300,11 @@ class FirebaseHelper : NSObject {
 			///\(otherUserKey)")
 		
 	}
-	
-	func requestFriend(key: String) {
-		
-		root!.child("friendsByUser").child(me.key).updateChildValues([key: false])
-		root!.child("friendsByUser").child(key).updateChildValues([me.key: false])
-	}
-	
-	func updateMe(newMe: User, success: () -> Void, fail: (errMsg: String) -> Void) {
-		
-		/*for c in newMe.userName.characters {
-			
-			if c==" " {
-				fail(errMsg: "User name can not contain spaces")
-				return
-			}
-			else if !((c>="a" && c<"z") || (c>="0" && c<="9")) {
-				
-			}
-		}*/
-		
-		let error=User.checkUserName(newMe.userName)
-		
-		if let error = error {
-			
-			fail(errMsg: error)
-			print("error: \(error)")
-			return
-		}
-		
-		root!.child("users").child(newMe.key).updateChildValues(["displayName": newMe.displayName])
-		root!.child("users").child(newMe.key).updateChildValues(["userName": newMe.userName])
-		//root!.child("usersByUserName").updateChildValues([newMe.userName: newMe.key])
-	}
 }
 
 extension FirebaseHelper : FIRAuthUIDelegate {
 	
 	@objc func authUI(authUI: FIRAuthUI, didSignInWithUser user: FIRUser?, error: NSError?) {
-		
-		//this shpuld be done by the listener I set in the init method
-		//firebaseUser = user
-		
-		//create a new user if it doesn't already exist
-		if let user = user {
-			getUserfromKey(user.uid,
-				callback: { (userIn: User?) -> Void in
-					if let userIn = userIn {
-						me = userIn
-					}
-					else
-					{
-						let newMe = User(userNameIn: "aa aa", displayNameIn: user.displayName ?? "No Display Name", keyIn: user.uid)
-						self.updateMe(newMe,
-							success: { () in
-							
-							},
-							fail: { (errMsg: String) in
-								print(error)
-							}
-						)
-					}
-				}
-			)
-		}
 		
 		if let error = error {
 			

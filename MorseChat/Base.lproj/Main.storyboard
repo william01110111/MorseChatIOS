@@ -24,51 +24,40 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Wq-fF-FKP">
-                                <rect key="frame" x="276" y="410" width="47" height="30"/>
-                                <state key="normal" title="Sign In"/>
-                                <connections>
-                                    <action selector="signInBtn:" destination="rxV-fg-kG3" eventType="touchUpInside" id="x16-Zs-mP0"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Something went wrong" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cih-CE-t3I">
-                                <rect key="frame" x="211.5" y="250" width="177" height="21"/>
+                                <rect key="frame" x="211" y="250" width="177" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vt2-Nn-msI">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <subviews>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="a43-qp-tDz">
-                                        <rect key="frame" x="290" y="290" width="20" height="20"/>
-                                    </activityIndicatorView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="a43-qp-tDz" firstAttribute="centerX" secondItem="vt2-Nn-msI" secondAttribute="centerX" id="dAJ-DY-q9G"/>
-                                    <constraint firstItem="a43-qp-tDz" firstAttribute="centerY" secondItem="vt2-Nn-msI" secondAttribute="centerY" id="yr7-NM-Her"/>
-                                </constraints>
-                            </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="b0u-yC-xhZ">
+                                <rect key="frame" x="290" y="415" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Wq-fF-FKP">
+                                <rect key="frame" x="247" y="410" width="106" height="30"/>
+                                <state key="normal" title="Sign In/Sign Up"/>
+                                <connections>
+                                    <action selector="signInBtnPressed:" destination="rxV-fg-kG3" eventType="touchUpInside" id="ACP-2h-eIA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ze8-do-fav" firstAttribute="centerX" secondItem="xTE-pO-Pwg" secondAttribute="centerX" id="2oo-zS-MRY"/>
-                            <constraint firstAttribute="bottom" secondItem="vt2-Nn-msI" secondAttribute="bottom" id="8uh-8A-bWg"/>
                             <constraint firstItem="Cih-CE-t3I" firstAttribute="centerX" secondItem="xTE-pO-Pwg" secondAttribute="centerX" id="DNc-dc-lhG"/>
-                            <constraint firstAttribute="trailing" secondItem="vt2-Nn-msI" secondAttribute="trailing" id="F45-Ll-svg"/>
                             <constraint firstItem="ze8-do-fav" firstAttribute="centerY" secondItem="xTE-pO-Pwg" secondAttribute="centerY" constant="-120" id="GOp-HB-WPC"/>
-                            <constraint firstItem="vt2-Nn-msI" firstAttribute="leading" secondItem="xTE-pO-Pwg" secondAttribute="leading" id="elH-Z5-k0s"/>
                             <constraint firstItem="6Wq-fF-FKP" firstAttribute="centerX" secondItem="xTE-pO-Pwg" secondAttribute="centerX" id="gfX-Xa-nOF"/>
                             <constraint firstItem="N0F-2O-Fqm" firstAttribute="top" secondItem="6Wq-fF-FKP" secondAttribute="bottom" constant="160" id="mVH-7P-fLX"/>
                             <constraint firstItem="Cih-CE-t3I" firstAttribute="top" secondItem="ze8-do-fav" secondAttribute="bottom" constant="40" id="oL4-s4-Dfh"/>
-                            <constraint firstItem="vt2-Nn-msI" firstAttribute="top" secondItem="xTE-pO-Pwg" secondAttribute="top" id="wYp-g8-DeC"/>
+                            <constraint firstItem="b0u-yC-xhZ" firstAttribute="centerX" secondItem="xTE-pO-Pwg" secondAttribute="centerX" id="q74-a4-CH8"/>
+                            <constraint firstItem="N0F-2O-Fqm" firstAttribute="top" secondItem="b0u-yC-xhZ" secondAttribute="bottom" constant="165" id="wpd-iC-67L"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="errorMsgLabel" destination="Cih-CE-t3I" id="ahV-lV-n7A"/>
                         <outlet property="searchDisplayController" destination="MAR-Un-vK4" id="ecc-GY-Klh"/>
-                        <outlet property="spinnerView" destination="vt2-Nn-msI" id="KBD-bS-DQl"/>
+                        <outlet property="signInBtn" destination="6Wq-fF-FKP" id="PVL-8q-wd3"/>
+                        <outlet property="spinner" destination="b0u-yC-xhZ" id="TsO-aS-Bi6"/>
                         <segue destination="3qG-ZM-ExI" kind="show" identifier="logInFromWelcomeSegue" id="FGZ-ez-cUN"/>
                     </connections>
                 </viewController>

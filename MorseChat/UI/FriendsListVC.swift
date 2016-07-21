@@ -10,8 +10,6 @@ import UIKit
 
 class FriendsListViewController: UIViewController {
 	
-	
-	
 	@IBOutlet var tableView: UITableView!
 	
 	override func viewDidLoad() {
@@ -19,12 +17,24 @@ class FriendsListViewController: UIViewController {
 		// Do any additional setup after loading the view, typically from a nib.
 		
 		tableView.dataSource=self
-		
 	}
 	
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
+	}
+	
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+		
+		firebaseHelper.downloadUserData(
+			{
+				self.tableView.reloadData()
+			},
+			fail: {
+				print("user data failed to download")
+			}
+		)
 	}
 	
 	override func viewDidAppear(animated: Bool) {

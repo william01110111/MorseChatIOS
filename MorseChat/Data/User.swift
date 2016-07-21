@@ -37,12 +37,57 @@ class User {
 		return Friend(userNameIn: userName, displayNameIn: displayName, keyIn: key)
 	}
 	
+	static func getUniqueUserName(seedName: String, callback: (userName: String) -> Void) {
+		
+		var name = ""
+		
+		for c in seedName.characters {
+			
+			if ((c>="a" && c<="z") || (c>="A" && c<="Z") || (c>="0" && c<="9") || c=="_" || c=="." || c=="-") {
+				name.append(c)
+			}
+		}
+		
+		if name.characters.count < 3 {
+			name = "user"
+		}
+		
+		func nextNum(iter: Int) {
+			
+			var attempt = name
+			
+			if iter > 0 {
+				attempt += String(iter)
+			}
+			
+			firebaseHelper.checkIfUserNameAvailable(attempt,
+				callback: { (available) in
+					if available {
+						callback(userName: attempt)
+					}
+					else
+					{
+						nextNum(iter+1)
+					}
+				}
+			)
+		}
+		
+		nextNum(0)
+	}
+	
 	//returns nil if there is no error, otherwise returns error message
 	static func checkUserName(name: String) -> String? {
 		
-		if name.rangeOfString("\\s+", options: .RegularExpressionSearch) != nil {
+		for c in name.characters {
 			
-			return "user name can not have spaces in it"
+			if c==" " {
+				return "user name may not contain spaces"
+			}
+			
+			if !((c>="a" && c<="z") || (c>="A" && c<="Z") || (c>="0" && c<="9") || c=="_" || c=="." || c=="-") {
+				return "invalid character \(c) in user name, it may only contain letters, numbers, '_', '.' and '-'."
+			}
 		}
 		
 		return nil
