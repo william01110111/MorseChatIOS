@@ -98,14 +98,17 @@ class WelcomeVC : UIViewController {
 				}
 				else {
 					showSpinner()
-					firebaseHelper.downloadUserData({ 
-							self.segueAway()
-						},
-						fail: {
-							self.showBtn()
-							self.showError("user data download failed")
-						}
-					)
+					
+					if !userDataDownloading {
+						firebaseHelper.downloadUserData({
+								self.segueAway()
+							},
+							fail: {
+								self.showBtn()
+								self.showError("user data download failed")
+							}
+						)
+					}
 				}
 			}
 			else {

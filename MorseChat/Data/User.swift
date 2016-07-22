@@ -10,6 +10,7 @@ import Foundation
 
 var me = User()
 var userDataDownloaded = false
+var userDataDownloading = false
 var friends: [Friend] = []
 
 class User {
@@ -19,7 +20,6 @@ class User {
 	var key: String
 	
 	init() {
-		
 		displayName = "nodisplayName"
 		userName = "noUserNameProvided"
 		key = "noKey"
@@ -35,6 +35,11 @@ class User {
 	func toFriend() -> Friend {
 		
 		return Friend(userNameIn: userName, displayNameIn: displayName, keyIn: key)
+	}
+	
+	func copy() -> User {
+		
+		return User(userNameIn: userName, displayNameIn: displayName, keyIn: key)
 	}
 	
 	static func getUniqueUserName(seedName: String, callback: (userName: String) -> Void) {
@@ -60,7 +65,7 @@ class User {
 				attempt += String(iter)
 			}
 			
-			firebaseHelper.checkIfUserNameAvailable(attempt,
+			firebaseHelper.checkIfUserNameAvailable(attempt, ignoreMe: false,
 				callback: { (available) in
 					if available {
 						callback(userName: attempt)
@@ -79,6 +84,10 @@ class User {
 	//returns nil if there is no error, otherwise returns error message
 	static func checkUserName(name: String) -> String? {
 		
+		if name.characters.count<3 {
+			return "Username too short"
+		}
+		
 		for c in name.characters {
 			
 			if c==" " {
@@ -86,7 +95,7 @@ class User {
 			}
 			
 			if !((c>="a" && c<="z") || (c>="A" && c<="Z") || (c>="0" && c<="9") || c=="_" || c=="." || c=="-") {
-				return "invalid character \(c) in user name, it may only contain letters, numbers, '_', '.' and '-'."
+				return "username may only contain letters, numbers and these characters: .-_"
 			}
 		}
 		

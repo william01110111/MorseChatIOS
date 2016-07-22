@@ -1,22 +1,21 @@
 //
-//  ViewController.swift
+//  SettingsVC.swift
 //  MorseChat
 //
-//  Created by William Wold on 7/11/16.
+//  Created by William Wold on 7/21/16.
 //  Copyright © 2016 Widap. All rights reserved.
 //
 
+
 import UIKit
 
-class FriendsListViewController: UIViewController {
+class SettingsVC: UIViewController {
 	
-	@IBOutlet var tableView: UITableView!
+	@IBOutlet weak var tableView: UITableView!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		// Do any additional setup after loading the view, typically from a nib.
 		
-		tableView.dataSource=self
 	}
 	
 	override func didReceiveMemoryWarning() {
@@ -27,37 +26,40 @@ class FriendsListViewController: UIViewController {
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 		
-		firebaseHelper.downloadUserData(
-			{
-				self.tableView.reloadData()
-			},
-			fail: {
-				print("user data failed to download")
-			}
-		)
+		tableView.reloadData()
 	}
 	
 	override func viewDidAppear(animated: Bool) {
 		super.viewDidAppear(animated)
 		
 	}
+	
+	@IBAction func exitToSettings(segue:UIStoryboardSegue) {
+		
+	}
 }
 
-extension FriendsListViewController: UITableViewDataSource {
+
+extension SettingsVC: UITableViewDataSource {
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		
-		return friends.count
+		return 1
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
 		
 		var cell: UITableViewCell
 		
-		cell = tableView.dequeueReusableCellWithIdentifier("friendCell")!
-		
-		(cell as! FriendCell).setFriend(friends[indexPath.row])
+		switch indexPath.row {
+		case 0:
+			cell = tableView.dequeueReusableCellWithIdentifier("myProfileSettingsCell")!
+			(cell as! MyProfileSettingsCell).setup()
+		default:
+			cell = tableView.dequeueReusableCellWithIdentifier("myProfileSettingsCell")!
+		}
 		
 		return cell
 	}
 }
+

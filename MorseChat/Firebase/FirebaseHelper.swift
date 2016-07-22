@@ -16,9 +16,9 @@ let firebaseHelper = FirebaseHelper()
 
 class FirebaseHelper : NSObject {
 	
-	private var firebaseUser: FIRUser?
-	private var auth: FIRAuth?
-	private var root: FIRDatabaseReference?
+	var firebaseUser: FIRUser?
+	var auth: FIRAuth?
+	var root: FIRDatabaseReference?
 	var isLoggedIn = false
 	var initialLoginAttemptDone = false
 	var loginChangedCallback: (() -> Void)?
@@ -55,11 +55,27 @@ class FirebaseHelper : NSObject {
 		if let error = error {
 			
 			fail(errMsg: error)
-			print("error: \(error)")
 			return
 		}
 		
-		root!.child("users").child(newMe.key).updateChildValues(["displayName": newMe.displayName, "userName": newMe.userName, "lowercase": newMe.userName.lowercaseString])
+		if newMe.displayName.isEmpty {
+			
+			fail(errMsg: "Display name required")
+			return
+		}
+		
+		checkIfUserNameAvailable(newMe.userName, ignoreMe: true,
+			callback: { (available) in
+				if available {
+					self.root!.child("users").child(newMe.key).updateChildValues(["displayName": newMe.displayName, "userName": newMe.userName, "lowercase": newMe.userName.lowercaseString])
+					me = newMe
+					success()
+				}
+				else {
+					fail(errMsg: "Username already taken")
+				}
+			}
+		)
 	}
 	
 	func loginStateChanged(user: FIRUser?) {
@@ -111,83 +127,6 @@ class FirebaseHelper : NSObject {
 		}
 	}
 	
-	//downloads various data including friend array and me User
-	func downloadUserData(success: () -> Void, fail: () -> Void) {
-		
-		var error = false
-		var downloadsLeft = 2;
-		
-		userDataDownloaded = false
-		
-		if (firebaseUser == nil) {fail()}
-		let user = firebaseUser!
-		
-		func downloadDone() {
-			
-			downloadsLeft -= 1;
-			
-			if downloadsLeft==0 {
-				if error {
-					fail()
-				}
-				else {
-					success()
-				}
-			}
-			else if downloadsLeft < 0 {
-				print("downloadsLeft dropped below 0")
-				fail()
-			}
-		}
-		
-		self.getUserfromKey(user.uid,
-			callback: { (usr) in
-				if let usr = usr {
-					me = usr
-					downloadDone()
-				}
-				else {
-					error = true
-					downloadDone()
-				}
-			}
-		)
-		
-		friends.removeAll();
-		
-		root!.child("friendsByUser/\(user.uid)").observeEventType(.Value,
-			withBlock: { (data: FIRDataSnapshot) in
-				
-				var elemLeft = data.childrenCount
-				
-				//if there are no friends it has to be handeled differently
-				if elemLeft == 0 {
-					downloadDone()
-				}
-				
-				for i in data.children {
-					self.getUserfromKey(i.key,
-						callback: { (userIn: User?) -> Void in
-							
-							if let userIn = userIn {
-								friends.append(userIn.toFriend())
-							}
-							else {
-								friends.append(Friend(userNameIn: "error", displayNameIn: "error downloading friend", keyIn: "errorKey"))
-							}
-							
-							elemLeft -= 1
-							
-							if elemLeft == 0 {
-								downloadDone()
-							}
-						}
-					)
-				}
-			}
-		)
-	}
-	
 	func getUserfromKey(key: String, callback: (usr: User?) -> Void) {
 		
 		root!.child("users/\(key)").observeEventType(.Value,
@@ -213,14 +152,19 @@ class FirebaseHelper : NSObject {
 		)
 	}
 	
-	func checkIfUserNameAvailable(name: String, callback: (available: Bool) -> Void) {
+	func checkIfUserNameAvailable(name: String, ignoreMe: Bool, callback: (available: Bool) -> Void) {
+		
+		if (ignoreMe && name.lowercaseString == me.userName.lowercaseString) {
+			callback(available: true)
+			return;
+		}
 		
 		let query = root!.child("users").queryOrderedByChild("lowercase").queryEqualToValue(name.lowercaseString)
 		
 		query.observeSingleEventOfType(.Value,
 			withBlock: { (data: FIRDataSnapshot) in
 				
-				callback(available: data.childrenCount==0)
+				callback(available: !data.exists())
 			}
 		)
 	}
@@ -238,8 +182,6 @@ class FirebaseHelper : NSObject {
 				
 				var elemLeft = data.childrenCount
 				
-				print("elemLeft: \(elemLeft)")
-				
 				if elemLeft <= 0 {
 					callback(users: ary)
 				}
@@ -256,8 +198,11 @@ class FirebaseHelper : NSObject {
 							
 							elemLeft-=1;
 							
-							if elemLeft <= 0 {
+							if elemLeft == 0 {
 								callback(users: ary)
+							}
+							else if elemLeft < 0 {
+								print("elemLeft dropped below 0")
 							}
 						}
 					)
@@ -287,9 +232,10 @@ class FirebaseHelper : NSObject {
 		root!.child("friendsByUser/\(me.key)/\(friend.key)").observeEventType(.Value,
 			withBlock: { (data: FIRDataSnapshot) -> Void in
 				
-				let state = data.value as! Bool
-				
-				callback(lineOn: state)
+				if let val = (data.value as? Bool) {
+					let state = val
+					callback(lineOn: state)
+				}
 			}
 		)
 	}
@@ -312,3 +258,5 @@ extension FirebaseHelper : FIRAuthUIDelegate {
 		}
 	}
 }
+
+
