@@ -9,9 +9,15 @@
 import Foundation
 
 var me = User()
-var userDataDownloaded = false
-var userDataDownloading = false
 var friends: [Friend] = []
+
+var meDownloaded = false
+var friendsDownloaded = false
+
+func allDownloaded() -> Bool {
+	
+	return (meDownloaded && friendsDownloaded)
+}
 
 class User {
 	

@@ -33,6 +33,8 @@ class WelcomeVC : UIViewController {
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 		
+		firebaseHelper.userDataChangedCallback = updateLoginState
+		firebaseHelper.loginChangedCallback = updateLoginState
 		updateLoginState()
 	}
 	
@@ -92,14 +94,22 @@ class WelcomeVC : UIViewController {
 	func updateLoginState() {
 		
 		if viewIfLoaded != nil {
-			if firebaseHelper.isLoggedIn {
-				if userDataDownloaded {
+			if firebaseHelper.isLoggedIn() {
+				if allDownloaded() {
 					segueAway()
 				}
 				else {
 					showSpinner()
 					
-					if !userDataDownloading {
+					if !meDownloaded {
+						firebaseHelper.downloadMe()
+					}
+					
+					if !friendsDownloaded {
+						firebaseHelper.downloadFriends()
+					}
+					
+					/*if !userDataDownloading {
 						firebaseHelper.downloadUserData({
 								self.segueAway()
 							},
@@ -108,7 +118,7 @@ class WelcomeVC : UIViewController {
 								self.showError("user data download failed")
 							}
 						)
-					}
+					}*/
 				}
 			}
 			else {
@@ -120,25 +130,6 @@ class WelcomeVC : UIViewController {
 				}
 			}
 		}
-		
-		/*if (firebaseHelper.firebaseUser != nil) {
-			
-			spinnerView.hidden = false
-			
-			firebaseHelper.downloadUserData(
-				{ () -> Void in
-					self.performSegueWithIdentifier("logInFromWelcomeSegue", sender: self)
-				},
-				fail: { () -> Void in
-					self.spinnerView.hidden = true
-					self.errorMsgLabel.hidden = false
-				}
-			)
-		}
-		else {
-			errorMsgLabel.hidden = true
-			spinnerView.hidden = true
-		}*/
 	}
 }
 

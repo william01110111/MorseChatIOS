@@ -15,7 +15,85 @@ import FirebaseAuthUI
 
 extension FirebaseHelper {
 	
-	//downloads various data including friend array and me User
+	func downloadFriends() {
+		
+		guard let user = firebaseUser else
+		{
+			friendsDownloaded = false
+			firebaseErrorCallback?(msg: "Tried to download frinds without a signed in user")
+			return
+		}
+		
+		var ary = [Friend]()
+		
+		root!.child("friendsByUser/\(user.uid)").queryOrderedByChild("lowercase").observeEventType(.Value,
+			withBlock: { (data: FIRDataSnapshot) in
+
+				var elemLeft = data.childrenCount
+
+				//if there are no friends it has to be handeled differently
+				if elemLeft == 0 {
+					friends.removeAll()
+					friendsDownloaded = true
+					self.userDataChangedCallback?()
+				}
+
+				for i in data.children {
+					self.getUserfromKey(i.key,
+						callback: { (userIn: User?) -> Void in
+							
+							if let userIn = userIn {
+								ary.append(userIn.toFriend())
+							}
+							else {
+								ary.append(Friend(userNameIn: "error", displayNameIn: "error downloading friend", keyIn: "errorKey"))
+							}
+							
+							elemLeft -= 1
+							
+							if elemLeft == 0 {
+								friends = ary
+								friendsDownloaded = true
+								self.userDataChangedCallback?()
+							}
+						}
+					)
+				}
+			}
+		)
+	}
+	
+	func downloadMe() {
+		
+		guard let user = firebaseUser else
+		{
+			meDownloaded = true
+			firebaseErrorCallback?(msg: "Tried to download me without a signed in user")
+			return
+		}
+		
+		self.getUserfromKey(user.uid,
+			callback: { (usr) in
+				if let usr = usr {
+					me = usr
+					meDownloaded = true
+					self.userDataChangedCallback?()
+				}
+				else {
+					meDownloaded = false
+					self.firebaseErrorCallback?(msg: "Error downloading me")
+				}
+			}
+		)
+	}
+	
+	func downloadData() {
+		
+		downloadMe()
+		downloadFriends()
+	}
+	
+	/*//downloads various data including friend array and me User
 	func downloadUserData(success: () -> Void, fail: () -> Void) {
 		
 		if userDataDownloading {
@@ -30,7 +108,11 @@ extension FirebaseHelper {
 		
 		userDataDownloaded = false
 		
-		if (firebaseUser == nil) {fail()}
+		if (firebaseUser == nil)
+		{
+			fail()
+			return
+		}
 		let user = firebaseUser!
 		
 		func downloadDone() {
@@ -100,5 +182,5 @@ extension FirebaseHelper {
 				}
 			}
 		)
-	}
+	}*/
 }

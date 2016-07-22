@@ -19,9 +19,10 @@ class FirebaseHelper : NSObject {
 	var firebaseUser: FIRUser?
 	var auth: FIRAuth?
 	var root: FIRDatabaseReference?
-	var isLoggedIn = false
 	var initialLoginAttemptDone = false
 	var loginChangedCallback: (() -> Void)?
+	var userDataChangedCallback: (() -> Void)?
+	var firebaseErrorCallback: ((msg: String) -> Void)?
 	
 	override init() {
 		
@@ -38,6 +39,16 @@ class FirebaseHelper : NSObject {
 				self.loginStateChanged(user)
 			}
 		);
+		
+		firebaseErrorCallback = { (msg: String) in
+			
+			print("firebase error: \(msg)")
+		}
+	}
+	
+	func isLoggedIn() -> Bool {
+		
+		return firebaseUser != nil
 	}
 	
 	func loginUI(vc: UIViewController) {
@@ -69,6 +80,7 @@ class FirebaseHelper : NSObject {
 				if available {
 					self.root!.child("users").child(newMe.key).updateChildValues(["displayName": newMe.displayName, "userName": newMe.userName, "lowercase": newMe.userName.lowercaseString])
 					me = newMe
+					self.userDataChangedCallback?()
 					success()
 				}
 				else {
@@ -80,27 +92,20 @@ class FirebaseHelper : NSObject {
 	
 	func loginStateChanged(user: FIRUser?) {
 		
-		func loginDone(newMe: User?) {
-			
-			me = newMe ?? User()
-			isLoggedIn = (newMe != nil)
-			self.firebaseUser = user
-			if !isLoggedIn {
-				userDataDownloaded = false
-			}
-			
-			if let loginChangedCallback = loginChangedCallback {
-				loginChangedCallback()
-			}
-		}
+		meDownloaded = false
+		friendsDownloaded = false
+		userDataChangedCallback?()
 		
 		initialLoginAttemptDone = true
+		firebaseUser = user
+		loginChangedCallback?()
 		
 		if let user = user {
 			self.getUserfromKey(user.uid,
-				callback: { (userIn: User?) -> Void in
-					if let userIn = userIn {
-						loginDone(userIn)
+				callback: {	(userIn: User?) -> Void in
+					if userIn != nil {
+						self.downloadMe()
+						self.downloadFriends()
 					}
 					else { //user is not in the auth database but not in the realtime database, so add it
 						User.getUniqueUserName(user.displayName ?? "no user name",
@@ -109,11 +114,9 @@ class FirebaseHelper : NSObject {
 								let newMe = User(userNameIn: userName, displayNameIn: user.displayName ?? "No Display Name", keyIn: user.uid)
 								
 								self.updateMe(newMe,
-									success: { () in
-										loginDone(newMe)
-									},
+									success: { () in},
 									fail: { (errMsg: String) in
-										print(errMsg)
+										self.firebaseErrorCallback?(msg: errMsg)
 									}
 								)
 							}
@@ -121,9 +124,6 @@ class FirebaseHelper : NSObject {
 					}
 				}
 			)
-		}
-		else {
-			loginDone(nil)
 		}
 	}
 	
