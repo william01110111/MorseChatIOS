@@ -27,14 +27,9 @@ class FriendsListViewController: UIViewController {
 		
 		tableView.reloadData()
 		
-		/*firebaseHelper.downloadUserData(
-			{
-				self.tableView.reloadData()
-			},
-			fail: {
-				print("user data failed to download")
-			}
-		)*/
+		firebaseHelper.userDataChangedCallback = { () in
+			self.tableView.reloadData()
+		}
 	}
 	
 	override func viewDidAppear(animated: Bool) {

@@ -125,7 +125,7 @@ class EditProfileVC: UIViewController {
 			
 			savingMe = true
 			
-			firebaseHelper.updateMe(newMe,
+			firebaseHelper.uploadMe(newMe,
 				success: {
 					
 					self.performSegueWithIdentifier("exitToSettingsSegue", sender: self)

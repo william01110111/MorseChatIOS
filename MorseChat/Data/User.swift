@@ -114,7 +114,7 @@ class Friend : User {
 	var inLineState = false;
 	var outLineState = false;
 	
-	var UILineInCallback: ((state: Bool) -> Void)?
+	var lineInCallback: ((state: Bool) -> Void)?
 	
 	func setOutLine(newState: Bool) {
 		
@@ -133,6 +133,6 @@ class Friend : User {
 		
 		print("line from \(displayName) (\(userName)) is \(inLineState)")
 		
-		UILineInCallback?(state: newState)
+		lineInCallback?(state: newState)
 	}
 }
