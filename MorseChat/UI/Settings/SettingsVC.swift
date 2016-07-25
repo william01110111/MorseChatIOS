@@ -63,3 +63,14 @@ extension SettingsVC: UITableViewDataSource {
 	}
 }
 
+class MyProfileSettingsCell : UITableViewCell {
+	
+	@IBOutlet weak var displayNameLabel: UILabel!
+	@IBOutlet weak var usernameLabel: UILabel!
+	
+	func setup() {
+		
+		displayNameLabel.text = me.displayName
+		usernameLabel.text = me.userName
+	}
+}
