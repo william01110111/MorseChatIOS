@@ -14,7 +14,9 @@ class EditProfileVC: UIViewController {
 	@IBOutlet weak var displayNameBox: UITextField!
 	@IBOutlet weak var usernameBox: UITextField!
 	
-	@IBOutlet weak var goodLabel: UILabel!
+	
+	@IBOutlet weak var saveBtn: UIButton!
+	//@IBOutlet weak var goodLabel: UILabel!
 	@IBOutlet weak var errorLabel: UILabel!
 	@IBOutlet weak var spinner: UIActivityIndicatorView!
 	
@@ -46,23 +48,23 @@ class EditProfileVC: UIViewController {
 	
 	func showGood() {
 		
-		goodLabel.hidden = false
+		saveBtn.hidden = false
 		spinner.hidden = true
 		errorLabel.hidden = true
 	}
 	
 	func showSpinner() {
 		
-		goodLabel.hidden = true
+		//saveBtn.hidden = true
 		spinner.hidden = false
-		errorLabel.hidden = true
+		//errorLabel.hidden = true
 	}
 	
 	func showError(msg: String) {
 		
 		errorLabel.text = msg
 		
-		goodLabel.hidden = true
+		saveBtn.hidden = true
 		spinner.hidden = true
 		errorLabel.hidden = false
 	}

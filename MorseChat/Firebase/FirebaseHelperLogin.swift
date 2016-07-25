@@ -65,6 +65,13 @@ extension FirebaseHelper {
 			self.invalidateData()
 		}
 	}
+	
+	func signOut() {
+		
+		if ((try? FIRAuth.auth()!.signOut()) == nil) {
+			print("sign out error")
+		}
+	}
 }
 
 
