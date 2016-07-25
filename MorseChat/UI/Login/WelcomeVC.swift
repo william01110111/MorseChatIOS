@@ -83,12 +83,21 @@ class WelcomeVC : UIViewController {
 	
 	func segueAway() {
 		if viewHasAppeared {
-			self.performSegueWithIdentifier("logInFromWelcomeSegue", sender: self)
+			if (firebaseHelper.initialAccountSetupDone) {
+				self.performSegueWithIdentifier("logInFromWelcomeSegue", sender: self)
+			}
+			else {
+				self.performSegueWithIdentifier("setupAccountSegue", sender: self)
+			}
 		}
 	}
 	
 	@IBAction func signInBtnPressed(sender: AnyObject) {
 		startLoginUI()
+	}
+	
+	@IBAction func exitToWelcome(segue:UIStoryboardSegue) {
+		
 	}
 	
 	func updateLoginState() {

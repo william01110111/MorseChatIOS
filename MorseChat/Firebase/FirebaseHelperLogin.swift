@@ -41,6 +41,9 @@ extension FirebaseHelper {
 						self.downloadData()
 					}
 					else { //user is not in the auth database but not in the realtime database, so add it
+						
+						self.initialAccountSetupDone = false
+						
 						User.getUniqueUserName(user.displayName ?? "no user name",
 							callback: { (userName) in
 								

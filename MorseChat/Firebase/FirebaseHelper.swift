@@ -20,6 +20,7 @@ class FirebaseHelper : NSObject {
 	var auth: FIRAuth?
 	var root: FIRDatabaseReference?
 	var initialLoginAttemptDone = false
+	var initialAccountSetupDone = true
 	var loginChangedCallback: (() -> Void)?
 	var userDataChangedCallback: (() -> Void)?
 	var firebaseErrorCallback: ((msg: String) -> Void)?

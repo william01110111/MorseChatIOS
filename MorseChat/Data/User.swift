@@ -90,6 +90,9 @@ class User {
 	//returns nil if there is no error, otherwise returns error message
 	static func checkUserName(name: String) -> String? {
 		
+		if name.isEmpty {
+			return "username required"
+		}
 		if name.characters.count<3 {
 			return "Username too short"
 		}

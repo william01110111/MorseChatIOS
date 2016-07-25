@@ -40,6 +40,9 @@ class EditProfileVC: UIViewController {
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 		
+		
+		firebaseHelper.initialAccountSetupDone = true
+		
 		savingSpinnerView.hidden = true
 		displayNameBox.text = me.displayName
 		usernameBox.text = me.userName
@@ -130,8 +133,8 @@ class EditProfileVC: UIViewController {
 			firebaseHelper.uploadMe(newMe,
 				success: {
 					
-					self.performSegueWithIdentifier("exitToSettingsSegue", sender: self)
 					self.savingMe = false
+					self.exit()
 				},
 				fail: { (errMsg) in
 					self.savingMe = false
@@ -145,6 +148,15 @@ class EditProfileVC: UIViewController {
 	@IBAction func cancelButtonPressed(sender: AnyObject) {
 		
 		if !savingMe {
+			exit()
+		}
+	}
+	
+	func exit() {
+		if self.navigationController == nil {
+			performSegueWithIdentifier("exitToWelcomeSegue", sender: self)
+		}
+		else {
 			performSegueWithIdentifier("exitToSettingsSegue", sender: self)
 		}
 	}
