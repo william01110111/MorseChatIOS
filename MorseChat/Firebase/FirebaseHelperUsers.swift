@@ -26,7 +26,7 @@ extension FirebaseHelper {
 					
 					if let val = data.value {
 						usr.displayName = (val["displayName"] as? String) ?? "Error In Download"
-						usr.userName = (val["userName"] as? String) ?? "error_in_download"
+						usr.username = (val["userName"] as? String) ?? "error_in_download"
 					}
 					
 					usr.key = key
@@ -40,9 +40,9 @@ extension FirebaseHelper {
 		)
 	}
 	
-	func checkIfUserNameAvailable(name: String, ignoreMe: Bool, callback: (available: Bool) -> Void) {
+	func checkIfUsernameAvailable(name: String, ignoreMe: Bool, callback: (available: Bool) -> Void) {
 		
-		if (ignoreMe && name.lowercaseString == me.userName.lowercaseString) {
+		if (ignoreMe && name.lowercaseString == me.username.lowercaseString) {
 			callback(available: true)
 			return;
 		}
@@ -79,7 +79,7 @@ extension FirebaseHelper {
 						callback: { (usr: User?) in
 							
 							if let usr = usr {
-								if usr.userName.lowercaseString.hasPrefix(queryStr.lowercaseString) {
+								if usr.username.lowercaseString.hasPrefix(queryStr.lowercaseString) {
 									ary.append(usr)
 								}
 							}

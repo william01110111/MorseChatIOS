@@ -63,7 +63,7 @@ extension FirebaseHelper {
 								ary.append(userIn.toFriend())
 							}
 							else {
-								ary.append(Friend(userNameIn: "error", displayNameIn: "error downloading friend", keyIn: "errorKey"))
+								ary.append(Friend(usernameIn: "error", displayNameIn: "error downloading friend", keyIn: "errorKey"))
 							}
 							
 							elemLeft -= 1

@@ -45,7 +45,7 @@ class EditProfileVC: UIViewController {
 		
 		savingSpinnerView.hidden = true
 		displayNameBox.text = me.displayName
-		usernameBox.text = me.userName
+		usernameBox.text = me.username
 		showGood()
 	}
 	
@@ -79,7 +79,7 @@ class EditProfileVC: UIViewController {
 	@IBAction func usernameUpdated(sender: AnyObject) {
 		usernameBeingChecked = true
 		inputUpdated()
-		firebaseHelper.checkIfUserNameAvailable(usernameBox.text ?? "", ignoreMe: true,
+		firebaseHelper.checkIfUsernameAvailable(usernameBox.text ?? "", ignoreMe: true,
 			callback: { (available) in
 				if self.viewIfLoaded != nil {
 					self.usernameBeingChecked = false
@@ -97,7 +97,7 @@ class EditProfileVC: UIViewController {
 			return;
 		}
 		
-		let err = User.checkUserName(usernameBox.text ?? "")
+		let err = User.checkUsername(usernameBox.text ?? "")
 		
 		if let err = err {
 			showError(err)
@@ -126,7 +126,7 @@ class EditProfileVC: UIViewController {
 			let newMe = me.copy()
 			
 			newMe.displayName = displayNameBox.text ?? "display name error"
-			newMe.userName = usernameBox.text ?? "usename error"
+			newMe.username = usernameBox.text ?? "usename error"
 			
 			savingMe = true
 			

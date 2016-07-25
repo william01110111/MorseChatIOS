@@ -44,10 +44,10 @@ extension FirebaseHelper {
 						
 						self.initialAccountSetupDone = false
 						
-						User.getUniqueUserName(user.displayName ?? "no user name",
-							callback: { (userName) in
+						User.getUniqueUsername(user.displayName ?? "no user name",
+							callback: { (username) in
 								
-								let newMe = User(userNameIn: userName, displayNameIn: user.displayName ?? "No Display Name", keyIn: user.uid)
+								let newMe = User(usernameIn: username, displayNameIn: user.displayName ?? "No Display Name", keyIn: user.uid)
 								
 								self.uploadMe(newMe,
 									success: { () in

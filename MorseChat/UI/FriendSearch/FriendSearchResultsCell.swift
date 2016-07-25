@@ -20,7 +20,7 @@ class FriendSearchResultsCell : UITableViewCell {
 		
 		user = userIn
 		displayNameLabel.text = userIn.displayName
-		userNameLabel.text = userIn.userName
+		userNameLabel.text = userIn.username
 	}
 	
 	

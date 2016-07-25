@@ -22,33 +22,33 @@ func allDownloaded() -> Bool {
 class User {
 	
 	var displayName: String
-	var userName: String
+	var username: String
 	var key: String
 	
 	init() {
 		displayName = "nodisplayName"
-		userName = "noUserNameProvided"
+		username = "noUsernameProvided"
 		key = "noKey"
 	}
 	
-	init(userNameIn: String, displayNameIn: String, keyIn: String) {
+	init(usernameIn: String, displayNameIn: String, keyIn: String) {
 		
 		displayName = displayNameIn
-		userName = userNameIn
+		username = usernameIn
 		key = keyIn
 	}
 	
 	func toFriend() -> Friend {
 		
-		return Friend(userNameIn: userName, displayNameIn: displayName, keyIn: key)
+		return Friend(usernameIn: username, displayNameIn: displayName, keyIn: key)
 	}
 	
 	func copy() -> User {
 		
-		return User(userNameIn: userName, displayNameIn: displayName, keyIn: key)
+		return User(usernameIn: username, displayNameIn: displayName, keyIn: key)
 	}
 	
-	static func getUniqueUserName(seedName: String, callback: (userName: String) -> Void) {
+	static func getUniqueUsername(seedName: String, callback: (username: String) -> Void) {
 		
 		var name = ""
 		
@@ -71,10 +71,10 @@ class User {
 				attempt += String(iter)
 			}
 			
-			firebaseHelper.checkIfUserNameAvailable(attempt, ignoreMe: false,
+			firebaseHelper.checkIfUsernameAvailable(attempt, ignoreMe: false,
 				callback: { (available) in
 					if available {
-						callback(userName: attempt)
+						callback(username: attempt)
 					}
 					else
 					{
@@ -88,7 +88,7 @@ class User {
 	}
 	
 	//returns nil if there is no error, otherwise returns error message
-	static func checkUserName(name: String) -> String? {
+	static func checkUsername(name: String) -> String? {
 		
 		if name.isEmpty {
 			return "username required"
@@ -123,7 +123,7 @@ class Friend : User {
 		
 		outLineState = newState
 		
-		print("line to \(displayName) (\(userName)) is \(outLineState)")
+		print("line to \(displayName) (\(username)) is \(outLineState)")
 		
 		//print("calling firebaseHelper.setLineToUserStatus() with key \(key)")
 		
@@ -134,7 +134,7 @@ class Friend : User {
 		
 		inLineState = newState
 		
-		print("line from \(displayName) (\(userName)) is \(inLineState)")
+		print("line from \(displayName) (\(username)) is \(inLineState)")
 		
 		lineInCallback?(state: newState)
 	}

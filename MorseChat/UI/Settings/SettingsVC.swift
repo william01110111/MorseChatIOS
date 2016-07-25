@@ -71,6 +71,6 @@ class MyProfileSettingsCell : UITableViewCell {
 	func setup() {
 		
 		displayNameLabel.text = me.displayName
-		usernameLabel.text = me.userName
+		usernameLabel.text = me.username
 	}
 }

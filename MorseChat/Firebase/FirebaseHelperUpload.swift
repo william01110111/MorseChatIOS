@@ -16,7 +16,7 @@ extension FirebaseHelper {
 	
 	func uploadMe(newMe: User, success: () -> Void, fail: (errMsg: String) -> Void) {
 		
-		let error=User.checkUserName(newMe.userName)
+		let error=User.checkUsername(newMe.username)
 		
 		if let error = error {
 			
@@ -30,10 +30,10 @@ extension FirebaseHelper {
 			return
 		}
 		
-		checkIfUserNameAvailable(newMe.userName, ignoreMe: true,
+		checkIfUsernameAvailable(newMe.username, ignoreMe: true,
 			 callback: { (available) in
 				if available {
-					self.root!.child("users").child(newMe.key).updateChildValues(["displayName": newMe.displayName, "userName": newMe.userName, "lowercase": newMe.userName.lowercaseString])
+					self.root!.child("users").child(newMe.key).updateChildValues(["displayName": newMe.displayName, "userName": newMe.username, "lowercase": newMe.username.lowercaseString])
 					me = newMe
 					self.userDataChangedCallback?()
 					success()
