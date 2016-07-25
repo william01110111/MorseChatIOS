@@ -117,17 +117,6 @@ class WelcomeVC : UIViewController {
 					if !friendsDownloaded {
 						firebaseHelper.downloadFriends()
 					}
-					
-					/*if !userDataDownloading {
-						firebaseHelper.downloadUserData({
-								self.segueAway()
-							},
-							fail: {
-								self.showBtn()
-								self.showError("user data download failed")
-							}
-						)
-					}*/
 				}
 			}
 			else {

@@ -31,11 +31,15 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="b0u-yC-xhZ">
-                                <rect key="frame" x="290" y="415" width="20" height="20"/>
+                                <rect key="frame" x="290" y="455" width="20" height="20"/>
                             </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Wq-fF-FKP">
-                                <rect key="frame" x="247" y="410" width="106" height="30"/>
-                                <state key="normal" title="Sign In/Sign Up"/>
+                                <rect key="frame" x="40" y="445" width="520" height="35"/>
+                                <color key="backgroundColor" red="0.01717177013" green="0.83360423660000005" blue="0.21424077180000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                <state key="normal" title="Sign In/Sign Up">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="signInBtnPressed:" destination="rxV-fg-kG3" eventType="touchUpInside" id="ACP-2h-eIA"/>
                                 </connections>
@@ -46,11 +50,13 @@
                             <constraint firstItem="ze8-do-fav" firstAttribute="centerX" secondItem="xTE-pO-Pwg" secondAttribute="centerX" id="2oo-zS-MRY"/>
                             <constraint firstItem="Cih-CE-t3I" firstAttribute="centerX" secondItem="xTE-pO-Pwg" secondAttribute="centerX" id="DNc-dc-lhG"/>
                             <constraint firstItem="ze8-do-fav" firstAttribute="centerY" secondItem="xTE-pO-Pwg" secondAttribute="centerY" constant="-120" id="GOp-HB-WPC"/>
+                            <constraint firstItem="6Wq-fF-FKP" firstAttribute="leading" secondItem="xTE-pO-Pwg" secondAttribute="leadingMargin" constant="20" id="acs-ak-fp7"/>
                             <constraint firstItem="6Wq-fF-FKP" firstAttribute="centerX" secondItem="xTE-pO-Pwg" secondAttribute="centerX" id="gfX-Xa-nOF"/>
-                            <constraint firstItem="N0F-2O-Fqm" firstAttribute="top" secondItem="6Wq-fF-FKP" secondAttribute="bottom" constant="160" id="mVH-7P-fLX"/>
+                            <constraint firstItem="N0F-2O-Fqm" firstAttribute="top" secondItem="6Wq-fF-FKP" secondAttribute="bottom" constant="120" id="mVH-7P-fLX"/>
                             <constraint firstItem="Cih-CE-t3I" firstAttribute="top" secondItem="ze8-do-fav" secondAttribute="bottom" constant="40" id="oL4-s4-Dfh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6Wq-fF-FKP" secondAttribute="trailing" constant="20" id="okV-br-iTo"/>
                             <constraint firstItem="b0u-yC-xhZ" firstAttribute="centerX" secondItem="xTE-pO-Pwg" secondAttribute="centerX" id="q74-a4-CH8"/>
-                            <constraint firstItem="N0F-2O-Fqm" firstAttribute="top" secondItem="b0u-yC-xhZ" secondAttribute="bottom" constant="165" id="wpd-iC-67L"/>
+                            <constraint firstItem="N0F-2O-Fqm" firstAttribute="top" secondItem="b0u-yC-xhZ" secondAttribute="bottom" constant="125" id="wpd-iC-67L"/>
                         </constraints>
                     </view>
                     <connections>
@@ -415,6 +421,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="91Q-7d-DO3">
+                                <rect key="frame" x="40" y="490" width="520" height="90"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qct-EX-1FV">
+                                        <rect key="frame" x="0.0" y="0.0" width="520" height="35"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                        <color key="tintColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Sign Out">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="signOutButtonPressed:" destination="SmH-jD-9ZC" eventType="touchUpInside" id="S98-NV-u0E"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bAq-8c-AWp">
+                                        <rect key="frame" x="0.0" y="55" width="520" height="35"/>
+                                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                        <state key="normal" title="Delete Account">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="GoL-xr-nRH"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="GoL-xr-nRH"/>
+                                    </mask>
+                                </variation>
+                            </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="FCQ-ga-DkD">
                                 <rect key="frame" x="20" y="40" width="560" height="166"/>
                                 <subviews>
@@ -503,36 +542,6 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="91Q-7d-DO3">
-                                <rect key="frame" x="40" y="490" width="520" height="90"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qct-EX-1FV">
-                                        <rect key="frame" x="0.0" y="0.0" width="520" height="35"/>
-                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
-                                        <color key="tintColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="Sign Out">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bAq-8c-AWp">
-                                        <rect key="frame" x="0.0" y="55" width="520" height="35"/>
-                                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
-                                        <state key="normal" title="Delete Account">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="GoL-xr-nRH"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="GoL-xr-nRH"/>
-                                    </mask>
-                                </variation>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ucq-7U-gBG">
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>

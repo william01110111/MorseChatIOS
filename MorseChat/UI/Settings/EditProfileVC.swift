@@ -152,6 +152,12 @@ class EditProfileVC: UIViewController {
 		}
 	}
 	
+	@IBAction func signOutButtonPressed(sender: AnyObject) {
+		
+		firebaseHelper.signOut()
+		performSegueWithIdentifier("exitToWelcomeSegue", sender: self)
+	}
+	
 	func exit() {
 		if self.navigationController == nil {
 			performSegueWithIdentifier("exitToWelcomeSegue", sender: self)
