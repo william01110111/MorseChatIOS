@@ -26,7 +26,7 @@ extension FirebaseHelper {
 					
 					if let val = data.value {
 						usr.displayName = (val["displayName"] as? String) ?? "Error In Download"
-						usr.username = (val["userName"] as? String) ?? "error_in_download"
+						usr.username = (val["username"] as? String) ?? "error_in_download"
 					}
 					
 					usr.key = key

@@ -38,6 +38,7 @@ class FirebaseHelper : NSObject {
 		FIRAuth.auth()?.addAuthStateDidChangeListener(
 			{ auth, user in
 				self.loginStateChanged(user)
+				
 			}
 		);
 		

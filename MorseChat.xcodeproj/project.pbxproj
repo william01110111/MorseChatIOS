@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D58C8951D47CA4700C573AA /* TimeFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D58C8941D47CA4700C573AA /* TimeFuncs.swift */; };
 		3D882D801D42B1D0003402BF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D882D6F1D42B1D0003402BF /* User.swift */; };
 		3D882D811D42B1D0003402BF /* FirebaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D882D711D42B1D0003402BF /* FirebaseHelper.swift */; };
 		3D882D821D42B1D0003402BF /* FriendListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D882D741D42B1D0003402BF /* FriendListCell.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D58C8941D47CA4700C573AA /* TimeFuncs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeFuncs.swift; sourceTree = "<group>"; };
 		3D882D6F1D42B1D0003402BF /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3D882D711D42B1D0003402BF /* FirebaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseHelper.swift; sourceTree = "<group>"; };
 		3D882D741D42B1D0003402BF /* FriendListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendListCell.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				3D882D6F1D42B1D0003402BF /* User.swift */,
+				3D58C8941D47CA4700C573AA /* TimeFuncs.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 				3D882D901D42D700003402BF /* FirebaseHelperLogin.swift in Sources */,
 				3D882D921D42D7D2003402BF /* FirebaseHelperUsers.swift in Sources */,
 				3D882D8C1D42B380003402BF /* FirebaseHelperDownload.swift in Sources */,
+				3D58C8951D47CA4700C573AA /* TimeFuncs.swift in Sources */,
 				3D882D841D42B1D0003402BF /* FriendSearchResultsCell.swift in Sources */,
 				3D882D811D42B1D0003402BF /* FirebaseHelper.swift in Sources */,
 				3D9263851D340F89001F839B /* AppDelegate.swift in Sources */,

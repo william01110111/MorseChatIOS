@@ -28,38 +28,24 @@ extension FirebaseHelper {
 	}
 	
 	
-	func loginStateChanged(user: FIRUser?) {
+	func loginStateChanged(userInFB: FIRUser?) {
 		
 		initialLoginAttemptDone = true
-		firebaseUser = user
+		firebaseUser = userInFB
 		loginChangedCallback?()
 		
-		if let user = user {
-			self.getUserfromKey(user.uid,
-				callback: {	(userIn: User?) -> Void in
-					if userIn != nil {
+		if let userFB = userInFB {
+			
+			self.getUserfromKey(userFB.uid,
+				callback: {	(user: User?) -> Void in
+					
+					if user != nil {
 						self.downloadData()
 					}
 					else { //user is not in the auth database but not in the realtime database, so add it
 						
 						self.initialAccountSetupDone = false
-						
-						User.getUniqueUsername(user.displayName ?? "no user name",
-							callback: { (username) in
-								
-								let newMe = User(usernameIn: username, displayNameIn: user.displayName ?? "No Display Name", keyIn: user.uid)
-								
-								self.uploadMe(newMe,
-									success: { () in
-										self.downloadData()
-									},
-									fail: { (errMsg: String) in
-										self.invalidateData()
-										self.firebaseErrorCallback?(msg: errMsg)
-									}
-								)
-							}
-						)
+						self.createUser()
 					}
 				}
 			)
@@ -67,6 +53,45 @@ extension FirebaseHelper {
 		else {
 			self.invalidateData()
 		}
+	}
+	
+	func createUser() {
+		
+		func upload() {
+			User.getUniqueUsername(firebaseUser?.displayName ?? "no user name",
+				   callback: { (username) in
+					
+					let newMe = User(usernameIn: username, displayNameIn: self.firebaseUser?.displayName ?? "No Display Name", keyIn: self.firebaseUser?.uid ?? "noUID")
+					
+					self.uploadMe(newMe,
+						success: { () in
+							self.downloadData()
+						},
+						fail: { (errMsg: String) in
+							self.invalidateData()
+							self.firebaseErrorCallback?(msg: errMsg)
+						}
+					)
+				}
+			)
+		}
+		
+		func wait(iters: Int) {
+			
+			if self.firebaseUser?.displayName != nil || iters > 12 {
+				
+				upload()
+			}
+			else {
+				delay(0.25,
+					callback: {
+						wait(iters+1)
+					}
+				)
+			}
+		}
+		
+		wait(0)
 	}
 	
 	func signOut() {

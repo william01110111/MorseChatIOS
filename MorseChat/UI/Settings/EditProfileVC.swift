@@ -158,6 +158,11 @@ class EditProfileVC: UIViewController {
 		performSegueWithIdentifier("exitToWelcomeSegue", sender: self)
 	}
 	
+	@IBAction func deleteAccountButtonPressed(sender: AnyObject) {
+		
+		
+	}
+	
 	func exit() {
 		if self.navigationController == nil {
 			performSegueWithIdentifier("exitToWelcomeSegue", sender: self)

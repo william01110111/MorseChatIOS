@@ -45,8 +45,6 @@ extension FirebaseHelper {
 			withBlock: { (data: FIRDataSnapshot) in
 
 				var elemLeft = data.childrenCount
-
-				print("elem left: \(elemLeft)")
 				
 				//if there are no friends it has to be handeled differently
 				if elemLeft == 0 {
@@ -98,7 +96,7 @@ extension FirebaseHelper {
 				}
 				else {
 					meDownloaded = false
-					self.firebaseErrorCallback?(msg: "Error downloading me")
+					//self.firebaseErrorCallback?(msg: "Error downloading me")
 				}
 			}
 		)

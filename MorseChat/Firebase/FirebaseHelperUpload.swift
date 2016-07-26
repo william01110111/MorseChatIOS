@@ -33,7 +33,7 @@ extension FirebaseHelper {
 		checkIfUsernameAvailable(newMe.username, ignoreMe: true,
 			 callback: { (available) in
 				if available {
-					self.root!.child("users").child(newMe.key).updateChildValues(["displayName": newMe.displayName, "userName": newMe.username, "lowercase": newMe.username.lowercaseString])
+					self.root!.child("users").child(newMe.key).updateChildValues(["displayName": newMe.displayName, "username": newMe.username, "lowercase": newMe.username.lowercaseString])
 					me = newMe
 					self.userDataChangedCallback?()
 					success()

@@ -443,6 +443,9 @@
                                         <state key="normal" title="Delete Account">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="deleteAccountButtonPressed:" destination="SmH-jD-9ZC" eventType="touchUpInside" id="i8g-dN-HVg"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
