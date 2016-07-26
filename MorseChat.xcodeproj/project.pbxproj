@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3D58C8951D47CA4700C573AA /* TimeFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D58C8941D47CA4700C573AA /* TimeFuncs.swift */; };
+		3D58C8971D47D3E700C573AA /* FirebaseHelperAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D58C8961D47D3E700C573AA /* FirebaseHelperAccount.swift */; };
 		3D882D801D42B1D0003402BF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D882D6F1D42B1D0003402BF /* User.swift */; };
 		3D882D811D42B1D0003402BF /* FirebaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D882D711D42B1D0003402BF /* FirebaseHelper.swift */; };
 		3D882D821D42B1D0003402BF /* FriendListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D882D741D42B1D0003402BF /* FriendListCell.swift */; };
@@ -20,7 +21,6 @@
 		3D882D8A1D42B1D0003402BF /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D882D7F1D42B1D0003402BF /* SettingsVC.swift */; };
 		3D882D8C1D42B380003402BF /* FirebaseHelperDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D882D8B1D42B380003402BF /* FirebaseHelperDownload.swift */; };
 		3D882D8E1D42D5BA003402BF /* FirebaseHelperUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D882D8D1D42D5BA003402BF /* FirebaseHelperUpload.swift */; };
-		3D882D901D42D700003402BF /* FirebaseHelperLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D882D8F1D42D700003402BF /* FirebaseHelperLogin.swift */; };
 		3D882D921D42D7D2003402BF /* FirebaseHelperUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D882D911D42D7D2003402BF /* FirebaseHelperUsers.swift */; };
 		3D9263851D340F89001F839B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9263841D340F89001F839B /* AppDelegate.swift */; };
 		3D92638A1D340F89001F839B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D9263881D340F89001F839B /* Main.storyboard */; };
@@ -32,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		3D58C8941D47CA4700C573AA /* TimeFuncs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeFuncs.swift; sourceTree = "<group>"; };
+		3D58C8961D47D3E700C573AA /* FirebaseHelperAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseHelperAccount.swift; sourceTree = "<group>"; };
 		3D882D6F1D42B1D0003402BF /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3D882D711D42B1D0003402BF /* FirebaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseHelper.swift; sourceTree = "<group>"; };
 		3D882D741D42B1D0003402BF /* FriendListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendListCell.swift; sourceTree = "<group>"; };
@@ -44,7 +45,6 @@
 		3D882D7F1D42B1D0003402BF /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		3D882D8B1D42B380003402BF /* FirebaseHelperDownload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseHelperDownload.swift; sourceTree = "<group>"; };
 		3D882D8D1D42D5BA003402BF /* FirebaseHelperUpload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseHelperUpload.swift; sourceTree = "<group>"; };
-		3D882D8F1D42D700003402BF /* FirebaseHelperLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseHelperLogin.swift; sourceTree = "<group>"; };
 		3D882D911D42D7D2003402BF /* FirebaseHelperUsers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseHelperUsers.swift; sourceTree = "<group>"; };
 		3D9263811D340F89001F839B /* MorseChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MorseChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D9263841D340F89001F839B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -100,10 +100,10 @@
 			isa = PBXGroup;
 			children = (
 				3D882D711D42B1D0003402BF /* FirebaseHelper.swift */,
-				3D882D8F1D42D700003402BF /* FirebaseHelperLogin.swift */,
 				3D882D8B1D42B380003402BF /* FirebaseHelperDownload.swift */,
 				3D882D8D1D42D5BA003402BF /* FirebaseHelperUpload.swift */,
 				3D882D911D42D7D2003402BF /* FirebaseHelperUsers.swift */,
+				3D58C8961D47D3E700C573AA /* FirebaseHelperAccount.swift */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -318,7 +318,6 @@
 				3D882D831D42B1D0003402BF /* FriendListVC.swift in Sources */,
 				3D882D801D42B1D0003402BF /* User.swift in Sources */,
 				3D882D8A1D42B1D0003402BF /* SettingsVC.swift in Sources */,
-				3D882D901D42D700003402BF /* FirebaseHelperLogin.swift in Sources */,
 				3D882D921D42D7D2003402BF /* FirebaseHelperUsers.swift in Sources */,
 				3D882D8C1D42B380003402BF /* FirebaseHelperDownload.swift in Sources */,
 				3D58C8951D47CA4700C573AA /* TimeFuncs.swift in Sources */,
@@ -329,6 +328,7 @@
 				3D882D8E1D42D5BA003402BF /* FirebaseHelperUpload.swift in Sources */,
 				3D882D861D42B1D0003402BF /* FriendSearchVC.swift in Sources */,
 				3D882D821D42B1D0003402BF /* FriendListCell.swift in Sources */,
+				3D58C8971D47D3E700C573AA /* FirebaseHelperAccount.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

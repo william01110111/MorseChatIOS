@@ -37,16 +37,16 @@ extension FirebaseHelper {
 		if let userFB = userInFB {
 			
 			self.getUserfromKey(userFB.uid,
-				callback: {	(user: User?) -> Void in
-					
-					if user != nil {
-						self.downloadData()
-					}
-					else { //user is not in the auth database but not in the realtime database, so add it
-						
-						self.initialAccountSetupDone = false
-						self.createUser()
-					}
+			                    callback: {	(user: User?) -> Void in
+									
+									if user != nil {
+										self.downloadData()
+									}
+									else { //user is not in the auth database but not in the realtime database, so add it
+										
+										self.initialAccountSetupDone = false
+										self.createUser()
+									}
 				}
 			)
 		}
@@ -59,19 +59,19 @@ extension FirebaseHelper {
 		
 		func upload() {
 			User.getUniqueUsername(firebaseUser?.displayName ?? "no user name",
-				   callback: { (username) in
-					
-					let newMe = User(usernameIn: username, displayNameIn: self.firebaseUser?.displayName ?? "No Display Name", keyIn: self.firebaseUser?.uid ?? "noUID")
-					
-					self.uploadMe(newMe,
-						success: { () in
-							self.downloadData()
-						},
-						fail: { (errMsg: String) in
-							self.invalidateData()
-							self.firebaseErrorCallback?(msg: errMsg)
-						}
-					)
+			                       callback: { (username) in
+									
+									let newMe = User(usernameIn: username, displayNameIn: self.firebaseUser?.displayName ?? "No Display Name", keyIn: self.firebaseUser?.uid ?? "noUID")
+									
+									self.uploadMe(newMe,
+										success: { () in
+											self.downloadData()
+										},
+										fail: { (errMsg: String) in
+											self.invalidateData()
+											self.firebaseErrorCallback?(msg: errMsg)
+										}
+									)
 				}
 			)
 		}
@@ -84,7 +84,7 @@ extension FirebaseHelper {
 			}
 			else {
 				delay(0.25,
-					callback: {
+				      callback: {
 						wait(iters+1)
 					}
 				)
