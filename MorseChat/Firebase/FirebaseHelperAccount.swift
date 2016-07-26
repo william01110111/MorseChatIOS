@@ -21,12 +21,25 @@ extension FirebaseHelper {
 	
 	func loginUI(vc: UIViewController) {
 		
-		let authUI = FIRAuthUI.authUI()!
+		let authUIOp = FIRAuthUI.authUI()
+		
+		guard let authUI = authUIOp else {
+			print("error: authUI was not created")
+			return
+		}
+		
 		authUI.delegate = self
 		let authViewController = authUI.authViewController()
 		vc.presentViewController(authViewController, animated: true, completion: nil)
 	}
 	
+	/*func reauthUI(vc: UIViewController) {
+		
+		let authUI = FIRAuthUI.authUI()
+		authUI.delegate = self
+		let authViewController = authUI.authViewController()
+		vc.presentViewController(authViewController, animated: true, completion: nil)
+	}*/
 	
 	func loginStateChanged(userInFB: FIRUser?) {
 		
@@ -99,6 +112,35 @@ extension FirebaseHelper {
 		if ((try? FIRAuth.auth()!.signOut()) == nil) {
 			print("sign out error")
 		}
+	}
+	
+	func deleteAccount(success: () -> Void, fail: (String) -> Void) {
+		
+		if let firebaseUser = firebaseUser {
+			
+			firebaseUser.deleteWithCompletion(
+				{ (error:NSError?) in
+					if let error = error {
+						fail(error.localizedDescription)
+					}
+					else {
+						
+						self.signOut()
+						
+						self.deleteAccountData(
+							{ () in
+								success()
+							}
+						)
+					}
+				}
+			)
+		}
+	}
+	
+	func deleteAccountData(callback: () -> Void) {
+		
+		root?.child("users").child(me.key).removeValue()
 	}
 }
 

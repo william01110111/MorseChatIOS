@@ -40,6 +40,7 @@ class EditProfileVC: UIViewController {
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 		
+		firebaseHelper.loginChangedCallback = returnToWelcome
 		
 		firebaseHelper.initialAccountSetupDone = true
 		
@@ -47,6 +48,12 @@ class EditProfileVC: UIViewController {
 		displayNameBox.text = me.displayName
 		usernameBox.text = me.username
 		showGood()
+	}
+	
+	override func viewDidAppear(animated: Bool) {
+		if !firebaseHelper.isLoggedIn() {
+			returnToWelcome()
+		}
 	}
 	
 	func showGood() {
@@ -155,11 +162,10 @@ class EditProfileVC: UIViewController {
 	@IBAction func signOutButtonPressed(sender: AnyObject) {
 		
 		firebaseHelper.signOut()
-		performSegueWithIdentifier("exitToWelcomeSegue", sender: self)
 	}
 	
 	@IBAction func deleteAccountButtonPressed(sender: AnyObject) {
-		
+		performSegueWithIdentifier("deleteAccountSegue", sender: self)
 		
 	}
 	
@@ -170,6 +176,17 @@ class EditProfileVC: UIViewController {
 		else {
 			performSegueWithIdentifier("exitToSettingsSegue", sender: self)
 		}
+	}
+	
+	func returnToWelcome() {
+		firebaseHelper.signOut()
+		if viewIfLoaded != nil {
+			performSegueWithIdentifier("exitToWelcomeSegue", sender: self)
+		}
+	}
+	
+	@IBAction func exitToProfile(segue:UIStoryboardSegue) {
+		
 	}
 }
 

@@ -409,6 +409,103 @@
             </objects>
             <point key="canvasLocation" x="1882" y="-311"/>
         </scene>
+        <!--Delete Account ConfirmVC-->
+        <scene sceneID="xM6-VK-DpT">
+            <objects>
+                <viewController id="fkT-jU-JlV" customClass="DeleteAccountConfirmVC" customModule="MorseChat" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GLi-Kd-i7B"/>
+                        <viewControllerLayoutGuide type="bottom" id="LLA-dR-Z68"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ryQ-WL-LJt">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LU7-Fo-BeY">
+                                <rect key="frame" x="32" y="120" width="536" height="360.5"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="wVF-zG-iz3">
+                                        <rect key="frame" x="20" y="20" width="496" height="141"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Are you sure you want to permanently delete your account? You may be asked to sign in again to confirm your identity." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Szn-ke-FT8">
+                                                <rect key="frame" x="0.0" y="0.0" width="496" height="41"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="80" id="jYU-Jw-WeA"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="jYU-Jw-WeA"/>
+                                                    </mask>
+                                                </variation>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wnc-mD-IUz">
+                                                <rect key="frame" x="0.0" y="61" width="496" height="30"/>
+                                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="Delete Account">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="deleteButtonPressed:" destination="fkT-jU-JlV" eventType="touchUpInside" id="gcW-j8-kWz"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QBz-nN-mGd">
+                                                <rect key="frame" x="0.0" y="111" width="496" height="30"/>
+                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="Cancel">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="cancelButtonPressed:" destination="fkT-jU-JlV" eventType="touchUpInside" id="d5G-ZZ-Ps2"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="vrQ-3T-Gah"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="vrQ-3T-Gah"/>
+                                            </mask>
+                                        </variation>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottomMargin" secondItem="wVF-zG-iz3" secondAttribute="bottom" constant="12" id="9vq-og-yUV"/>
+                                    <constraint firstAttribute="width" constant="400" id="F0C-vW-oOz"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="wVF-zG-iz3" secondAttribute="trailing" constant="12" id="WmS-TA-Oa3"/>
+                                    <constraint firstItem="wVF-zG-iz3" firstAttribute="leading" secondItem="LU7-Fo-BeY" secondAttribute="leadingMargin" constant="12" id="bZD-bR-lt0"/>
+                                    <constraint firstItem="wVF-zG-iz3" firstAttribute="top" secondItem="LU7-Fo-BeY" secondAttribute="topMargin" constant="12" id="oAe-A9-7tW"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="F0C-vW-oOz"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="LU7-Fo-BeY" secondAttribute="trailing" constant="12" id="69i-qu-s2z"/>
+                            <constraint firstItem="LU7-Fo-BeY" firstAttribute="centerY" secondItem="ryQ-WL-LJt" secondAttribute="centerY" id="H7z-PY-Ohx"/>
+                            <constraint firstItem="LU7-Fo-BeY" firstAttribute="centerX" secondItem="ryQ-WL-LJt" secondAttribute="centerX" id="LYU-Wb-rsS"/>
+                            <constraint firstItem="LU7-Fo-BeY" firstAttribute="leading" secondItem="ryQ-WL-LJt" secondAttribute="leadingMargin" constant="12" id="NMZ-He-HMW"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backgroundView" destination="LU7-Fo-BeY" id="vei-FB-BfN"/>
+                        <segue destination="9bG-ID-CCK" kind="unwind" identifier="exitToProfileSegue" unwindAction="exitToProfile:" id="bxJ-tF-jOB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1aT-7c-9mC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="9bG-ID-CCK" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1960" y="437"/>
+        </scene>
         <!--Edit Profile-->
         <scene sceneID="1JI-g0-X7s">
             <objects>
@@ -422,7 +519,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="91Q-7d-DO3">
-                                <rect key="frame" x="40" y="490" width="520" height="90"/>
+                                <rect key="frame" x="40" y="470" width="520" height="90"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qct-EX-1FV">
                                         <rect key="frame" x="0.0" y="0.0" width="520" height="35"/>
@@ -566,7 +663,7 @@
                             <constraint firstItem="91Q-7d-DO3" firstAttribute="centerX" secondItem="Pgi-VJ-ma1" secondAttribute="centerX" id="2VI-2m-w6z"/>
                             <constraint firstItem="FCQ-ga-DkD" firstAttribute="top" secondItem="FiX-5c-34P" secondAttribute="bottom" constant="20" id="FKT-eH-fHm"/>
                             <constraint firstAttribute="trailing" secondItem="ucq-7U-gBG" secondAttribute="trailing" id="Hy6-3W-VEz"/>
-                            <constraint firstItem="vRs-ku-kjs" firstAttribute="top" secondItem="91Q-7d-DO3" secondAttribute="bottom" constant="20" id="TeL-7E-MRc"/>
+                            <constraint firstItem="vRs-ku-kjs" firstAttribute="top" secondItem="91Q-7d-DO3" secondAttribute="bottom" constant="40" id="TeL-7E-MRc"/>
                             <constraint firstItem="91Q-7d-DO3" firstAttribute="leading" secondItem="Pgi-VJ-ma1" secondAttribute="leadingMargin" constant="20" id="cCG-aD-QpM"/>
                             <constraint firstAttribute="trailingMargin" secondItem="91Q-7d-DO3" secondAttribute="trailing" constant="20" id="i8M-Ze-m8L"/>
                             <constraint firstItem="ucq-7U-gBG" firstAttribute="leading" secondItem="Pgi-VJ-ma1" secondAttribute="leading" id="jEO-Yt-5qY"/>
@@ -596,12 +693,13 @@
                         <outlet property="usernameBox" destination="ouj-ot-63P" id="xLy-gI-2dj"/>
                         <segue destination="LDh-vb-qqR" kind="unwind" identifier="exitToSettingsSegue" unwindAction="exitToSettings:" id="JUV-pS-Mgg"/>
                         <segue destination="LDh-vb-qqR" kind="unwind" identifier="exitToWelcomeSegue" unwindAction="exitToWelcome:" id="fC5-xO-QSL"/>
+                        <segue destination="fkT-jU-JlV" kind="presentation" identifier="deleteAccountSegue" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="z3I-lj-Xh8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EXX-4q-cPO" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="LDh-vb-qqR" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2546" y="-334"/>
+            <point key="canvasLocation" x="1062" y="470"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="J5c-6w-yVI">
