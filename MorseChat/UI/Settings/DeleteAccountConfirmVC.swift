@@ -13,9 +13,12 @@ class DeleteAccountConfirmVC: UIViewController {
 	
 	@IBOutlet weak var backgroundView: UIView!
 	
+	var tryToDelete = false
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		tryToDelete = false
 		backgroundView.layer.cornerRadius = 15
 	}
 	
@@ -32,7 +35,9 @@ class DeleteAccountConfirmVC: UIViewController {
 	override func viewDidAppear(animated: Bool) {
 		super.viewDidAppear(animated)
 		
-		
+		if tryToDelete {
+			deleteButtonPressed(self)
+		}
 	}
 	
 	@IBAction func cancelButtonPressed(sender: AnyObject) {
@@ -48,6 +53,7 @@ class DeleteAccountConfirmVC: UIViewController {
 			},
 			fail: { (msg: String) in
 				firebaseHelper.loginUI(self)
+				self.tryToDelete = true
 				//print(msg)
 				//self.showError(msg)
 			}

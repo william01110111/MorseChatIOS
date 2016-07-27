@@ -53,12 +53,20 @@ extension FirebaseHelper {
 	
 	func acceptFriendRequest(other: String) {
 		
-		rejectFriendRequest(other)
-		
-		root!.child("friendsByUser").child(me.key).updateChildValues([other: false])
-		root!.child("friendsByUser").child(other).updateChildValues([me.key: false])
-		
-		downloadFriends()
+		root!.child("requestsBySender").child(other).child(me.key).observeSingleEventOfType(.Value,
+			withBlock: { (data: FIRDataSnapshot) in
+				if data.exists() {
+					self.root!.child("friendsByUser").child(me.key).updateChildValues([other: false])
+					self.root!.child("friendsByUser").child(other).updateChildValues([me.key: false])
+					
+					self.downloadFriends()
+					self.rejectFriendRequest(other)
+				}
+				else {
+					self.firebaseErrorCallback?(msg: "tried to accept friend request from someone who hadn't sent one")
+				}
+			}
+		)
 	}
 	
 	func rejectFriendRequest(other: String) {

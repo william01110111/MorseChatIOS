@@ -145,3 +145,10 @@ class Friend : User {
 		lineInCallback?(state: newState)
 	}
 }
+
+struct FriendStatus {
+	
+	var isFriend = false
+	var requestOut = false
+	var requestIn = false
+}

@@ -139,21 +139,21 @@ extension FirebaseHelper {
 		)
 	}
 	
-	func getFriendStatusOfUser(other: String, callback: (isFriend: Bool, requestOut: Bool, requestIn: Bool) -> Void) {
+	func getFriendStatusOfUser(other: String, callback: (FriendStatus) -> Void) {
 		
-		var isFriend = false, requestOut = false, requestIn = false
+		var out = FriendStatus()
 		var isFriendDone = false, requestOutDone = false, requestInDone = false
 		
 		func downloadDone() {
 			
 			if isFriendDone && requestOutDone && requestInDone {
-				callback(isFriend: isFriend, requestOut: requestOut, requestIn: requestIn)
+				callback(out)
 			}
 		}
 		
 		root!.child("friendsByUser").child(me.key).child(other).observeSingleEventOfType(.Value,
 		    withBlock: { (data: FIRDataSnapshot) in
-				isFriend = data.exists()
+				out.isFriend = data.exists()
 				isFriendDone = true
 				downloadDone()
 			}
@@ -161,15 +161,15 @@ extension FirebaseHelper {
 		
 		root!.child("requestsBySender").child(me.key).child(other).observeSingleEventOfType(.Value,
 			 withBlock: { (data: FIRDataSnapshot) in
-				requestOut = data.exists()
-				requestInDone = true
+				out.requestOut = data.exists()
+				requestOutDone = true
 				downloadDone()
 			}
 		)
 		
-		root!.child("requestByReceiver").child(me.key).child(other).observeSingleEventOfType(.Value,
+		root!.child("requestsByReceiver").child(me.key).child(other).observeSingleEventOfType(.Value,
 			 withBlock: { (data: FIRDataSnapshot) in
-				requestIn = data.exists()
+				out.requestIn = data.exists()
 				requestInDone = true
 				downloadDone()
 			}

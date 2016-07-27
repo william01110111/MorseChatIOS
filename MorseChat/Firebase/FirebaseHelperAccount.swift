@@ -138,7 +138,26 @@ extension FirebaseHelper {
 	
 	func deleteAccountData(callback: () -> Void) {
 		
-		root?.child("users").child(me.key).removeValueWithCompletionBlock(
+		func deleteCounterparts(query1: FIRDatabaseReference, child: String, query2: FIRDatabaseReference) {
+			query1.child(child).observeSingleEventOfType(.Value,
+				withBlock: { (data: FIRDataSnapshot) in
+					
+					for i in data.children {
+						query2.child(i.key).child(child).removeValue()
+					}
+					
+					query1.child(child).removeValue()
+				}
+			)
+		}
+		
+		deleteCounterparts(root!.child("friendsByUser"), child: me.key, query2: root!.child("friendsByUser"))
+		
+		deleteCounterparts(root!.child("requestsBySender"), child: me.key, query2: root!.child("requestsByReceiver"))
+		
+		deleteCounterparts(root!.child("requestsByReceiver"), child: me.key, query2: root!.child("requestsBySender"))
+		
+		root!.child("users").child(me.key).removeValueWithCompletionBlock(
 			{ (error: NSError?, ref: FIRDatabaseReference) in
 				if let error = error {
 					print(error.localizedDescription)

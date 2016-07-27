@@ -91,7 +91,7 @@ extension FirebaseHelper {
 		)
 	}
 	
-	func searchUsers(queryStr: String, callback: (users: [User]) -> Void) {
+	func searchUsers(queryStr: String, ignoreMe: Bool, callback: (users: [User]) -> Void) {
 		
 		//let query = root?.child("usersByUserName").queryOrderedByKey().queryStartingAtValue(queryStr).queryLimitedToFirst(24)
 		
@@ -99,36 +99,14 @@ extension FirebaseHelper {
 		
 		var ary = [User]()
 		
-		query.observeSingleEventOfType(.Value,
-			   withBlock: { (data: FIRDataSnapshot) in
-				
-				var elemLeft = data.childrenCount
-				
-				if elemLeft <= 0 {
-					callback(users: ary)
+		forAllUsersInQuery(query,
+			forUser: { (user: User) in
+				let matches = user.username.lowercaseString.hasPrefix(queryStr.lowercaseString)
+				if matches && (!ignoreMe || user.key != me.key) {
+					ary.append(user)
 				}
-				
-				for i in data.children {
-					self.getUserfromKey(i.key,
-						callback: { (usr: User?) in
-							
-							if let usr = usr {
-								if usr.username.lowercaseString.hasPrefix(queryStr.lowercaseString) {
-									ary.append(usr)
-								}
-							}
-							
-							elemLeft-=1;
-							
-							if elemLeft == 0 {
-								callback(users: ary)
-							}
-							else if elemLeft < 0 {
-								print("elemLeft dropped below 0")
-							}
-						}
-					)
-				}
+			}, whenDone: { () in
+				callback(users: ary)
 			}
 		)
 	}
