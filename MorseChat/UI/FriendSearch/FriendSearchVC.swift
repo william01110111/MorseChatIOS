@@ -13,6 +13,8 @@ class FriendSearchVC: UIViewController {
 	
 	var searchUI: UISearchController?
 	
+	@IBOutlet weak var tableView: UITableView!
+	
 	//@IBOutlet weak var tableView: UITableView!
 	@IBOutlet var rootView: UIView!
 	@IBOutlet weak var stackView: UIStackView!
@@ -42,6 +44,32 @@ class FriendSearchVC: UIViewController {
 	override func viewDidAppear(animated: Bool) {
 		super.viewDidAppear(animated)
 		
+	}
+}
+
+
+extension FriendSearchVC: UITableViewDataSource {
+	
+	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		
+		return requestsIn.count
+	}
+	
+	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
+		
+		let cell = tableView.dequeueReusableCellWithIdentifier("incomingRequestCell")! as! IncomingRequestCell
+		
+		if indexPath.row < requestsIn.count {
+			
+			cell.setUser(requestsIn[indexPath.row])
+			
+		}
+		else {
+			
+			print("indexPath.row bigger then search array")
+		}
+		
+		return cell
 	}
 }
 

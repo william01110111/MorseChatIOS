@@ -43,8 +43,6 @@ extension FriendSearchResultsVC: UITableViewDataSource {
 		
 		let cell = tableView.dequeueReusableCellWithIdentifier("friendSearchResultsCell")! as! FriendSearchResultsCell
 		
-		print(cell.actionButton.layer.cornerRadius)
-		
 		if indexPath.row < resultsUsers.count && indexPath.row < resultsUsers.count {
 			
 			cell.setUser(resultsUsers[indexPath.row], statusIn: resultsStatus[indexPath.row])
