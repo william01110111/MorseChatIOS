@@ -40,6 +40,40 @@ extension FirebaseHelper {
 		)
 	}
 	
+	func forAllUsersInQuery(query: FIRDatabaseQuery, forUser: (User) -> Void, whenDone: () -> Void) {
+		
+		query.observeSingleEventOfType(.Value,
+			withBlock: { (data: FIRDataSnapshot) in
+				
+				var elemLeft = data.childrenCount
+				
+				//if there are no friends it has to be handeled differently
+				if elemLeft == 0 {
+					
+					whenDone()
+				}
+				else {
+					for i in data.children {
+						self.getUserfromKey(i.key,
+							callback: { (userIn: User?) -> Void in
+								
+								if let userIn = userIn {
+									forUser(userIn)
+								}
+								
+								elemLeft -= 1
+								
+								if elemLeft == 0 {
+									whenDone()
+								}
+							}
+						)
+					}
+				}
+			}
+		)
+	}
+	
 	func checkIfUsernameAvailable(name: String, ignoreMe: Bool, callback: (available: Bool) -> Void) {
 		
 		if (ignoreMe && name.lowercaseString == me.username.lowercaseString) {

@@ -19,6 +19,7 @@ extension FirebaseHelper {
 		
 		downloadMe()
 		downloadFriends()
+		downloadRequestsIn()
 	}
 	
 	func invalidateData() {
@@ -30,7 +31,7 @@ extension FirebaseHelper {
 	
 	func downloadFriends() {
 		
-		guard let user = firebaseUser else
+		guard let userFB = firebaseUser else
 		{
 			friendsDownloaded = false
 			firebaseErrorCallback?(msg: "Tried to download frinds without a signed in user")
@@ -39,9 +40,20 @@ extension FirebaseHelper {
 		
 		var ary = [Friend]()
 		
-		let query = root!.child("friendsByUser/\(user.uid)").queryOrderedByChild("lowercase")
+		let query = root!.child("friendsByUser/\(userFB.uid)")
 		
-		query.observeSingleEventOfType(.Value,
+		forAllUsersInQuery(query,
+			forUser: { (user: User) in
+				ary.append(user.toFriend())
+			},
+			whenDone: {
+				friends = ary
+				friendsDownloaded = true
+				self.userDataChangedCallback?()
+			}
+		)
+		
+		/*query.observeSingleEventOfType(.Value,
 			withBlock: { (data: FIRDataSnapshot) in
 
 				var elemLeft = data.childrenCount
@@ -75,7 +87,7 @@ extension FirebaseHelper {
 					)
 				}
 			}
-		)
+		)*/
 	}
 	
 	func downloadMe() {
@@ -98,6 +110,68 @@ extension FirebaseHelper {
 					meDownloaded = false
 					//self.firebaseErrorCallback?(msg: "Error downloading me")
 				}
+			}
+		)
+	}
+	
+	func downloadRequestsIn() {
+		
+		guard let userFB = firebaseUser else
+		{
+			friendsDownloaded = false
+			firebaseErrorCallback?(msg: "Tried to download friend requests without a signed in user")
+			return
+		}
+		
+		var ary = [User]()
+		
+		let query = root!.child("requestsByReceiver").child(userFB.uid)
+		
+		forAllUsersInQuery(query,
+			forUser: { (user: User) in
+				ary.append(user)
+			},
+			whenDone: {
+				requestsIn = ary
+				requestsInDownloaded = true
+				self.userDataChangedCallback?()
+			}
+		)
+	}
+	
+	func getFriendStatusOfUser(other: String, callback: (isFriend: Bool, requestOut: Bool, requestIn: Bool) -> Void) {
+		
+		var isFriend = false, requestOut = false, requestIn = false
+		var isFriendDone = false, requestOutDone = false, requestInDone = false
+		
+		func downloadDone() {
+			
+			if isFriendDone && requestOutDone && requestInDone {
+				callback(isFriend: isFriend, requestOut: requestOut, requestIn: requestIn)
+			}
+		}
+		
+		root!.child("friendsByUser").child(me.key).child(other).observeSingleEventOfType(.Value,
+		    withBlock: { (data: FIRDataSnapshot) in
+				isFriend = data.exists()
+				isFriendDone = true
+				downloadDone()
+			}
+		)
+		
+		root!.child("requestsBySender").child(me.key).child(other).observeSingleEventOfType(.Value,
+			 withBlock: { (data: FIRDataSnapshot) in
+				requestOut = data.exists()
+				requestInDone = true
+				downloadDone()
+			}
+		)
+		
+		root!.child("requestByReceiver").child(me.key).child(other).observeSingleEventOfType(.Value,
+			 withBlock: { (data: FIRDataSnapshot) in
+				requestIn = data.exists()
+				requestInDone = true
+				downloadDone()
 			}
 		)
 	}

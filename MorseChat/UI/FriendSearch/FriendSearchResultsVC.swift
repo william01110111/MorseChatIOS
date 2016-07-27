@@ -61,6 +61,7 @@ extension FriendSearchResultsVC : UISearchResultsUpdating {
 			callback: { (users) in
 				
 				self.results = users
+				
 				self.tableView.reloadData()
 				self.spinnerView.hidden = true
 			}

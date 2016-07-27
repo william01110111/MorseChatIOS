@@ -23,10 +23,9 @@ class FriendSearchResultsCell : UITableViewCell {
 		userNameLabel.text = userIn.username
 	}
 	
-	
 	@IBAction func buttonPressed(sender: AnyObject) {
 		
-		firebaseHelper.requestFriend(user!.key)
+		firebaseHelper.addFriendRequest(user!.key)
 	}
 }
 

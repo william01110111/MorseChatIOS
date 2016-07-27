@@ -44,7 +44,7 @@ class DeleteAccountConfirmVC: UIViewController {
 		
 		firebaseHelper.deleteAccount(
 			{
-				
+				self.performSegueWithIdentifier("exitToWelcomeSegue", sender: self)
 			},
 			fail: { (msg: String) in
 				firebaseHelper.loginUI(self)

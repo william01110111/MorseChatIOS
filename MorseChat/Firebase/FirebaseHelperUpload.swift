@@ -45,11 +45,41 @@ extension FirebaseHelper {
 		)
 	}
 	
-	
-	func requestFriend(key: String) {
+	func addFriendRequest(other: String) {
 		
-		root!.child("friendsByUser").child(me.key).updateChildValues([key: false])
-		root!.child("friendsByUser").child(key).updateChildValues([me.key: false])
+		root!.child("requestsBySender").child(me.key).updateChildValues([other: true])
+		root!.child("requestsByReceiver").child(other).updateChildValues([me.key: true])
+	}
+	
+	func acceptFriendRequest(other: String) {
+		
+		rejectFriendRequest(other)
+		
+		root!.child("friendsByUser").child(me.key).updateChildValues([other: false])
+		root!.child("friendsByUser").child(other).updateChildValues([me.key: false])
+		
+		downloadFriends()
+	}
+	
+	func rejectFriendRequest(other: String) {
+		
+		root!.child("requestsBySender").child(other).child(me.key).removeValue()
+		root!.child("requestsByReceiver").child(me.key).child(other).removeValue()
+		
+		downloadRequestsIn()
+	}
+	
+	func takeBackFriendRequest(other: String) {
+		root!.child("requestsBySender").child(me.key).child(other).removeValue()
+		root!.child("requestsByReceiver").child(other).child(me.key).removeValue()
+	}
+	
+	func unfriend(other: String) {
+		
+		root!.child("friendsByUser").child(me.key).child(other).removeValue()
+		root!.child("friendsByUser").child(other).child(me.key).removeValue()
+		
+		downloadFriends()
 	}
 }
 

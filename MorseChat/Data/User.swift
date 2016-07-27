@@ -10,9 +10,11 @@ import Foundation
 
 var me = User()
 var friends: [Friend] = []
+var requestsIn: [User] = []
 
 var meDownloaded = false
 var friendsDownloaded = false
+var requestsInDownloaded = false
 
 func allDownloaded() -> Bool {
 	
@@ -116,6 +118,10 @@ class Friend : User {
 	
 	var inLineState = false;
 	var outLineState = false;
+	
+	override init(usernameIn: String, displayNameIn: String, keyIn: String) {
+		super.init(usernameIn: usernameIn, displayNameIn: displayNameIn, keyIn: keyIn)
+	}
 	
 	var lineInCallback: ((state: Bool) -> Void)?
 	

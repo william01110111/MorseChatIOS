@@ -118,21 +118,19 @@ extension FirebaseHelper {
 		
 		if let firebaseUser = firebaseUser {
 			
-			firebaseUser.deleteWithCompletion(
-				{ (error:NSError?) in
-					if let error = error {
-						fail(error.localizedDescription)
-					}
-					else {
-						
-						self.signOut()
-						
-						self.deleteAccountData(
-							{ () in
+			self.deleteAccountData(
+				{ () in
+					firebaseUser.deleteWithCompletion(
+						{ (error:NSError?) in
+							if let error = error {
+								fail(error.localizedDescription)
+							}
+							else {
+								self.signOut()
 								success()
 							}
-						)
-					}
+						}
+					)
 				}
 			)
 		}
@@ -140,7 +138,15 @@ extension FirebaseHelper {
 	
 	func deleteAccountData(callback: () -> Void) {
 		
-		root?.child("users").child(me.key).removeValue()
+		root?.child("users").child(me.key).removeValueWithCompletionBlock(
+			{ (error: NSError?, ref: FIRDatabaseReference) in
+				if let error = error {
+					print(error.localizedDescription)
+				}
+				
+				callback()
+			}
+		)
 	}
 }
 
