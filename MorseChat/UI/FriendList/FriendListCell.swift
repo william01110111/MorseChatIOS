@@ -14,7 +14,6 @@ class FriendCell : UITableViewCell {
 	
 	var buttonState = false
 	
-	@IBOutlet weak var sendButton: UIButton!
 	@IBOutlet weak var nameLabel: UILabel!
 	
 	func setFriend(friendIn: Friend) {
@@ -23,18 +22,6 @@ class FriendCell : UITableViewCell {
 		nameLabel.text = friendIn.displayName
 		friendIn.lineInCallback=lineInChenaged
 		firebaseHelper.setLineInListner(friend!, callback: lineInChenaged)
-	}
-	
-	
-	@IBAction func buttonPressed(sender: AnyObject) {
-		
-		friend?.setOutLine(true)
-		//backgroundColor = UIColor(red: 0.0, green: 1.0, blue: 1.0, alpha: 0.5)
-	}
-	
-	@IBAction func buttonReleased(sender: AnyObject) {
-		
-		friend?.setOutLine(false)
 	}
 	
 	func lineInChenaged(state: Bool) {

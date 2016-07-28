@@ -14,6 +14,8 @@ class FriendsListViewController: UIViewController {
 	
 	@IBOutlet weak var addFriendsButton: UIBarButtonItem!
 	
+	var selectedCell: FriendCell?
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
@@ -41,6 +43,30 @@ class FriendsListViewController: UIViewController {
 		
 		
 	}
+	
+	@IBAction func buttonTouchDown(sender: AnyObject, forEvent event: UIEvent) {
+		var pt = CGPoint()
+		
+		for touch in event.touchesForView(sender as! UIView)! {
+			pt = touch.locationInView(tableView)
+		}
+		
+		let visableCells = tableView.visibleCells
+		
+		for cell in visableCells {
+			if cell.frame.contains(pt) {
+				selectedCell = cell as? FriendCell
+				selectedCell?.friend?.setOutLine(true)
+			}
+		}
+	}
+	
+	@IBAction func buttonReleased(sender: AnyObject) {
+		selectedCell?.friend?.setOutLine(false)
+		selectedCell = nil
+	}
+	
+	
 }
 
 extension FriendsListViewController: UITableViewDataSource {
