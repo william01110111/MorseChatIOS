@@ -95,15 +95,15 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="GzJ-s5-pyg">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="toO-Gs-1Ll">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="65" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="toO-Gs-1Ll">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="friendSearchResultsCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="incomingRequestCell" rowHeight="90" id="pXb-1Q-fUW" customClass="IncomingRequestCell" customModule="MorseChat" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="92" width="600" height="90"/>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="friendSearchResultsCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="incomingRequestCell" rowHeight="65" id="pXb-1Q-fUW" customClass="IncomingRequestCell" customModule="MorseChat" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="92" width="600" height="65"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pXb-1Q-fUW" id="xGc-jT-SES">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="89.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="64.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User's name here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="17t-Pg-8bp">
@@ -112,8 +112,8 @@
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c4u-qH-hvg">
-                                                            <rect key="frame" x="522" y="25.5" width="70" height="32"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c4u-qH-hvg">
+                                                            <rect key="frame" x="522" y="18.5" width="70" height="32"/>
                                                             <color key="backgroundColor" red="0.0" green="0.8784313725490196" blue="0.12549019607843137" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="32" id="QpW-wN-JU9"/>
@@ -124,7 +124,6 @@
                                                             </state>
                                                             <connections>
                                                                 <action selector="acceptPressed:" destination="pXb-1Q-fUW" eventType="touchUpInside" id="JRW-zx-BTS"/>
-                                                                <action selector="buttonPressed:" destination="pXb-1Q-fUW" eventType="touchUpInside" id="nxU-mL-HK6"/>
                                                             </connections>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q0N-qC-aZD">
@@ -133,8 +132,8 @@
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zXH-FM-Xle">
-                                                            <rect key="frame" x="442" y="26" width="64" height="32"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zXH-FM-Xle">
+                                                            <rect key="frame" x="442" y="18.5" width="64" height="32"/>
                                                             <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="32" id="uRF-aS-leB"/>
@@ -144,7 +143,6 @@
                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
                                                             <connections>
-                                                                <action selector="buttonPressed:" destination="pXb-1Q-fUW" eventType="touchUpInside" id="HeR-nQ-1lf"/>
                                                                 <action selector="rejectPressed:" destination="pXb-1Q-fUW" eventType="touchUpInside" id="1Mb-qr-14l"/>
                                                             </connections>
                                                         </button>
@@ -250,7 +248,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="friend status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8pd-2i-vCU">
                                                     <rect key="frame" x="520" y="8" width="71.5" height="14.5"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gqp-mW-zBb">
@@ -431,6 +429,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addFriendsButton" destination="1BF-TE-1kW" id="Om5-La-h2C"/>
                         <outlet property="tableView" destination="839-3Y-YKw" id="znq-b6-yb4"/>
                     </connections>
                 </viewController>

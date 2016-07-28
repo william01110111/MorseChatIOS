@@ -30,10 +30,12 @@ class IncomingRequestCell : UITableViewCell {
 	
 	@IBAction func rejectPressed(sender: AnyObject) {
 		firebaseHelper.rejectFriendRequest(user!.key)
+		firebaseHelper.downloadRequestsIn()
 	}
 	
 	@IBAction func acceptPressed(sender: AnyObject) {
 		firebaseHelper.acceptFriendRequest(user!.key)
+		firebaseHelper.downloadRequestsIn()
 	}
 }
 

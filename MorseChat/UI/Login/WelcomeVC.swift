@@ -19,6 +19,7 @@ class WelcomeVC : UIViewController {
 	
 	override func loadView() {
 		super.loadView()
+		
 	}
 	
 	override func viewDidLoad() {

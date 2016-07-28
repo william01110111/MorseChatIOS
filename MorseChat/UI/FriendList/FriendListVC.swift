@@ -12,6 +12,8 @@ class FriendsListViewController: UIViewController {
 	
 	@IBOutlet var tableView: UITableView!
 	
+	@IBOutlet weak var addFriendsButton: UIBarButtonItem!
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
@@ -25,6 +27,8 @@ class FriendsListViewController: UIViewController {
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 		
+		firebaseHelper.downloadFriends()
+		
 		tableView.reloadData()
 		
 		firebaseHelper.userDataChangedCallback = { () in
@@ -34,6 +38,7 @@ class FriendsListViewController: UIViewController {
 	
 	override func viewDidAppear(animated: Bool) {
 		super.viewDidAppear(animated)
+		
 		
 	}
 }
