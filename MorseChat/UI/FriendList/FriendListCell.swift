@@ -15,6 +15,7 @@ class FriendCell : UITableViewCell {
 	var buttonState = false
 	
 	@IBOutlet weak var nameLabel: UILabel!
+	@IBOutlet weak var usernameLabel: UILabel!
 	@IBOutlet weak var buttonImage: UIImageView!
 	
 	let upSenderImage = UIImage.init(named: "upSender")
@@ -24,6 +25,7 @@ class FriendCell : UITableViewCell {
 		
 		friend = friendIn
 		nameLabel.text = friendIn.displayName
+		usernameLabel.text = friendIn.username
 		friendIn.lineInCallback=lineInChenaged
 		firebaseHelper.setLineInListner(friend!, callback: lineInChenaged)
 	}
