@@ -56,13 +56,13 @@ class FriendsListViewController: UIViewController {
 		for cell in visableCells {
 			if cell.frame.contains(pt) {
 				selectedCell = cell as? FriendCell
-				selectedCell?.friend?.setOutLine(true)
+				selectedCell?.setLineOut(true)
 			}
 		}
 	}
 	
 	@IBAction func buttonReleased(sender: AnyObject) {
-		selectedCell?.friend?.setOutLine(false)
+		selectedCell?.setLineOut(false)
 		selectedCell = nil
 	}
 	

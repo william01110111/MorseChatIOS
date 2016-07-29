@@ -16,7 +16,10 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="downSenderLogo.svg">
+   sodipodi:docname="downSenderLogo.svg"
+   inkscape:export-filename="/Users/william/Xcode/MorseChat/assets/downSenderLogo.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
   <defs
      id="defs4">
     <linearGradient
@@ -40,7 +43,7 @@
        fx="48"
        fy="1020.3622"
        r="44"
-       gradientTransform="matrix(1.2727272,-2.4250298e-8,1.7321661e-8,0.90909134,-13.090924,92.759758)"
+       gradientTransform="matrix(1.2727273,-9.522595e-8,6.8018591e-8,0.90909136,-13.090978,92.759741)"
        gradientUnits="userSpaceOnUse" />
   </defs>
   <sodipodi:namedview
@@ -51,7 +54,7 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:zoom="3.6203867"
-     inkscape:cx="71.293326"
+     inkscape:cx="22.817841"
      inkscape:cy="38.586591"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"

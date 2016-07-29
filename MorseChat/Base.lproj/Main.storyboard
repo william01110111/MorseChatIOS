@@ -364,13 +364,39 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="upSender" translatesAutoresizingMaskIntoConstraints="NO" id="nI9-ts-X14">
+                                                    <rect key="frame" x="500" y="0.0" width="100" height="43.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="100" id="2NL-Bi-9ha"/>
+                                                        <constraint firstAttribute="width" constant="100" id="xbK-rC-Lbi"/>
+                                                    </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="2NL-Bi-9ha"/>
+                                                        </mask>
+                                                    </variation>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="IFZ-sH-Jnq" firstAttribute="top" secondItem="ljq-Iq-zjo" secondAttribute="topMargin" id="Daq-eq-PEy"/>
+                                                <constraint firstAttribute="bottom" secondItem="nI9-ts-X14" secondAttribute="bottom" id="Dzw-dl-U2S"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="nI9-ts-X14" secondAttribute="bottom" id="HiH-7D-b5U"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="nI9-ts-X14" secondAttribute="trailing" id="I3l-tC-hKj"/>
+                                                <constraint firstItem="nI9-ts-X14" firstAttribute="top" secondItem="ljq-Iq-zjo" secondAttribute="top" id="cFw-qV-Q9v"/>
+                                                <constraint firstAttribute="trailing" secondItem="nI9-ts-X14" secondAttribute="trailing" id="caK-s3-YGm"/>
                                                 <constraint firstItem="IFZ-sH-Jnq" firstAttribute="leading" secondItem="ljq-Iq-zjo" secondAttribute="leadingMargin" id="rbo-L9-DFe"/>
+                                                <constraint firstItem="nI9-ts-X14" firstAttribute="top" secondItem="ljq-Iq-zjo" secondAttribute="topMargin" id="vnl-kL-lcM"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="HiH-7D-b5U"/>
+                                                    <exclude reference="I3l-tC-hKj"/>
+                                                    <exclude reference="vnl-kL-lcM"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="buttonImage" destination="nI9-ts-X14" id="pIG-EN-OE9"/>
                                             <outlet property="nameLabel" destination="IFZ-sH-Jnq" id="mqV-u9-aZs"/>
                                         </connections>
                                     </tableViewCell>
@@ -840,6 +866,9 @@
             <point key="canvasLocation" x="324" y="-616"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="upSender" width="200" height="100"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="55t-EY-vPY"/>
     </inferredMetricsTieBreakers>
