@@ -78,26 +78,27 @@ extension FriendSearchResultsVC: UITableViewDataSource {
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		
-		return resultsUsers.count
+		if (resultsUsers.count>0) {
+			return resultsUsers.count
+		}
+		else {
+			return 1
+		}
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-		
-		let cell = tableView.dequeueReusableCellWithIdentifier("friendSearchResultsCell")! as! FriendSearchResultsCell
-		
 		if indexPath.row < resultsUsers.count && indexPath.row < resultsUsers.count {
 			
-			cell.setUser(resultsUsers[indexPath.row], statusIn: resultsStatus[indexPath.row])
+			let cell = tableView.dequeueReusableCellWithIdentifier("friendSearchResultsCell")! as! FriendSearchResultsCell
 			
+			cell.setUser(resultsUsers[indexPath.row], statusIn: resultsStatus[indexPath.row])
 			cell.updateResultsCallback = updateResults
-		
+			
+			return cell
 		}
 		else {
-			
-			print("indexPath.row bigger then search array")
+			return tableView.dequeueReusableCellWithIdentifier("noUsersInSearch")!
 		}
-		
-		return cell
 	}
 }
 

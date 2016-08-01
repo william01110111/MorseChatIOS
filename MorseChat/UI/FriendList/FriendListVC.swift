@@ -84,17 +84,27 @@ extension FriendsListViewController: UITableViewDataSource {
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		
-		return friends.count
+		if (friendsDownloaded && friends.count>0) {
+			return friends.count
+		}
+		else {
+			return 1
+		}
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
 		
 		var cell: UITableViewCell
 		
-		cell = tableView.dequeueReusableCellWithIdentifier("friendCell")!
-		
-		if indexPath.row<friends.count {
-			(cell as! FriendCell).setFriend(friends[indexPath.row])
+		if (friendsDownloaded && friends.count>0) {
+			cell = tableView.dequeueReusableCellWithIdentifier("friendCell")!
+			
+			if indexPath.row<friends.count {
+				(cell as! FriendCell).setFriend(friends[indexPath.row])
+			}
+		}
+		else {
+			cell = tableView.dequeueReusableCellWithIdentifier("noFriendsCell")!
 		}
 		
 		return cell

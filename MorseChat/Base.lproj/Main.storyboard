@@ -174,6 +174,42 @@
                                                     <outlet property="userNameLabel" destination="Q0N-qC-aZD" id="5RR-bZ-1sD"/>
                                                 </connections>
                                             </tableViewCell>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="noRequestsCell" id="hxT-qH-NQ5">
+                                                <rect key="frame" x="0.0" y="157" width="600" height="65"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hxT-qH-NQ5" id="Gvb-Wh-9Ue">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="64.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search for friends by username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qcY-Ab-osC">
+                                                            <rect key="frame" x="51" y="23" width="228" height="20"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⇧" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z5u-cu-FMz">
+                                                            <rect key="frame" x="16" y="16" width="27" height="32.5"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="Z5u-cu-FMz" firstAttribute="leading" secondItem="Gvb-Wh-9Ue" secondAttribute="leadingMargin" constant="8" id="6G5-7U-Hym"/>
+                                                        <constraint firstItem="qcY-Ab-osC" firstAttribute="leading" secondItem="Z5u-cu-FMz" secondAttribute="trailing" constant="8" id="Ctb-gy-WYF"/>
+                                                        <constraint firstItem="Z5u-cu-FMz" firstAttribute="centerY" secondItem="Gvb-Wh-9Ue" secondAttribute="centerY" id="XEk-sj-E8r"/>
+                                                        <constraint firstItem="qcY-Ab-osC" firstAttribute="centerY" secondItem="Gvb-Wh-9Ue" secondAttribute="centerY" id="cTT-2l-QrB"/>
+                                                        <constraint firstItem="qcY-Ab-osC" firstAttribute="centerX" secondItem="Gvb-Wh-9Ue" secondAttribute="centerX" id="ogS-sE-K4E"/>
+                                                        <constraint firstItem="qcY-Ab-osC" firstAttribute="top" secondItem="Gvb-Wh-9Ue" secondAttribute="topMargin" constant="12" id="waJ-0h-WzE"/>
+                                                    </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="ogS-sE-K4E"/>
+                                                            <exclude reference="waJ-0h-WzE"/>
+                                                        </mask>
+                                                    </variation>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
                                         </prototypes>
                                         <connections>
                                             <outlet property="dataSource" destination="fUH-Zw-j79" id="bOy-Bx-bOG"/>
@@ -284,6 +320,26 @@
                                             <outlet property="friendStatusLabel" destination="8pd-2i-vCU" id="x6s-NO-ODQ"/>
                                             <outlet property="userNameLabel" destination="gqp-mW-zBb" id="1Dt-Pr-n3h"/>
                                         </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="noUsersInSearch" id="VMg-g9-TaP">
+                                        <rect key="frame" x="0.0" y="100" width="600" height="72"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VMg-g9-TaP" id="UID-uu-V4r">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="71.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No matching usernames" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AGL-0v-b0B">
+                                                    <rect key="frame" x="196" y="24.5" width="208" height="23"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="AGL-0v-b0B" firstAttribute="centerY" secondItem="UID-uu-V4r" secondAttribute="centerY" id="G7B-Qd-RKa"/>
+                                                <constraint firstItem="AGL-0v-b0B" firstAttribute="centerX" secondItem="UID-uu-V4r" secondAttribute="centerX" id="R75-zb-cgw"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -414,6 +470,34 @@
                                             <outlet property="nameLabel" destination="IFZ-sH-Jnq" id="mqV-u9-aZs"/>
                                             <outlet property="usernameLabel" destination="sMO-ge-Sbj" id="MuT-lR-NBa"/>
                                         </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="noFriendsCell" id="K6x-km-0M8">
+                                        <rect key="frame" x="0.0" y="157" width="600" height="65"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="K6x-km-0M8" id="rzD-d2-PvW">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="64.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Add friends to get started" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzL-tv-rue">
+                                                    <rect key="frame" x="18" y="22" width="197" height="21"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⇧" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x3V-pJ-iS7">
+                                                    <rect key="frame" x="557" y="12" width="27" height="32.5"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="x3V-pJ-iS7" firstAttribute="top" secondItem="rzD-d2-PvW" secondAttribute="topMargin" constant="4" id="TpU-bd-bXD"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="x3V-pJ-iS7" secondAttribute="trailing" constant="8" id="iN3-Ud-QfM"/>
+                                                <constraint firstItem="bzL-tv-rue" firstAttribute="centerY" secondItem="rzD-d2-PvW" secondAttribute="centerY" id="o8F-xN-OUj"/>
+                                                <constraint firstItem="bzL-tv-rue" firstAttribute="leading" secondItem="rzD-d2-PvW" secondAttribute="leadingMargin" constant="8" id="zVU-wf-uAw"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
