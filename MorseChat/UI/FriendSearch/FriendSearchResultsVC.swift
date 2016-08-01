@@ -13,6 +13,7 @@ class FriendSearchResultsVC: UIViewController {
 	
 	var resultsUsers = [User]()
 	var resultsStatus = [FriendStatus]()
+	var searchText = ""
 	
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var spinnerView: UIView!
@@ -30,49 +31,16 @@ class FriendSearchResultsVC: UIViewController {
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 		
-		tableView.reloadData()
-		
 		firebaseHelper.userDataChangedCallback = { () in
-			self.tableView.reloadData()
+			self.updateResults()
 		}
 	}
 	
-}
-
-extension FriendSearchResultsVC: UITableViewDataSource {
-	
-	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		
-		return resultsUsers.count
-	}
-	
-	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-		
-		let cell = tableView.dequeueReusableCellWithIdentifier("friendSearchResultsCell")! as! FriendSearchResultsCell
-		
-		if indexPath.row < resultsUsers.count && indexPath.row < resultsUsers.count {
-			
-			cell.setUser(resultsUsers[indexPath.row], statusIn: resultsStatus[indexPath.row])
-		
-		}
-		else {
-			
-			print("indexPath.row bigger then search array")
-		}
-		
-		return cell
-	}
-}
-
-extension FriendSearchResultsVC : UISearchResultsUpdating {
-	
-	func updateSearchResultsForSearchController(searchController: UISearchController) {
+	func updateResults() {
 		
 		spinnerView.hidden = false
 		
-		let text = searchController.searchBar.text ?? ""
-		
-		firebaseHelper.searchUsers(text, ignoreMe: true,
+		firebaseHelper.searchUsers(searchText, ignoreMe: true,
 			callback: { (users) in
 				
 				self.resultsUsers = users
@@ -100,6 +68,44 @@ extension FriendSearchResultsVC : UISearchResultsUpdating {
 				}
 			}
 		)
+	}
+	
+}
+
+extension FriendSearchResultsVC: UITableViewDataSource {
+	
+	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		
+		return resultsUsers.count
+	}
+	
+	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
+		
+		let cell = tableView.dequeueReusableCellWithIdentifier("friendSearchResultsCell")! as! FriendSearchResultsCell
+		
+		if indexPath.row < resultsUsers.count && indexPath.row < resultsUsers.count {
+			
+			cell.setUser(resultsUsers[indexPath.row], statusIn: resultsStatus[indexPath.row])
+			
+			cell.updateResultsCallback = updateResults
+		
+		}
+		else {
+			
+			print("indexPath.row bigger then search array")
+		}
+		
+		return cell
+	}
+}
+
+extension FriendSearchResultsVC : UISearchResultsUpdating {
+	
+	func updateSearchResultsForSearchController(searchController: UISearchController) {
+		
+		searchText = searchController.searchBar.text ?? ""
+		
+		updateResults()
 	}
 }
 

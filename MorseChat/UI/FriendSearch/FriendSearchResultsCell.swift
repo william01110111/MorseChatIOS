@@ -13,6 +13,8 @@ class FriendSearchResultsCell : UITableViewCell {
 	
 	var user: User?
 	
+	var updateResultsCallback: (() -> Void)?
+	
 	@IBOutlet weak var displayNameLabel: UILabel!
 	@IBOutlet weak var userNameLabel: UILabel!
 	@IBOutlet weak var friendStatusLabel: UILabel!
@@ -72,6 +74,8 @@ class FriendSearchResultsCell : UITableViewCell {
 			firebaseHelper.addFriendRequest(user!.key)
 			status.requestOut = true
 		}
+		
+		updateResultsCallback?()
 		
 		setUser(user!, statusIn: status)
 	}
