@@ -29,10 +29,10 @@ class FriendsListViewController: UIViewController {
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 		
-		tableView.reloadData()
+		reload()
 		
 		firebaseHelper.userDataChangedCallback = { () in
-			self.tableView.reloadData()
+			self.reload()
 		}
 	}
 	
@@ -64,7 +64,20 @@ class FriendsListViewController: UIViewController {
 		selectedCell = nil
 	}
 	
-	
+	func reload() {
+		
+		if (requestsInDownloaded && requestsIn.count>0) {
+			addFriendsButton.tintColor=UIColor(colorLiteralRed: 1.0, green: 0.0, blue: 0.0, alpha: 1.0)
+			addFriendsButton.title = "Add (\(requestsIn.count))"
+		}
+		else {
+			
+			addFriendsButton.tintColor=UIColor(colorLiteralRed: 0.0, green: 0.5, blue: 1.0, alpha: 1.0)
+			addFriendsButton.title = "Add"
+		}
+		
+		tableView.reloadData()
+	}
 }
 
 extension FriendsListViewController: UITableViewDataSource {

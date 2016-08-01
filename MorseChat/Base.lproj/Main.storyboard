@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -366,14 +367,16 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="upSender" translatesAutoresizingMaskIntoConstraints="NO" id="nI9-ts-X14">
-                                                    <rect key="frame" x="500" y="0.0" width="100" height="64.5"/>
+                                                    <rect key="frame" x="467" y="0.0" width="129" height="64.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="100" id="2NL-Bi-9ha"/>
+                                                        <constraint firstAttribute="width" secondItem="nI9-ts-X14" secondAttribute="height" multiplier="2:1" id="fPt-OE-YZP"/>
                                                         <constraint firstAttribute="width" constant="100" id="xbK-rC-Lbi"/>
                                                     </constraints>
                                                     <variation key="default">
                                                         <mask key="constraints">
                                                             <exclude reference="2NL-Bi-9ha"/>
+                                                            <exclude reference="xbK-rC-Lbi"/>
                                                         </mask>
                                                     </variation>
                                                 </imageView>
@@ -393,7 +396,7 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="nI9-ts-X14" secondAttribute="trailing" id="I3l-tC-hKj"/>
                                                 <constraint firstItem="sMO-ge-Sbj" firstAttribute="leading" secondItem="ljq-Iq-zjo" secondAttribute="leadingMargin" id="ZGg-pN-0Pg"/>
                                                 <constraint firstItem="nI9-ts-X14" firstAttribute="top" secondItem="ljq-Iq-zjo" secondAttribute="top" id="cFw-qV-Q9v"/>
-                                                <constraint firstAttribute="trailing" secondItem="nI9-ts-X14" secondAttribute="trailing" id="caK-s3-YGm"/>
+                                                <constraint firstAttribute="trailing" secondItem="nI9-ts-X14" secondAttribute="trailing" constant="4" id="caK-s3-YGm"/>
                                                 <constraint firstItem="IFZ-sH-Jnq" firstAttribute="leading" secondItem="ljq-Iq-zjo" secondAttribute="leadingMargin" id="rbo-L9-DFe"/>
                                                 <constraint firstItem="nI9-ts-X14" firstAttribute="top" secondItem="ljq-Iq-zjo" secondAttribute="topMargin" id="vnl-kL-lcM"/>
                                             </constraints>
@@ -419,9 +422,9 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8h4-r0-L6M">
-                                <rect key="frame" x="500" y="64" width="100" height="536"/>
+                                <rect key="frame" x="460" y="64" width="140" height="536"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="Vab-MJ-L24"/>
+                                    <constraint firstAttribute="width" constant="140" id="Vab-MJ-L24"/>
                                 </constraints>
                                 <connections>
                                     <action selector="buttonReleased:" destination="F0u-hV-yQZ" eventType="touchUpInside" id="4ec-ve-NkA"/>
@@ -453,7 +456,7 @@
                                 <segue destination="ODG-Jt-MKS" kind="show" id="ywu-Fb-vQa"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="1BF-TE-1kW">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="1BF-TE-1kW">
                             <connections>
                                 <segue destination="fUH-Zw-j79" kind="show" identifier="addFriendSegue" id="APy-vy-6DY"/>
                             </connections>

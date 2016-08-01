@@ -57,7 +57,9 @@ class FriendSearchResultsVC: UIViewController {
 				for i in 0..<users.count {
 					firebaseHelper.getFriendStatusOfUser(users[i].key,
 						callback: { (statusIn: FriendStatus) in
-							self.resultsStatus[i] = statusIn
+							if (self.resultsStatus.count>i) {
+								self.resultsStatus[i] = statusIn
+							}
 							left -= 1
 							if left == 0 {
 								self.tableView.reloadData()

@@ -8,7 +8,6 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="80"
@@ -24,19 +23,6 @@
   <defs
      id="defs4">
     <linearGradient
-       id="linearGradient5981"
-       inkscape:collect="always">
-      <stop
-         id="stop5991"
-         offset="0"
-         style="stop-color:#0080ff;stop-opacity:1;" />
-      <stop
-         id="stop5993"
-         offset="1"
-         style="stop-color:#0080ff;stop-opacity:0;" />
-    </linearGradient>
-    <linearGradient
-       inkscape:collect="always"
        id="linearGradient5969"
        osb:paint="gradient">
       <stop
@@ -63,17 +49,6 @@
          transform="matrix(0.8,0,0,0.8,10,0)"
          inkscape:connector-curvature="0" />
     </marker>
-    <radialGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient5981"
-       id="radialGradient5987"
-       cx="40"
-       cy="1032.3622"
-       fx="40"
-       fy="1032.3622"
-       r="39"
-       gradientTransform="matrix(1.230769,4.1329363e-7,-2.3271337e-7,0.71794816,-9.2305088,291.17964)"
-       gradientUnits="userSpaceOnUse" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -83,7 +58,7 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:zoom="5.6568543"
-     inkscape:cx="38.948821"
+     inkscape:cx="7.9245113"
      inkscape:cy="21.697208"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -150,7 +125,7 @@
      transform="translate(0,-1012.3622)"
      style="display:inline">
     <rect
-       style="opacity:1;fill:url(#radialGradient5987);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       style="opacity:1;fill:#0080ff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect4533"
        width="76"
        height="36"
