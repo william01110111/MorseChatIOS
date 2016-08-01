@@ -33,12 +33,12 @@ class FriendSearchResultsCell : UITableViewCell {
 		actionButton.layer.cornerRadius = 12
 		
 		if status.isFriend {
-			friendStatusLabel.text = "You are friends"
+			friendStatusLabel.text = "you are friends"
 			actionButton.setTitle("  Unfriend  ", forState: .Normal)
 			actionButton.backgroundColor = UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1)
 		}
 		else if status.requestIn {
-			friendStatusLabel.text = "they have requested to be friends"
+			friendStatusLabel.text = "has sent request"
 			actionButton.setTitle("  Accept Request  ", forState: .Normal)
 			actionButton.backgroundColor = UIColor(red: 0.0, green: 0.875, blue: 0.125, alpha: 1)
 		}

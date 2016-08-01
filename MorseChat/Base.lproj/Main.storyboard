@@ -182,13 +182,19 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search for friends by username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qcY-Ab-osC">
-                                                            <rect key="frame" x="51" y="23" width="228" height="20"/>
+                                                            <rect key="frame" x="186" y="23" width="228" height="20"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⇧" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z5u-cu-FMz">
-                                                            <rect key="frame" x="16" y="16" width="27" height="32.5"/>
+                                                            <rect key="frame" x="151" y="16" width="27" height="32.5"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⇧" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgf-67-WyK">
+                                                            <rect key="frame" x="422" y="16" width="27" height="32.5"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -196,14 +202,18 @@
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="Z5u-cu-FMz" firstAttribute="leading" secondItem="Gvb-Wh-9Ue" secondAttribute="leadingMargin" constant="8" id="6G5-7U-Hym"/>
+                                                        <constraint firstItem="fgf-67-WyK" firstAttribute="centerY" secondItem="Gvb-Wh-9Ue" secondAttribute="centerY" id="BAV-1j-nYk"/>
                                                         <constraint firstItem="qcY-Ab-osC" firstAttribute="leading" secondItem="Z5u-cu-FMz" secondAttribute="trailing" constant="8" id="Ctb-gy-WYF"/>
                                                         <constraint firstItem="Z5u-cu-FMz" firstAttribute="centerY" secondItem="Gvb-Wh-9Ue" secondAttribute="centerY" id="XEk-sj-E8r"/>
                                                         <constraint firstItem="qcY-Ab-osC" firstAttribute="centerY" secondItem="Gvb-Wh-9Ue" secondAttribute="centerY" id="cTT-2l-QrB"/>
+                                                        <constraint firstItem="qcY-Ab-osC" firstAttribute="centerX" secondItem="Gvb-Wh-9Ue" secondAttribute="centerX" id="ctE-vF-dP4"/>
                                                         <constraint firstItem="qcY-Ab-osC" firstAttribute="centerX" secondItem="Gvb-Wh-9Ue" secondAttribute="centerX" id="ogS-sE-K4E"/>
+                                                        <constraint firstItem="fgf-67-WyK" firstAttribute="leading" secondItem="qcY-Ab-osC" secondAttribute="trailing" constant="8" id="uPq-Kt-eJW"/>
                                                         <constraint firstItem="qcY-Ab-osC" firstAttribute="top" secondItem="Gvb-Wh-9Ue" secondAttribute="topMargin" constant="12" id="waJ-0h-WzE"/>
                                                     </constraints>
                                                     <variation key="default">
                                                         <mask key="constraints">
+                                                            <exclude reference="6G5-7U-Hym"/>
                                                             <exclude reference="ogS-sE-K4E"/>
                                                             <exclude reference="waJ-0h-WzE"/>
                                                         </mask>
@@ -478,25 +488,33 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="64.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Add friends to get started" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzL-tv-rue">
-                                                    <rect key="frame" x="18" y="22" width="197" height="21"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⇧" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x3V-pJ-iS7">
                                                     <rect key="frame" x="557" y="12" width="27" height="32.5"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add friends to get started" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzL-tv-rue">
+                                                    <rect key="frame" x="206.5" y="22" width="187" height="19.5"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="bzL-tv-rue" firstAttribute="centerX" secondItem="rzD-d2-PvW" secondAttribute="centerX" id="4Mm-EX-n70"/>
                                                 <constraint firstItem="x3V-pJ-iS7" firstAttribute="top" secondItem="rzD-d2-PvW" secondAttribute="topMargin" constant="4" id="TpU-bd-bXD"/>
+                                                <constraint firstItem="x3V-pJ-iS7" firstAttribute="leading" secondItem="bzL-tv-rue" secondAttribute="trailing" constant="16" id="dwJ-el-16z"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="x3V-pJ-iS7" secondAttribute="trailing" constant="8" id="iN3-Ud-QfM"/>
                                                 <constraint firstItem="bzL-tv-rue" firstAttribute="centerY" secondItem="rzD-d2-PvW" secondAttribute="centerY" id="o8F-xN-OUj"/>
                                                 <constraint firstItem="bzL-tv-rue" firstAttribute="leading" secondItem="rzD-d2-PvW" secondAttribute="leadingMargin" constant="8" id="zVU-wf-uAw"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="zVU-wf-uAw"/>
+                                                    <exclude reference="dwJ-el-16z"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>

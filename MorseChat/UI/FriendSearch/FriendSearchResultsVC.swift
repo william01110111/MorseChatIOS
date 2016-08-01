@@ -78,11 +78,14 @@ extension FriendSearchResultsVC: UITableViewDataSource {
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		
-		if (resultsUsers.count>0) {
+		if resultsUsers.count>0 {
 			return resultsUsers.count
 		}
-		else {
+		else if !searchText.isEmpty {
 			return 1
+		}
+		else {
+			return 0
 		}
 	}
 	

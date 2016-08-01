@@ -42,9 +42,27 @@ class SettingsVC: UIViewController {
 
 extension SettingsVC: UITableViewDataSource {
 	
+	func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		if section == 0 {
+			return "Profile"
+		}
+		else {
+			return "Unnamed section"
+		}
+	}
+	
+	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+		return 1
+	}
+	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		
-		return 1
+		if section == 0 {
+			return 1
+		}
+		else {
+			return 0
+		}
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
