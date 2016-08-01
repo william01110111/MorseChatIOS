@@ -24,6 +24,8 @@
 		3D882D8C1D42B380003402BF /* FirebaseHelperDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D882D8B1D42B380003402BF /* FirebaseHelperDownload.swift */; };
 		3D882D8E1D42D5BA003402BF /* FirebaseHelperUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D882D8D1D42D5BA003402BF /* FirebaseHelperUpload.swift */; };
 		3D882D921D42D7D2003402BF /* FirebaseHelperUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D882D911D42D7D2003402BF /* FirebaseHelperUsers.swift */; };
+		3D888CC01D4C06790086258B /* HardwareHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D888CBF1D4C06790086258B /* HardwareHelper.swift */; };
+		3D888CC21D4C10BB0086258B /* OutLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D888CC11D4C10BB0086258B /* OutLine.swift */; };
 		3D9263851D340F89001F839B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9263841D340F89001F839B /* AppDelegate.swift */; };
 		3D92638A1D340F89001F839B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D9263881D340F89001F839B /* Main.storyboard */; };
 		3D92638C1D340F89001F839B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D92638B1D340F89001F839B /* Assets.xcassets */; };
@@ -50,6 +52,8 @@
 		3D882D8B1D42B380003402BF /* FirebaseHelperDownload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseHelperDownload.swift; sourceTree = "<group>"; };
 		3D882D8D1D42D5BA003402BF /* FirebaseHelperUpload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseHelperUpload.swift; sourceTree = "<group>"; };
 		3D882D911D42D7D2003402BF /* FirebaseHelperUsers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseHelperUsers.swift; sourceTree = "<group>"; };
+		3D888CBF1D4C06790086258B /* HardwareHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HardwareHelper.swift; sourceTree = "<group>"; };
+		3D888CC11D4C10BB0086258B /* OutLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutLine.swift; sourceTree = "<group>"; };
 		3D9263811D340F89001F839B /* MorseChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MorseChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D9263841D340F89001F839B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3D9263891D340F89001F839B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -108,6 +112,7 @@
 				3D882D8D1D42D5BA003402BF /* FirebaseHelperUpload.swift */,
 				3D882D911D42D7D2003402BF /* FirebaseHelperUsers.swift */,
 				3D58C8961D47D3E700C573AA /* FirebaseHelperAccount.swift */,
+				3D888CC11D4C10BB0086258B /* OutLine.swift */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -161,6 +166,14 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		3D888CBE1D4C06530086258B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3D888CBF1D4C06790086258B /* HardwareHelper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		3D9263781D340F89001F839B = {
 			isa = PBXGroup;
 			children = (
@@ -183,6 +196,7 @@
 		3D9263831D340F89001F839B /* MorseChat */ = {
 			isa = PBXGroup;
 			children = (
+				3D888CBE1D4C06530086258B /* Helpers */,
 				3D882D6E1D42B1D0003402BF /* Data */,
 				3D882D701D42B1D0003402BF /* Firebase */,
 				3D882D721D42B1D0003402BF /* UI */,
@@ -327,10 +341,12 @@
 				3D58C8991D47F91500C573AA /* DeleteAccountConfirmVC.swift in Sources */,
 				3D882D921D42D7D2003402BF /* FirebaseHelperUsers.swift in Sources */,
 				3D86CCC41D496BB600E858A0 /* IncomingRequestCell.swift in Sources */,
+				3D888CC21D4C10BB0086258B /* OutLine.swift in Sources */,
 				3D882D8C1D42B380003402BF /* FirebaseHelperDownload.swift in Sources */,
 				3D58C8951D47CA4700C573AA /* TimeFuncs.swift in Sources */,
 				3D882D841D42B1D0003402BF /* FriendSearchResultsCell.swift in Sources */,
 				3D882D811D42B1D0003402BF /* FirebaseHelper.swift in Sources */,
+				3D888CC01D4C06790086258B /* HardwareHelper.swift in Sources */,
 				3D9263851D340F89001F839B /* AppDelegate.swift in Sources */,
 				3D882D871D42B1D0003402BF /* WelcomeVC.swift in Sources */,
 				3D882D8E1D42D5BA003402BF /* FirebaseHelperUpload.swift in Sources */,

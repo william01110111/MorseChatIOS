@@ -82,7 +82,9 @@ extension FriendsListViewController: UITableViewDataSource {
 		
 		cell = tableView.dequeueReusableCellWithIdentifier("friendCell")!
 		
-		(cell as! FriendCell).setFriend(friends[indexPath.row])
+		if indexPath.row<friends.count {
+			(cell as! FriendCell).setFriend(friends[indexPath.row])
+		}
 		
 		return cell
 	}

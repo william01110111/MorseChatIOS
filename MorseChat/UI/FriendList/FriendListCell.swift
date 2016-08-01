@@ -46,11 +46,11 @@ class FriendCell : UITableViewCell {
 		
 		if state {
 			
-			backgroundColor = UIColor(red: 0.0, green: 1.0, blue: 1.0, alpha: 0.5)
+			backgroundColor = UIColor(red: 0.0, green: 0.5, blue: 1.0, alpha: 1.0)
 		}
 		else {
 			
-			backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+			backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
 		}
 	}
 }
