@@ -29,8 +29,6 @@ class FriendsListViewController: UIViewController {
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 		
-		firebaseHelper.downloadFriends()
-		
 		tableView.reloadData()
 		
 		firebaseHelper.userDataChangedCallback = { () in

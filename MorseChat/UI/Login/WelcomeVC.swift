@@ -110,14 +110,6 @@ class WelcomeVC : UIViewController {
 				}
 				else {
 					showSpinner()
-					
-					if !meDownloaded {
-						firebaseHelper.downloadMe()
-					}
-					
-					if !friendsDownloaded {
-						firebaseHelper.downloadFriends()
-					}
 				}
 			}
 			else {

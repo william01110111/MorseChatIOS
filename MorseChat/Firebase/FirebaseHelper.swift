@@ -21,6 +21,7 @@ class FirebaseHelper : NSObject {
 	var root: FIRDatabaseReference?
 	var initialLoginAttemptDone = false
 	var initialAccountSetupDone = true
+	var observers = [FIRDatabaseQuery]()
 	var loginChangedCallback: (() -> Void)?
 	var userDataChangedCallback: (() -> Void)?
 	var firebaseErrorCallback: ((msg: String) -> Void)?

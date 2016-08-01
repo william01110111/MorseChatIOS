@@ -59,7 +59,6 @@ extension FirebaseHelper {
 					self.root!.child("friendsByUser").child(me.key).updateChildValues([other: false])
 					self.root!.child("friendsByUser").child(other).updateChildValues([me.key: false])
 					
-					self.downloadFriends()
 					self.rejectFriendRequest(other)
 				}
 				else {
@@ -73,8 +72,6 @@ extension FirebaseHelper {
 		
 		root!.child("requestsBySender").child(other).child(me.key).removeValue()
 		root!.child("requestsByReceiver").child(me.key).child(other).removeValue()
-		
-		downloadRequestsIn()
 	}
 	
 	func takeBackFriendRequest(other: String) {
@@ -86,8 +83,6 @@ extension FirebaseHelper {
 		
 		root!.child("friendsByUser").child(me.key).child(other).removeValue()
 		root!.child("friendsByUser").child(other).child(me.key).removeValue()
-		
-		downloadFriends()
 	}
 }
 

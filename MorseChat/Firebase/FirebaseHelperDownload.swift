@@ -15,13 +15,6 @@ import FirebaseAuthUI
 
 extension FirebaseHelper {
 	
-	func downloadData() {
-		
-		downloadMe()
-		downloadFriends()
-		downloadRequestsIn()
-	}
-	
 	func invalidateData() {
 		
 		meDownloaded = false
@@ -29,7 +22,23 @@ extension FirebaseHelper {
 		userDataChangedCallback?()
 	}
 	
-	func downloadFriends() {
+	func setObservers() {
+		
+		setMeObserver()
+		setFriendsObserver()
+		setRequestsInObserver()
+	}
+	
+	func removeObservers() {
+		
+		for i in observers {
+			i.removeAllObservers()
+		}
+		
+		observers.removeAll()
+	}
+	
+	func setFriendsObserver() {
 		
 		guard let userFB = firebaseUser else
 		{
@@ -38,103 +47,85 @@ extension FirebaseHelper {
 			return
 		}
 		
-		var ary = [Friend]()
+		let query = root!.child("friendsByUser").child(userFB.uid)
 		
-		let query = root!.child("friendsByUser/\(userFB.uid)")
-		
-		forAllUsersInQuery(query,
-			forUser: { (user: User) in
-				ary.append(user.toFriend())
-			},
-			whenDone: {
-				friends = ary
-				friendsDownloaded = true
-				self.userDataChangedCallback?()
+		query.observeEventType(.Value,
+			withBlock: { (data: FIRDataSnapshot) in
+				var ary = [Friend]()
+				
+				self.forAllUsersInSnapshot(data,
+					forUser: { (user: User) in
+						ary.append(user.toFriend())
+					},
+					whenDone: {
+						friends = ary
+						friendsDownloaded = true
+						self.userDataChangedCallback?()
+					}
+				)
 			}
 		)
 		
-		/*query.observeSingleEventOfType(.Value,
-			withBlock: { (data: FIRDataSnapshot) in
-
-				var elemLeft = data.childrenCount
-				
-				//if there are no friends it has to be handeled differently
-				if elemLeft == 0 {
-					friends.removeAll()
-					friendsDownloaded = true
-					self.userDataChangedCallback?()
-				}
-
-				for i in data.children {
-					self.getUserfromKey(i.key,
-						callback: { (userIn: User?) -> Void in
-							
-							if let userIn = userIn {
-								ary.append(userIn.toFriend())
-							}
-							else {
-								ary.append(Friend(usernameIn: "error", displayNameIn: "error downloading friend", keyIn: "errorKey"))
-							}
-							
-							elemLeft -= 1
-							
-							if elemLeft == 0 {
-								friends = ary
-								friendsDownloaded = true
-								self.userDataChangedCallback?()
-							}
-						}
-					)
-				}
-			}
-		)*/
+		observers.append(query)
 	}
 	
-	func downloadMe() {
+	func setMeObserver() {
 		
-		guard let user = firebaseUser else
+		guard let userFB = firebaseUser else
 		{
 			meDownloaded = true
 			firebaseErrorCallback?(msg: "Tried to download me without a signed in user")
 			return
 		}
 		
-		self.getUserfromKey(user.uid,
-			callback: { (usr) in
-				if let usr = usr {
-					me = usr
-					meDownloaded = true
-					self.userDataChangedCallback?()
-				}
-				else {
-					meDownloaded = false
-					//self.firebaseErrorCallback?(msg: "Error downloading me")
-				}
+		let query = root!.child("users").child(userFB.uid)
+		
+		query.observeEventType(.Value,
+			withBlock: { (data: FIRDataSnapshot) in
+				self.getUserfromKey(userFB.uid,
+					callback: { (usr) in
+						if let usr = usr {
+							me = usr
+							meDownloaded = true
+							self.userDataChangedCallback?()
+						}
+						else {
+							meDownloaded = false
+							//self.firebaseErrorCallback?(msg: "Error downloading me")
+						}
+					}
+				)
 			}
 		)
+		
+		observers.append(query)
 	}
 	
-	func downloadRequestsIn() {
+	func setRequestsInObserver() {
 		
 		guard let userFB = firebaseUser else
 		{
-			friendsDownloaded = false
+			requestsInDownloaded = false
 			firebaseErrorCallback?(msg: "Tried to download friend requests without a signed in user")
 			return
 		}
 		
-		var ary = [User]()
-		
 		let query = root!.child("requestsByReceiver").child(userFB.uid)
 		
-		forAllUsersInQuery(query,
-			forUser: { (user: User) in
-				ary.append(user)
-			},
-			whenDone: {
-				requestsIn = ary
-				requestsInDownloaded = true
-				self.userDataChangedCallback?()
+		query.observeEventType(.Value,
+			withBlock: { (data: FIRDataSnapshot) in
+				var ary = [User]()
+				
+				self.forAllUsersInSnapshot(data,
+					forUser: { (user: User) in
+						ary.append(user)
+					},
+					whenDone: {
+						requestsIn = ary
+						requestsInDownloaded = true
+						self.userDataChangedCallback?()
+					}
+				)
 			}
 		)
 	}
