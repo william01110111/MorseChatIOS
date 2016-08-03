@@ -44,7 +44,7 @@ extension SettingsVC: UITableViewDataSource {
 	
 	func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		if section == 0 {
-			return "Profile"
+			return "Your Profile"
 		}
 		else {
 			return "Unnamed section"
