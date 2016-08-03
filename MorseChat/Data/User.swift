@@ -116,33 +116,34 @@ class User {
 
 class Friend : User {
 	
-	var inLineState = false;
-	var outLineState = false;
+	var lineOut: LineOut?
+	var lineIn: LineIn?
 	
-	override init(usernameIn: String, displayNameIn: String, keyIn: String) {
-		super.init(usernameIn: usernameIn, displayNameIn: displayNameIn, keyIn: keyIn)
-	}
+	var inLineState = false
 	
 	var lineInCallback: ((state: Bool) -> Void)?
 	
+	override init(usernameIn: String, displayNameIn: String, keyIn: String) {
+		super.init(usernameIn: usernameIn, displayNameIn: displayNameIn, keyIn: keyIn)
+		lineOut = LineOut(friendIn: self)
+		lineIn = LineIn(friendIn: self)
+		lineIn?.stateChangedCallback = inStateChanged
+	}
+	
 	func setOutLine(newState: Bool) {
 		
-		outLineState = newState
+		lineOut?.setState(newState)
 		
-		print("line to \(displayName) (\(username)) is \(outLineState)")
+		//print("line to \(displayName) (\(username)) is \(outLineState)")
 		
 		//print("calling firebaseHelper.setLineToUserStatus() with key \(key)")
 		
-		firebaseHelper.setLineToUserStatus(key, lineOn: outLineState)
+		//firebaseHelper.setLineToUserStatus(key, lineOn: outLineState)
 	}
 	
-	func setInLine(newState: Bool) {
+	func inStateChanged(stateIn: Bool) {
 		
-		inLineState = newState
-		
-		print("line from \(displayName) (\(username)) is \(inLineState)")
-		
-		lineInCallback?(state: newState)
+		lineInCallback?(state: stateIn)
 	}
 }
 

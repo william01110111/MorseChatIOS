@@ -24,6 +24,8 @@ extension FirebaseHelper {
 	
 	func setObservers() {
 		
+		removeObservers()
+		
 		setMeObserver()
 		setFriendsObserver()
 		setRequestsInObserver()
@@ -49,6 +51,8 @@ extension FirebaseHelper {
 		
 		let query = root!.child("friendsByUser").child(userFB.uid)
 		
+		query.removeAllObservers()
+		
 		query.observeEventType(.Value,
 			withBlock: { (data: FIRDataSnapshot) in
 				var ary = [Friend]()
@@ -56,6 +60,15 @@ extension FirebaseHelper {
 				self.forAllUsersInSnapshot(data,
 					forUser: { (user: User) in
 						ary.append(user.toFriend())
+						
+						//sort
+						var i = ary.count - 1
+						while (i > 0 && ary[i-1].displayName>ary[i].displayName) {
+							let tmp = ary[i-1]
+							ary[i-1] = ary[i]
+							ary[i] = tmp
+							i -= 1
+						}
 					},
 					whenDone: {
 						friends = ary
@@ -79,6 +92,8 @@ extension FirebaseHelper {
 		}
 		
 		let query = root!.child("users").child(userFB.uid)
+		
+		query.removeAllObservers()
 		
 		query.observeEventType(.Value,
 			withBlock: { (data: FIRDataSnapshot) in
@@ -111,6 +126,8 @@ extension FirebaseHelper {
 		}
 		
 		let query = root!.child("requestsByReceiver").child(userFB.uid)
+		
+		query.removeAllObservers()
 		
 		query.observeEventType(.Value,
 			withBlock: { (data: FIRDataSnapshot) in

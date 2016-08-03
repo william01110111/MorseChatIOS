@@ -96,7 +96,7 @@ extension FirebaseHelper {
 				upload()
 			}
 			else {
-				delay(0.25,
+				_ = Delayer(seconds: 0.25, repeats: false,
 				      callback: {
 						wait(iters+1)
 					}
