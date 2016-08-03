@@ -20,6 +20,7 @@ class LineIn {
 	//var cancelCallback: (() -> Void)?
 	let timekeeper = Timekeeper()
 	let ref: FIRDatabaseReference
+	var delayer = Delayer()
 	
 	init(friendIn: Friend) {
 		
@@ -27,31 +28,34 @@ class LineIn {
 		
 		ref = firebaseHelper.root!.child("chatsByReceiver").child(me.key).child(friend.key)
 		
-		firebaseHelper.root!.child("chatsByReceiver").child(me.key).child(friendIn.key).removeAllObservers()
+		ref.removeAllObservers()
 		
-		firebaseHelper.root!.child("chatsByReceiver").child(me.key).child(friendIn.key).observeEventType(.ChildAdded, withBlock: self.childAdded)
+		ref.observeEventType(.ChildAdded, withBlock: self.childAdded)
 	}
 	
 	func childAdded(data: FIRDataSnapshot) {
 		
 		let val = (data.value as? Float ?? 0.0)
 		
-		addBlock(Double(val))
+		addBlock(val >= 0, time: Double(abs(val)))
 		
 		ref.child(data.key).removeValue()
 	}
 	
-	func addBlock(val: Double) {
+	func addBlock(newState: Bool, time: Double) {
 		
-		let newState = (val >= 0)
-		let time = abs(val)
-		
-		timeTilOver -= timekeeper.check()
-		timekeeper.reset()
 		timeTilOver += time
+		timeTilOver -= timekeeper.check()
 		
-		if time == 0 && timeTilOver < minGapTime {
-			timeTilOver = minGapTime
+		timekeeper.reset()
+		
+		if time == 0 {
+			
+			timeTilOver += minGapTime
+			
+			if timeTilOver < maxLatency {
+				timeTilOver = maxLatency
+			}
 		}
 		
 		if timeTilOver < 0 {
@@ -60,61 +64,22 @@ class LineIn {
 		
 		_ = Delayer(seconds: timeTilOver, repeats: false,
 			callback: { () in
+				
 				self.stateChangedCallback?(newState)
+				
+				self.delayer.stop()
+				
+				if newState {
+					
+					self.delayer = Delayer(seconds: maxBlockTime, repeats: false,
+						callback: {
+							self.stateChangedCallback?(false)
+						}
+					)
+				}
 			}
 		)
 	}
-	
-	/*func addBlockToEnd(val: Double) {
-		
-		let newState = val > 0
-		let time = abs(val)
-		
-		if let cancelCallback = cancelCallback {
-			cancelCallback()
-			self.cancelCallback = nil
-		}
-		
-		timeTilOver -= timekeeper.check()
-		
-		print("timeTilOver: \(timeTilOver)")
-		
-		if (timeTilOver<0) {
-			timeTilOver = 0
-		}
-		
-		if (val == 0) {
-			
-			if (timeTilOver < minGapTime) {
-				timeTilOver = minGapTime
-			}
-			
-		}
-		
-		timekeeper.reset()
-		
-		if state != newState {
-			_ = Timekeeper.delay(timeTilOver,
-				callback: { () in
-					self.stateChangedCallback?(newState)
-				}
-			)
-			
-			state = newState
-		}
-		
-		timeTilOver += time
-		
-		if (newState) {
-			
-			cancelCallback = Timekeeper.delay(timeTilOver,
-				 callback: { () in
-					self.state = false
-					self.stateChangedCallback?(false)
-				}
-			)
-		}
-	}*/
 	
 	func abort() {
 		

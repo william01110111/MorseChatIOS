@@ -12,17 +12,17 @@ import FirebaseAuth
 import FirebaseDatabase
 
 let maxBlockTime = 1.5
-let minGapTime = 10.0
+let minGapTime = 3.0
+let maxLatency = 2.0
 
 class LineOut {
 	
 	let friend: Friend
-	private var state = false
+	private var lastState = false
+	private var hasSentBlock = false
 	var delayer = Delayer()
 	let timekeeper = Timekeeper()
 	let ref: FIRDatabaseReference
-	
-	let timekeeper2 = Timekeeper()
 	
 	init(friendIn: Friend) {
 		
@@ -32,30 +32,31 @@ class LineOut {
 	
 	func setState(stateIn: Bool) {
 		
-		if stateIn==state {
+		if stateIn==lastState {
 			return
 		}
+		lastState = stateIn
+		
+		delayer.stop()
 		
 		var time = timekeeper.check()
 		
-		if (!state && stateIn && time > minGapTime) {
+		if stateIn && time > minGapTime {
 			time = 0
+		}
+		
+		if !hasSentBlock {
+			time = 0
+			hasSentBlock = true
 		}
 		
 		pushBlock(stateIn, time: time)
 		
-		state = stateIn
-		timekeeper.reset()
-		delayer.stop()
-		
 		if (stateIn) {
-			
-			timekeeper2.reset()
 			
 			delayer = Delayer(seconds: maxBlockTime, repeats: true,
 				callback: {
 					self.pushBlock(true, time: maxBlockTime)
-					self.timekeeper.reset()
 				}
 			)
 		}
@@ -64,5 +65,6 @@ class LineOut {
 	func pushBlock(stateIn: Bool, time: Double) {
 		
 		ref.childByAutoId().setValue(Float(time*(stateIn ? 1 : -1)))
+		timekeeper.reset()
 	}
 }
