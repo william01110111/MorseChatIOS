@@ -1,3 +1,38 @@
+# for inkscape CLI reference, see https://inkscape.org/en/doc/inkscape-man.html
+
+inName=$1
+dir=$(pwd)
+outDir=$2/Assets.xcassets/AppIcon.appiconset
+inkscape=/Applications/Inkscape.app/Contents/Resources/bin/inkscape
+
+if [ -e $outdir ]
+then
+
+cd $outDir
+outDir=$(pwd)
+cd dir
+
+save() {
+	echo "saving icon size $1"
+	$inkscape -z $dir/$inName -C -w $1 -h $1 -e $outDir/Icon-App-$1.png
+}
+
+echo "exporting images..."
+
+save 29
+save 40
+save 58
+save 80
+save 76
+save 87
+save 120
+save 152
+save 167
+save 180
+
+echo "saving contents..."
+
+cat > $outDir/Contents.json <<- EOM
 
 {
 "images" : [
@@ -85,4 +120,14 @@
 "author" : "xcode"
 }
 }
+
+EOM
+
+echo "all done"
+
+else
+
+echo "out location does not exist"
+
+fi
 
