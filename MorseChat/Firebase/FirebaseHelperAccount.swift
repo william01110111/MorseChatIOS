@@ -170,6 +170,29 @@ extension FirebaseHelper {
 			}
 		)
 	}
+	
+	func signInWithEmail(email: String, password: String, callback: (String?) -> Void) {
+		
+		auth?.signInWithEmail(email, password: password,
+			completion: { (user: FIRUser?, error: NSError?) in
+				
+				if let error = error {
+					callback(error.localizedDescription ?? "unknowed error")
+				} else {
+					callback(nil)
+				}
+			}
+		)
+	}
+	
+	func createAccountWithEmail(email: String, password: String, callback: (String?) -> Void) {
+		
+		auth?.createUserWithEmail(email, password: password,
+			completion: { (user: FIRUser?, error: NSError?) in
+					callback(error?.description ?? "unknown error")
+			}
+		)
+	}
 }
 
 

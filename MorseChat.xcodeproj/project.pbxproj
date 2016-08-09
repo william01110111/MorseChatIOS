@@ -10,6 +10,7 @@
 		3D58C8951D47CA4700C573AA /* TimeFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D58C8941D47CA4700C573AA /* TimeFuncs.swift */; };
 		3D58C8971D47D3E700C573AA /* FirebaseHelperAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D58C8961D47D3E700C573AA /* FirebaseHelperAccount.swift */; };
 		3D58C8991D47F91500C573AA /* DeleteAccountConfirmVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D58C8981D47F91500C573AA /* DeleteAccountConfirmVC.swift */; };
+		3D5BAE081D5A881D003A7004 /* LogInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5BAE071D5A881D003A7004 /* LogInVC.swift */; };
 		3D86CCC41D496BB600E858A0 /* IncomingRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D86CCC31D496BB600E858A0 /* IncomingRequestCell.swift */; };
 		3D882D801D42B1D0003402BF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D882D6F1D42B1D0003402BF /* User.swift */; };
 		3D882D811D42B1D0003402BF /* FirebaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D882D711D42B1D0003402BF /* FirebaseHelper.swift */; };
@@ -39,6 +40,7 @@
 		3D58C8941D47CA4700C573AA /* TimeFuncs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeFuncs.swift; sourceTree = "<group>"; };
 		3D58C8961D47D3E700C573AA /* FirebaseHelperAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseHelperAccount.swift; sourceTree = "<group>"; };
 		3D58C8981D47F91500C573AA /* DeleteAccountConfirmVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteAccountConfirmVC.swift; sourceTree = "<group>"; };
+		3D5BAE071D5A881D003A7004 /* LogInVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInVC.swift; sourceTree = "<group>"; };
 		3D86CCC31D496BB600E858A0 /* IncomingRequestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomingRequestCell.swift; sourceTree = "<group>"; };
 		3D882D6F1D42B1D0003402BF /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3D882D711D42B1D0003402BF /* FirebaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseHelper.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				3D882D7B1D42B1D0003402BF /* WelcomeVC.swift */,
+				3D5BAE071D5A881D003A7004 /* LogInVC.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -358,6 +361,7 @@
 				3D58C8991D47F91500C573AA /* DeleteAccountConfirmVC.swift in Sources */,
 				3D882D921D42D7D2003402BF /* FirebaseHelperUsers.swift in Sources */,
 				3D86CCC41D496BB600E858A0 /* IncomingRequestCell.swift in Sources */,
+				3D5BAE081D5A881D003A7004 /* LogInVC.swift in Sources */,
 				3DCDE3F41D51268A006A6921 /* LineOut.swift in Sources */,
 				3D882D8C1D42B380003402BF /* FirebaseHelperDownload.swift in Sources */,
 				3D58C8951D47CA4700C573AA /* TimeFuncs.swift in Sources */,

@@ -76,11 +76,11 @@ class WelcomeVC : UIViewController {
 		errorMsgLabel.hidden = false;
 	}
 	
-	func startLoginUI() {
+	/*func startLoginUI() {
 		if viewHasAppeared {
 			firebaseHelper.loginUI(self)
 		}
-	}
+	}*/
 	
 	func segueAway() {
 		if viewHasAppeared {
@@ -94,7 +94,8 @@ class WelcomeVC : UIViewController {
 	}
 	
 	@IBAction func signInBtnPressed(sender: AnyObject) {
-		startLoginUI()
+		//startLoginUI()
+		performSegueWithIdentifier("signInFromWelcomeSegue", sender: self)
 	}
 	
 	@IBAction func exitToWelcome(segue:UIStoryboardSegue) {
