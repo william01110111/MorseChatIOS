@@ -93,7 +93,7 @@ class User {
 	static func checkUsername(name: String) -> String? {
 		
 		if name.isEmpty {
-			return "username required"
+			return "Username required"
 		}
 		if name.characters.count<3 {
 			return "Username too short"

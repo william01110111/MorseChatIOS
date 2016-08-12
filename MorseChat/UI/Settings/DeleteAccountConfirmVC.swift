@@ -18,7 +18,6 @@ class DeleteAccountConfirmVC: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		tryToDelete = false
 		backgroundView.layer.cornerRadius = 15
 	}
 	
@@ -45,6 +44,10 @@ class DeleteAccountConfirmVC: UIViewController {
 		performSegueWithIdentifier("exitToProfileSegue", sender: self)
 	}
 	
+	@IBAction func exitToDelete(segue:UIStoryboardSegue) {
+		
+	}
+	
 	@IBAction func deleteButtonPressed(sender: AnyObject) {
 		
 		firebaseHelper.deleteAccount(
@@ -52,8 +55,11 @@ class DeleteAccountConfirmVC: UIViewController {
 				self.performSegueWithIdentifier("exitToWelcomeSegue", sender: self)
 			},
 			fail: { (msg: String) in
-				firebaseHelper.loginUI(self)
+				//firebaseHelper.loginUI(self)
 				self.tryToDelete = true
+				LogInVC.createAccount = false
+				LogInVC.exitSegueStr = "exitToDeleteSegue"
+				self.performSegueWithIdentifier("signInFromDeleteSegue", sender: self)
 				//print(msg)
 				//self.showError(msg)
 			}

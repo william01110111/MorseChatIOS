@@ -14,6 +14,12 @@ class LogInVC : UIViewController {
 	@IBOutlet weak var passwordField: UITextField!
 	@IBOutlet weak var errorMsg: UILabel!
 	@IBOutlet weak var spinnerView: UIView!
+	@IBOutlet weak var signInBtn: UIButton!
+	@IBOutlet weak var displayNameLabel: UILabel!
+	@IBOutlet weak var displayNameField: UITextField!
+	
+	static var createAccount = false
+	static var exitSegueStr = ""
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -23,6 +29,17 @@ class LogInVC : UIViewController {
 		super.viewWillAppear(animated)
 		
 		showGood()
+		
+		if LogInVC.createAccount {
+			signInBtn.setTitle("Create Account", forState: .Normal)
+			displayNameField.hidden = false
+			displayNameLabel.hidden = false
+		}
+		else {
+			signInBtn.setTitle("Sign In", forState: .Normal)
+			displayNameField.hidden = true
+			displayNameLabel.hidden = true
+		}
 	}
 	
 	override func viewDidAppear(animated: Bool) {
@@ -52,33 +69,52 @@ class LogInVC : UIViewController {
 	
 	@IBAction func backPressed(sender: AnyObject) {
 		
-		self.performSegueWithIdentifier("exitToWelcome", sender: self)
+		self.performSegueWithIdentifier(LogInVC.exitSegueStr, sender: self)
 	}
 	
 	@IBAction func signInPressed(sender: AnyObject) {
 		
 		if emailField.text == nil || emailField.text!.isEmpty {
-			showError("email required")
+			showError("Email required")
 			return
 		}
 		
 		if passwordField.text == nil || passwordField.text!.isEmpty {
-			showError("password required")
+			showError("Password required")
+			return
+		}
+		
+		if LogInVC.createAccount && (displayNameField.text == nil || displayNameField.text!.isEmpty) {
+			showError("Display name required")
 			return
 		}
 		
 		showSpinner()
 		
-		firebaseHelper.signInWithEmail(emailField.text!, password: passwordField.text!,
-			callback: { (error: String?) in
-				if let error = error {
-					self.showError(error)
+		if LogInVC.createAccount {
+			firebaseHelper.createAccountWithEmail(emailField.text!, displayName: displayNameField.text!, password: passwordField.text!,
+				callback: { (error: String?) in
+					if let error = error {
+						self.showError(error)
+					}
+					else {
+						self.performSegueWithIdentifier(LogInVC.exitSegueStr, sender: self)
+					}
 				}
-				else {
-					self.performSegueWithIdentifier("exitToWelcome", sender: self)
+			)
+		}
+		else {
+			firebaseHelper.signInWithEmail(emailField.text!, password: passwordField.text!,
+				callback: { (error: String?) in
+					if let error = error {
+						self.showError(error)
+					}
+					else {
+						self.performSegueWithIdentifier(LogInVC.exitSegueStr, sender: self)
+					}
 				}
-			}
-		)
+			)
+		}
 	}
 	
 }

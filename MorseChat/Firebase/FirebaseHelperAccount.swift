@@ -10,7 +10,7 @@ import Foundation
 import Firebase
 import FirebaseAuth
 import FirebaseDatabase
-import FirebaseAuthUI
+//import FirebaseAuthUI
 
 extension FirebaseHelper {
 	
@@ -19,7 +19,7 @@ extension FirebaseHelper {
 		return firebaseUser != nil
 	}
 	
-	func loginUI(vc: UIViewController) {
+	/*func loginUI(vc: UIViewController) {
 		
 		let authUIOp = FIRAuthUI.authUI()
 		
@@ -31,7 +31,7 @@ extension FirebaseHelper {
 		authUI.delegate = self
 		let authViewController = authUI.authViewController()
 		vc.presentViewController(authViewController, animated: true, completion: nil)
-	}
+	}*/
 	
 	/*func reauthUI(vc: UIViewController) {
 		
@@ -68,7 +68,8 @@ extension FirebaseHelper {
 		}
 	}
 	
-	func createUser() {
+	//this version works best with firebaseUI
+	/*func createUser() {
 		
 		func upload() {
 			User.getUniqueUsername(firebaseUser?.displayName ?? "no user name",
@@ -105,6 +106,26 @@ extension FirebaseHelper {
 		}
 		
 		wait(0)
+	}*/
+	
+	func createUser() {
+		
+		User.getUniqueUsername(me.displayName,
+			   callback: { (username) in
+				
+				let newMe = User(usernameIn: username, displayNameIn: me.displayName, keyIn: self.firebaseUser?.uid ?? "noUID")
+				
+				self.uploadMe(newMe,
+					success: { () in
+						self.setObservers()
+					},
+					fail: { (errMsg: String) in
+						self.invalidateData()
+						self.firebaseErrorCallback?(msg: errMsg)
+					}
+				)
+			}
+		)
 	}
 	
 	func signOut() {
@@ -160,10 +181,12 @@ extension FirebaseHelper {
 		
 		deleteCounterparts(root!.child("requestsByReceiver"), child: me.key, query2: root!.child("requestsBySender"))
 		
+		root?.child("chatsByReciever").child(me.key).removeValue()
+		
 		root!.child("users").child(me.key).removeValueWithCompletionBlock(
 			{ (error: NSError?, ref: FIRDatabaseReference) in
 				if let error = error {
-					print(error.localizedDescription)
+					self.firebaseErrorCallback?(msg: error.localizedDescription)
 				}
 				
 				callback()
@@ -185,18 +208,24 @@ extension FirebaseHelper {
 		)
 	}
 	
-	func createAccountWithEmail(email: String, password: String, callback: (String?) -> Void) {
+	func createAccountWithEmail(email: String, displayName: String, password: String, callback: (String?) -> Void) {
+		
+		me.displayName = displayName
 		
 		auth?.createUserWithEmail(email, password: password,
 			completion: { (user: FIRUser?, error: NSError?) in
-					callback(error?.description ?? "unknown error")
+				if let error = error {
+					callback(error.localizedDescription ?? "unknowed error")
+				} else {
+					callback(nil)
+				}
 			}
 		)
 	}
 }
 
 
-extension FirebaseHelper : FIRAuthUIDelegate {
+/*extension FirebaseHelper : FIRAuthUIDelegate {
 	
 	@objc func authUI(authUI: FIRAuthUI, didSignInWithUser user: FIRUser?, error: NSError?) {
 		
@@ -205,5 +234,5 @@ extension FirebaseHelper : FIRAuthUIDelegate {
 			print("login error: \(error.localizedDescription)")
 		}
 	}
-}
+}*/
 

@@ -159,6 +159,10 @@ class EditProfileVC: UIViewController {
 		}
 	}
 	
+	override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+		self.view.endEditing(false)
+	}
+	
 	@IBAction func signOutButtonPressed(sender: AnyObject) {
 		
 		firebaseHelper.signOut()

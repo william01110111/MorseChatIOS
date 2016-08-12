@@ -11,7 +11,7 @@ import Foundation
 import Firebase
 import FirebaseAuth
 import FirebaseDatabase
-import FirebaseAuthUI
+//import FirebaseAuthUI
 
 extension FirebaseHelper {
 	

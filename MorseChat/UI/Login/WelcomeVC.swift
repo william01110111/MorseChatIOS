@@ -13,6 +13,7 @@ class WelcomeVC : UIViewController {
 	@IBOutlet weak var errorMsgLabel: UILabel!
 	@IBOutlet weak var spinner: UIActivityIndicatorView!
 	@IBOutlet weak var signInBtn: UIButton!
+	@IBOutlet weak var createAccountBtn: UIButton!
 	
 	
 	private var viewHasAppeared = false
@@ -59,6 +60,7 @@ class WelcomeVC : UIViewController {
 	func showSpinner() {
 		if viewIfLoaded != nil {
 			signInBtn.hidden = true
+			createAccountBtn.hidden = true
 			spinner.hidden = false
 		}
 	}
@@ -66,6 +68,7 @@ class WelcomeVC : UIViewController {
 	func showBtn() {
 		if viewIfLoaded != nil {
 			signInBtn.hidden = false
+			createAccountBtn.hidden = false
 			spinner.hidden = true
 		}
 	}
@@ -93,8 +96,16 @@ class WelcomeVC : UIViewController {
 		}
 	}
 	
+	@IBAction func createAccountBtnPressed(sender: AnyObject) {
+		LogInVC.createAccount = true
+		LogInVC.exitSegueStr = "exitToWelcomeSegue"
+		performSegueWithIdentifier("signInFromWelcomeSegue", sender: self)
+	}
+	
 	@IBAction func signInBtnPressed(sender: AnyObject) {
 		//startLoginUI()
+		LogInVC.createAccount = false
+		LogInVC.exitSegueStr = "exitToWelcomeSegue"
 		performSegueWithIdentifier("signInFromWelcomeSegue", sender: self)
 	}
 	

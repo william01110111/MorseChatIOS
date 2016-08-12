@@ -8,7 +8,9 @@ target 'MorseChat' do
   # Pods for MorseChat
   
   pod 'Firebase'
+  pod 'FirebaseAuth'
+  pod 'FirebaseDatabase'
   
-  pod 'FirebaseUI', '~> 0.4'       # Pull in all Firebase UI features
+  #pod 'FirebaseUI', '~> 0.4'       # Pull in all Firebase UI features
   
 end
