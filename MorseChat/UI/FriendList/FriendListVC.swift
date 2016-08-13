@@ -14,7 +14,9 @@ class FriendsListViewController: UIViewController {
 	@IBOutlet weak var cheatSheet0: UILabel!
 	@IBOutlet weak var cheatSheet1: UILabel!
 	@IBOutlet weak var cheatSheet2: UILabel!
+	@IBOutlet weak var showCheatSheetBtn: UIButton!
 	
+	@IBOutlet weak var cheatSheetView: UIView!
 	@IBOutlet weak var addFriendsButton: UIBarButtonItem!
 	
 	var selectedCell: FriendCell?
@@ -25,6 +27,19 @@ class FriendsListViewController: UIViewController {
 		cheatSheet0.text="A •－\nB －•••\nC －•－•\nD －••\nE •\nF ••－•\nG －－•\nH ••••\nI ••"
 		cheatSheet1.text="J •－－－\nK －•－\nL •－••\nM －－\nN －•\nO －－－\nP•－－•\nQ－－•－\nR －•－"
 		cheatSheet2.text="S •••\nT －\nU ••－\nV •••－\nW •－－\nX －••－\nY －•－－\nZ －－••\n. •－•－•－"
+		
+		cheatSheetView.hidden=true
+		showCheatSheetBtn.hidden=false
+	}
+	
+	@IBAction func showCheatSheet(sender: AnyObject) {
+		cheatSheetView.hidden=false
+		showCheatSheetBtn.hidden=true
+	}
+	
+	@IBAction func hideCheatSheet(sender: AnyObject) {
+		cheatSheetView.hidden=true
+		showCheatSheetBtn.hidden=false
 	}
 	
 	override func didReceiveMemoryWarning() {
