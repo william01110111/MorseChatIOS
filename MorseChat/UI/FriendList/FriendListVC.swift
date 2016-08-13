@@ -11,6 +11,9 @@ import UIKit
 class FriendsListViewController: UIViewController {
 	
 	@IBOutlet var tableView: UITableView!
+	@IBOutlet weak var cheatSheet0: UILabel!
+	@IBOutlet weak var cheatSheet1: UILabel!
+	@IBOutlet weak var cheatSheet2: UILabel!
 	
 	@IBOutlet weak var addFriendsButton: UIBarButtonItem!
 	
@@ -19,6 +22,9 @@ class FriendsListViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
+		cheatSheet0.text="A •－\nB －•••\nC －•－•\nD －••\nE •\nF ••－•\nG －－•\nH ••••\nI ••"
+		cheatSheet1.text="J •－－－\nK －•－\nL •－••\nM －－\nN －•\nO －－－\nP•－－•\nQ－－•－\nR －•－"
+		cheatSheet2.text="S •••\nT －\nU ••－\nV •••－\nW •－－\nX －••－\nY －•－－\nZ －－••\n. •－•－•－"
 	}
 	
 	override func didReceiveMemoryWarning() {
